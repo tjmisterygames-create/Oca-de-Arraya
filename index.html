@@ -859,7 +859,7 @@ footer {
     <ul class="menu">
 
 
-        <li class="activo">
+        <li class="activo" onclick="mostrarSeccion('expediente')">
 
             <span class="icono">📁</span>
 
@@ -868,7 +868,7 @@ footer {
         </li>
 
 
-        <li>
+       <li onclick="mostrarSeccion('laboratorio')">
 
             <span class="icono">🔬</span>
 
@@ -881,7 +881,7 @@ footer {
         </li>
 
 
-        <li>
+        <li onclick="mostrarSeccion('clinica')">
 
             <span class="icono">🏥</span>
 
@@ -894,7 +894,7 @@ footer {
         </li>
 
 
-        <li>
+        <li onclick="mostrarSeccion('videovigilancia')">
 
             <span class="icono">📹</span>
 
@@ -907,7 +907,7 @@ footer {
         </li>
 
 
-        <li>
+        <li onclick="mostrarSeccion('comunicaciones')">
 
             <span class="icono">☎</span>
 
@@ -920,7 +920,7 @@ footer {
         </li>
 
 
-        <li>
+        <li onclick="mostrarSeccion('correo')">
 
             <span class="icono">✉</span>
 
@@ -947,94 +947,107 @@ footer {
 
 <main class="contenido">
 
+    <!-- EXPEDIENTE -->
 
-    <div class="barra-expediente">
+    <section id="expediente" class="seccion">
 
+        <div class="barra-expediente">
 
-        <h2>
-            CENTRAL DE INVESTIGACIÓN
-        </h2>
+            <h2>
+                CENTRAL DE INVESTIGACIÓN
+            </h2>
 
-
-        <div class="expediente">
-
-            EXPEDIENTE<br>
-
-            <strong>
-                OCA-2026-001
-            </strong>
+            <div class="expediente">
+                EXPEDIENTE<br>
+                <strong>OCA-2026-001</strong>
+            </div>
 
         </div>
 
 
-    </div>
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    ESTADO DEL EXPEDIENTE
+                </h3>
+
+                <p>
+                    Información general de la investigación.
+                </p>
+
+            </div>
 
 
+            <div class="tarjetas">
 
-    <!-- PANEL DE ESTADO -->
+                <div class="tarjeta">
+
+                    <div class="numero">
+                        04
+                    </div>
+
+                    <div class="etiqueta">
+                        Análisis de laboratorio
+                    </div>
+
+                </div>
 
 
-    <section class="panel">
+                <div class="tarjeta">
+
+                    <div class="numero">
+                        01
+                    </div>
+
+                    <div class="etiqueta">
+                        Archivo clínico
+                    </div>
+
+                </div>
 
 
-        <div class="panel-cabecera">
+                <div class="tarjeta">
 
-            <h3>
-                ESTADO DEL SISTEMA
-            </h3>
+                    <div class="numero">
+                        01
+                    </div>
+
+                    <div class="etiqueta">
+                        Acceso restringido
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    INFORMACIÓN DEL CASO
+                </h3>
+
+            </div>
 
             <p>
-                Información general de los recursos
-                disponibles para la investigación.
+                Expediente abierto para la investigación
+                de los acontecimientos registrados en
+                Oca de Arraya.
             </p>
 
-        </div>
+            <p>
+                Utilice los recursos disponibles en el
+                sistema para consultar la información
+                incorporada a la investigación.
+            </p>
 
-
-        <div class="tarjetas">
-
-
-            <div class="tarjeta">
-
-                <div class="numero">
-                    04
-                </div>
-
-                <div class="etiqueta">
-                    Análisis de laboratorio
-                </div>
-
-            </div>
-
-
-            <div class="tarjeta">
-
-                <div class="numero">
-                    01
-                </div>
-
-                <div class="etiqueta">
-                    Archivo clínico
-                </div>
-
-            </div>
-
-
-            <div class="tarjeta">
-
-                <div class="numero">
-                    01
-                </div>
-
-                <div class="etiqueta">
-                    Acceso restringido
-                </div>
-
-            </div>
-
-
-        </div>
-
+        </section>
 
     </section>
 
@@ -1042,69 +1055,256 @@ footer {
 
     <!-- LABORATORIO -->
 
+    <section id="laboratorio" class="seccion" style="display:none">
 
-    <section class="panel">
+        <div class="barra-expediente">
 
-
-        <div class="laboratorio">
-
-
-            <h3>
-                🔬 LABORATORIO CRIMINALÍSTICO
-            </h3>
-
-
-            <p class="laboratorio-descripcion">
-
-                Central de consulta de resultados
-                procedentes de las unidades de análisis
-                médico y criminalístico.
-
-                Introduzca el código asociado a la
-                muestra para consultar el informe
-                correspondiente.
-
-            </p>
-
-
-            <label for="codigo">
-
-                CÓDIGO DE MUESTRA
-
-            </label>
-
-
-            <input
-
-                id="codigo"
-
-                type="text"
-
-                placeholder="________"
-
-                autocomplete="off"
-
-            >
-
-
-            <button
-                class="boton"
-                onclick="consultar()"
-            >
-
-                CONSULTAR RESULTADO
-
-            </button>
-
+            <h2>
+                LABORATORIO CRIMINALÍSTICO
+            </h2>
 
         </div>
 
 
-        <div id="resultado"></div>
+        <section class="panel">
 
+            <div class="laboratorio">
+
+                <h3>
+                    🔬 CONSULTA DE MUESTRAS
+                </h3>
+
+                <p class="laboratorio-descripcion">
+
+                    Introduzca el código asociado a la
+                    muestra para consultar el informe
+                    correspondiente.
+
+                </p>
+
+
+                <label for="codigo">
+
+                    CÓDIGO DE MUESTRA
+
+                </label>
+
+
+                <input
+                    id="codigo"
+                    type="text"
+                    placeholder="________"
+                    autocomplete="off"
+                >
+
+
+                <button
+                    class="boton"
+                    onclick="consultar()"
+                >
+
+                    CONSULTAR RESULTADO
+
+                </button>
+
+
+                <div id="resultado"></div>
+
+            </div>
+
+        </section>
 
     </section>
 
+
+
+    <!-- ARCHIVO CLÍNICO -->
+
+    <section id="clinica" class="seccion" style="display:none">
+
+        <div class="barra-expediente">
+
+            <h2>
+                ARCHIVO CLÍNICO
+            </h2>
+
+        </div>
+
+
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    🏥 HISTORIAL MÉDICO
+                </h3>
+
+                <p>
+                    Consulta de documentación clínica
+                    incorporada al expediente.
+                </p>
+
+            </div>
+
+
+            <div class="resultado-final">
+
+                <strong>
+                    REGISTRO DISPONIBLE
+                </strong>
+
+                PRUEBA DE ESFUERZO CARDÍACA
+
+            </div>
+
+
+            <p>
+
+                Acceso autorizado para personal
+                investigador.
+
+            </p>
+
+        </section>
+
+    </section>
+
+
+
+    <!-- VIDEOVIGILANCIA -->
+
+    <section id="videovigilancia" class="seccion" style="display:none">
+
+        <div class="barra-expediente">
+
+            <h2>
+                SISTEMA DE VIDEOVIGILANCIA
+            </h2>
+
+        </div>
+
+
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    📹 ARCHIVO DE CÁMARAS
+                </h3>
+
+                <p>
+                    Registros de videovigilancia
+                    asociados al expediente.
+                </p>
+
+            </div>
+
+
+            <div class="resultado-final">
+
+                <strong>
+                    REGISTRO DISPONIBLE
+                </strong>
+
+                Archivo de videovigilancia pendiente
+                de consulta.
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+
+    <!-- COMUNICACIONES -->
+
+    <section id="comunicaciones" class="seccion" style="display:none">
+
+        <div class="barra-expediente">
+
+            <h2>
+                CENTRAL DE COMUNICACIONES
+            </h2>
+
+        </div>
+
+
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    ☎ REGISTRO DE COMUNICACIONES
+                </h3>
+
+                <p>
+                    Comunicaciones telefónicas y
+                    declaraciones incorporadas al caso.
+                </p>
+
+            </div>
+
+
+            <div class="resultado-final">
+
+                <strong>
+                    ARCHIVOS DISPONIBLES
+                </strong>
+
+                Registros de llamadas e interrogatorios.
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+
+    <!-- CORREO -->
+
+    <section id="correo" class="seccion" style="display:none">
+
+        <div class="barra-expediente">
+
+            <h2>
+                SISTEMA DE CORREO
+            </h2>
+
+        </div>
+
+
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    ✉ CORREO ELECTRÓNICO
+                </h3>
+
+                <p>
+                    Acceso restringido.
+                </p>
+
+            </div>
+
+
+            <div class="error">
+
+                🔒 ACCESO RESTRINGIDO
+
+                <br><br>
+
+                Se requieren credenciales
+                de usuario para acceder
+                al contenido.
+
+            </div>
+
+        </section>
+
+    </section>
 
 
 </main>
@@ -1131,6 +1331,43 @@ footer {
 ===================================================== */
 
 
+function mostrarSeccion(seccion) {
+
+    const secciones =
+        document.querySelectorAll(".seccion");
+
+    secciones.forEach(function(elemento) {
+
+        elemento.style.display = "none";
+
+    });
+
+
+    const seleccionada =
+        document.getElementById(seccion);
+
+    if (seleccionada) {
+
+        seleccionada.style.display = "block";
+
+    }
+
+
+    const botones =
+        document.querySelectorAll(".menu li");
+
+    botones.forEach(function(boton) {
+
+        boton.classList.remove("activo");
+
+    });
+
+
+    event.currentTarget.classList.add("activo");
+
+}
+
+   
 function consultar() {
 
 
