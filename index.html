@@ -9,7 +9,12 @@
 
 <title>Comisaría de Oca de Arraya</title>
 
+
 <style>
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -17,266 +22,766 @@
 
 body {
     margin: 0;
-    background:
-        radial-gradient(circle at center, #f1efe7 0%, #d8d6cd 100%);
-    color: #202528;
+    background: #d9dcda;
+    color: #202628;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* CABECERA */
+
+/* =====================================================
+   CABECERA
+===================================================== */
 
 header {
-    background: #202629;
-    color: #eeeeea;
-    padding: 28px 20px;
-    text-align: center;
-    border-bottom: 5px solid #777970;
+    height: 92px;
+    background: #263238;
+    color: white;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 35px;
+
+    border-bottom: 4px solid #9a9b92;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 
-header h1 {
-    margin: 0;
+
+.escudo {
+
+    width: 55px;
+    height: 65px;
+
+    border: 2px solid #c5c7c1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 18px;
+
     font-size: 25px;
-    letter-spacing: 2px;
+
 }
 
-header p {
-    margin: 8px 0 0;
-    font-size: 11px;
+
+.cabecera-texto h1 {
+
+    margin: 0;
+
+    font-size: 21px;
+
     letter-spacing: 2px;
-    color: #c5c5bf;
+
 }
 
-/* CONTENEDOR */
+
+.cabecera-texto p {
+
+    margin: 6px 0 0;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #c8cbc7;
+
+}
+
+
+.estado-sistema {
+
+    margin-left: auto;
+
+    text-align: right;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    color: #d3d5d1;
+
+}
+
+
+.estado-sistema .activo {
+
+    color: #aebfa8;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
+   ESTRUCTURA PRINCIPAL
+===================================================== */
 
 .contenedor {
-    width: 92%;
-    max-width: 760px;
-    margin: 35px auto;
+
+    display: flex;
+
+    min-height: calc(100vh - 92px);
+
 }
 
-/* DOCUMENTO */
 
-.documento {
-    background: #f5f3eb;
-    border: 1px solid #999;
-    padding: 30px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+/* =====================================================
+   MENÚ LATERAL
+===================================================== */
+
+.sidebar {
+
+    width: 235px;
+
+    background: #30393d;
+
+    color: white;
+
+    padding: 25px 0;
+
 }
 
-/* ENCABEZADO DEL DOCUMENTO */
 
-.cabecera-documento {
-    border-bottom: 2px solid #292d2e;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
+.sidebar-titulo {
+
+    padding: 0 22px 15px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #aeb3b0;
+
+    border-bottom: 1px solid #4c5558;
+
 }
 
-.cabecera-documento h2 {
+
+.menu {
+
+    list-style: none;
+
     margin: 0;
-    font-size: 19px;
-    letter-spacing: 1px;
+
+    padding: 15px 0;
+
 }
 
-.cabecera-documento p {
-    margin: 6px 0 0;
-    font-size: 11px;
-    color: #686b68;
-}
 
-/* DATOS */
+.menu li {
 
-.datos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 28px;
-}
+    padding: 14px 22px;
 
-.dato {
-    border: 1px solid #aaa;
-    padding: 10px;
-    background: #e8e6de;
-}
+    border-left: 4px solid transparent;
 
-.dato strong {
-    display: block;
-    font-size: 9px;
-    color: #555;
-    margin-bottom: 4px;
-}
-
-.dato span {
     font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
 }
 
-/* LABORATORIO */
+
+.menu li:hover {
+
+    background: #3b464a;
+
+}
+
+
+.menu li.activo {
+
+    background: #414c50;
+
+    border-left: 4px solid #c2c4bd;
+
+}
+
+
+.menu .icono {
+
+    display: inline-block;
+
+    width: 25px;
+
+    font-size: 15px;
+
+}
+
+
+.menu .estado {
+
+    float: right;
+
+    font-size: 9px;
+
+    color: #aeb5b1;
+
+    margin-top: 3px;
+
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.contenido {
+
+    flex: 1;
+
+    padding: 35px;
+
+    max-width: 1200px;
+
+}
+
+
+/* =====================================================
+   BARRA SUPERIOR DEL EXPEDIENTE
+===================================================== */
+
+.barra-expediente {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.barra-expediente h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.expediente {
+
+    font-size: 10px;
+
+    color: #626966;
+
+    text-align: right;
+
+}
+
+
+.expediente strong {
+
+    color: #292e30;
+
+}
+
+
+/* =====================================================
+   PANEL PRINCIPAL
+===================================================== */
+
+.panel {
+
+    background: #f2f1eb;
+
+    border: 1px solid #a6a8a2;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+
+    padding: 30px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.panel-cabecera {
+
+    border-bottom: 1px solid #b5b6b0;
+
+    padding-bottom: 18px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.panel-cabecera h3 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.panel-cabecera p {
+
+    margin: 6px 0 0;
+
+    font-size: 10px;
+
+    color: #6d716e;
+
+}
+
+
+/* =====================================================
+   TARJETAS DE INFORMACIÓN
+===================================================== */
+
+.tarjetas {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.tarjeta {
+
+    background: #e5e5df;
+
+    border: 1px solid #b1b2ac;
+
+    padding: 18px;
+
+}
+
+
+.tarjeta .numero {
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+
+}
+
+
+.tarjeta .etiqueta {
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    color: #656a67;
+
+}
+
+
+/* =====================================================
+   LABORATORIO
+===================================================== */
 
 .laboratorio {
-    border-top: 4px solid #282d2f;
-    border-bottom: 1px solid #aaa;
-    padding: 20px 0 25px;
+
+    border-top: 4px solid #30383b;
+
+    padding-top: 22px;
+
 }
+
 
 .laboratorio h3 {
-    margin-top: 0;
-    font-size: 16px;
-    letter-spacing: 1px;
+
+    margin: 0 0 8px;
+
+    font-size: 17px;
+
 }
 
-.descripcion {
-    font-size: 12px;
-    color: #555;
-    line-height: 1.5;
+
+.laboratorio-descripcion {
+
+    font-size: 11px;
+
+    color: #656a67;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+
 }
 
-/* CAMPO */
 
 label {
+
     display: block;
-    margin-top: 20px;
-    margin-bottom: 7px;
-    font-size: 11px;
+
+    font-size: 10px;
+
     font-weight: bold;
-    letter-spacing: 0.5px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+
 }
+
 
 input {
+
     width: 100%;
+
+    max-width: 500px;
+
     padding: 15px;
-    border: 1px solid #777;
-    background: #fff;
-    text-align: center;
-    font-size: 21px;
+
+    border: 1px solid #777b78;
+
+    background: #fffefa;
+
+    font-size: 20px;
+
     letter-spacing: 6px;
+
+    text-align: center;
+
     outline: none;
+
 }
+
 
 input:focus {
-    border: 2px solid #303638;
+
+    border: 2px solid #30383b;
+
 }
 
-/* BOTÓN */
 
-button {
+.boton {
+
+    display: block;
+
     width: 100%;
-    margin-top: 15px;
+
+    max-width: 500px;
+
+    margin-top: 12px;
+
     padding: 14px;
-    border: none;
-    background: #292f31;
+
+    background: #30383b;
+
     color: white;
-    font-weight: bold;
-    letter-spacing: 1px;
+
+    border: none;
+
     cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
 }
 
-button:hover {
-    background: #111516;
+
+.boton:hover {
+
+    background: #1d2325;
+
 }
 
-/* RESULTADO */
+
+/* =====================================================
+   RESULTADOS
+===================================================== */
 
 #resultado {
+
     display: none;
+
     margin-top: 30px;
+
 }
 
-/* INFORME */
 
 .informe {
-    background: #fffef9;
-    border: 1px solid #999;
+
+    background: #fffefa;
+
+    border: 1px solid #999c98;
+
     padding: 25px;
+
 }
+
 
 .informe-cabecera {
-    border-bottom: 1px solid #999;
-    padding-bottom: 12px;
-    margin-bottom: 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    border-bottom: 2px solid #303638;
+
+    padding-bottom: 15px;
+
+    margin-bottom: 20px;
+
 }
 
-.informe-cabecera h3 {
+
+.informe-cabecera h4 {
+
     margin: 0;
-    font-size: 16px;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
 }
 
-.informe-cabecera p {
-    margin: 5px 0 0;
-    font-size: 10px;
+
+.informe-cabecera span {
+
+    font-size: 9px;
+
     color: #666;
+
+    text-align: right;
+
 }
+
 
 .informe p {
-    font-size: 12px;
-    line-height: 1.6;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
 }
+
 
 .resultado-final {
+
     margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #777;
-    background: #ecebe4;
+
+    padding: 18px;
+
+    background: #e9e9e3;
+
+    border: 1px solid #a6a7a1;
+
 }
+
 
 .resultado-final strong {
+
     display: block;
-    margin-bottom: 7px;
-    font-size: 10px;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+
 }
+
 
 .sello {
+
     display: inline-block;
+
     margin-top: 25px;
-    padding: 9px 15px;
+
+    padding: 9px 14px;
+
     border: 2px solid #555;
-    font-size: 10px;
+
+    color: #555;
+
+    font-size: 9px;
+
     font-weight: bold;
+
     letter-spacing: 1px;
+
     transform: rotate(-3deg);
+
 }
 
-/* ERROR */
+
+/* =====================================================
+   ERROR
+===================================================== */
 
 .error {
+
     padding: 18px;
-    border: 1px solid #9b7777;
-    background: #eee1df;
-    color: #762525;
-    font-size: 12px;
+
+    background: #eee3e1;
+
+    border: 1px solid #9d7771;
+
+    color: #742a23;
+
+    font-size: 11px;
+
 }
 
-/* CARGANDO */
 
-.cargando {
-    text-align: center;
-    padding: 25px;
-    font-size: 12px;
-    color: #555;
-}
-
-/* PIE */
+/* =====================================================
+   PIE
+===================================================== */
 
 footer {
-    text-align: center;
-    margin: 25px 0 40px;
+
     font-size: 9px;
-    color: #666;
+
+    color: #707470;
+
+    text-align: center;
+
+    padding: 20px;
+
     letter-spacing: 1px;
+
 }
 
-/* MÓVIL */
 
-@media (max-width: 600px) {
+/* =====================================================
+   MÓVILES
+===================================================== */
 
-    .documento {
-        padding: 20px;
+@media (max-width: 800px) {
+
+    header {
+
+        padding: 0 18px;
+
     }
 
-    header h1 {
-        font-size: 19px;
+
+    .escudo {
+
+        width: 45px;
+
+        height: 52px;
+
+        font-size: 20px;
+
+        margin-right: 12px;
+
     }
 
-    .datos {
+
+    .cabecera-texto h1 {
+
+        font-size: 16px;
+
+    }
+
+
+    .estado-sistema {
+
+        display: none;
+
+    }
+
+
+    .sidebar {
+
+        width: 70px;
+
+    }
+
+
+    .sidebar-titulo,
+
+    .menu li span:not(.icono),
+
+    .menu .estado {
+
+        display: none;
+
+    }
+
+
+    .menu li {
+
+        text-align: center;
+
+        padding: 17px 5px;
+
+    }
+
+
+    .menu .icono {
+
+        width: auto;
+
+    }
+
+
+    .contenido {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .tarjetas {
+
         grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .panel {
+
+        padding: 20px;
+
+    }
+
+
+    .barra-expediente {
+
+        display: block;
+
+    }
+
+
+    .expediente {
+
+        text-align: left;
+
+        margin-top: 8px;
+
+    }
+
+
+    .informe-cabecera {
+
+        display: block;
+
     }
 
 }
@@ -286,14 +791,48 @@ footer {
 </head>
 
 
+
 <body>
+
+
+<!-- =====================================================
+     CABECERA
+===================================================== -->
 
 
 <header>
 
-    <h1>COMISARÍA DE OCA DE ARRAYA</h1>
 
-    <p>UNIDAD DE INVESTIGACIÓN CRIMINAL</p>
+    <div class="escudo">
+
+        ⚖
+
+    </div>
+
+
+    <div class="cabecera-texto">
+
+        <h1>
+            COMISARÍA DE OCA DE ARRAYA
+        </h1>
+
+        <p>
+            UNIDAD DE INVESTIGACIÓN CRIMINAL
+        </p>
+
+    </div>
+
+
+    <div class="estado-sistema">
+
+        SISTEMA INTERNO<br>
+
+        <span class="activo">
+            ● SISTEMA OPERATIVO
+        </span>
+
+    </div>
+
 
 </header>
 
@@ -302,73 +841,228 @@ footer {
 <div class="contenedor">
 
 
-    <div class="documento">
+<!-- =====================================================
+     MENÚ
+===================================================== -->
 
 
-        <div class="cabecera-documento">
+<aside class="sidebar">
 
-            <h2>CENTRAL DE LABORATORIO</h2>
+
+    <div class="sidebar-titulo">
+
+        SISTEMA DE INVESTIGACIÓN
+
+    </div>
+
+
+    <ul class="menu">
+
+
+        <li class="activo">
+
+            <span class="icono">📁</span>
+
+            <span>EXPEDIENTE</span>
+
+        </li>
+
+
+        <li>
+
+            <span class="icono">🔬</span>
+
+            <span>LABORATORIO</span>
+
+            <span class="estado">
+                ACTIVO
+            </span>
+
+        </li>
+
+
+        <li>
+
+            <span class="icono">🏥</span>
+
+            <span>ARCHIVO CLÍNICO</span>
+
+            <span class="estado">
+                ACTIVO
+            </span>
+
+        </li>
+
+
+        <li>
+
+            <span class="icono">📹</span>
+
+            <span>VIDEOVIGILANCIA</span>
+
+            <span class="estado">
+                ACTIVO
+            </span>
+
+        </li>
+
+
+        <li>
+
+            <span class="icono">☎</span>
+
+            <span>COMUNICACIONES</span>
+
+            <span class="estado">
+                ACTIVO
+            </span>
+
+        </li>
+
+
+        <li>
+
+            <span class="icono">✉</span>
+
+            <span>CORREO</span>
+
+            <span class="estado">
+                RESTRINGIDO
+            </span>
+
+        </li>
+
+
+    </ul>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     CONTENIDO
+===================================================== -->
+
+
+<main class="contenido">
+
+
+    <div class="barra-expediente">
+
+
+        <h2>
+            CENTRAL DE INVESTIGACIÓN
+        </h2>
+
+
+        <div class="expediente">
+
+            EXPEDIENTE<br>
+
+            <strong>
+                OCA-2026-001
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- PANEL DE ESTADO -->
+
+
+    <section class="panel">
+
+
+        <div class="panel-cabecera">
+
+            <h3>
+                ESTADO DEL SISTEMA
+            </h3>
 
             <p>
-                SISTEMA DE CONSULTA DE ANÁLISIS CRIMINALÍSTICOS
+                Información general de los recursos
+                disponibles para la investigación.
             </p>
 
         </div>
 
 
-
-        <div class="datos">
-
-            <div class="dato">
-
-                <strong>ORGANISMO</strong>
-
-                <span>Comisaría de Oca de Arraya</span>
-
-            </div>
+        <div class="tarjetas">
 
 
-            <div class="dato">
+            <div class="tarjeta">
 
-                <strong>ÁREA</strong>
+                <div class="numero">
+                    04
+                </div>
 
-                <span>Laboratorio Criminalístico</span>
+                <div class="etiqueta">
+                    Análisis de laboratorio
+                </div>
 
             </div>
 
 
-            <div class="dato">
+            <div class="tarjeta">
 
-                <strong>ACCESO</strong>
+                <div class="numero">
+                    01
+                </div>
 
-                <span>Personal autorizado</span>
+                <div class="etiqueta">
+                    Archivo clínico
+                </div>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <div class="numero">
+                    01
+                </div>
+
+                <div class="etiqueta">
+                    Acceso restringido
+                </div>
 
             </div>
 
-
-            <div class="dato">
-
-                <strong>SISTEMA</strong>
-
-                <span>Consulta de muestras</span>
-
-            </div>
 
         </div>
 
 
+    </section>
+
+
+
+    <!-- LABORATORIO -->
+
+
+    <section class="panel">
+
 
         <div class="laboratorio">
 
-            <h3>CONSULTA DE MUESTRA</h3>
 
-            <p class="descripcion">
+            <h3>
+                🔬 LABORATORIO CRIMINALÍSTICO
+            </h3>
 
-                Introduzca el código correspondiente a la muestra
-                o evidencia analizada.
 
-                El sistema devolverá el informe asociado
-                al código introducido.
+            <p class="laboratorio-descripcion">
+
+                Central de consulta de resultados
+                procedentes de las unidades de análisis
+                médico y criminalístico.
+
+                Introduzca el código asociado a la
+                muestra para consultar el informe
+                correspondiente.
 
             </p>
 
@@ -393,7 +1087,10 @@ footer {
             >
 
 
-            <button onclick="consultar()">
+            <button
+                class="boton"
+                onclick="consultar()"
+            >
 
                 CONSULTAR RESULTADO
 
@@ -403,35 +1100,42 @@ footer {
         </div>
 
 
-
         <div id="resultado"></div>
 
 
-    </div>
+    </section>
 
 
 
-    <footer>
-
-        DOCUMENTACIÓN INTERNA · COMISARÍA DE OCA DE ARRAYA
-
-    </footer>
+</main>
 
 
 </div>
 
 
 
+<footer>
+
+    DOCUMENTACIÓN INTERNA · COMISARÍA DE OCA DE ARRAYA
+    · ACCESO RESTRINGIDO
+
+</footer>
+
+
+
 <script>
+
+
+/* =====================================================
+   SISTEMA DE CONSULTA
+===================================================== */
 
 
 function consultar() {
 
 
-    const codigo = document
-        .getElementById("codigo")
-        .value
-        .trim();
+    const codigo =
+        document.getElementById("codigo").value.trim();
 
 
     const resultado =
@@ -442,9 +1146,9 @@ function consultar() {
 
 
     /*
-    ==========================================
-    CÓDIGOS DE LOS INFORMES
-    ==========================================
+    -----------------------------------------------
+    CÓDIGO DE PRUEBA
+    -----------------------------------------------
     */
 
 
@@ -458,13 +1162,21 @@ function consultar() {
 
                 <div class="informe-cabecera">
 
-                    <h3>
-                        INFORME DE ANÁLISIS Nº 001/26
-                    </h3>
+                    <div>
 
-                    <p>
-                        LABORATORIO CRIMINALÍSTICO
-                    </p>
+                        <h4>
+                            INFORME DE ANÁLISIS Nº 001/26
+                        </h4>
+
+                    </div>
+
+
+                    <span>
+
+                        LABORATORIO<br>
+                        CRIMINALÍSTICO
+
+                    </span>
 
                 </div>
 
@@ -497,7 +1209,7 @@ function consultar() {
                         ESTADO:
                     </strong>
 
-                    Análisis completado
+                    ANÁLISIS COMPLETADO
 
                 </p>
 
@@ -517,9 +1229,9 @@ function consultar() {
 
                 <p>
 
-                    El resultado deberá ser contrastado
-                    con el resto de evidencias incorporadas
-                    al expediente.
+                    El presente resultado deberá ser
+                    contrastado con el resto de evidencias
+                    incorporadas al expediente.
 
                 </p>
 
@@ -536,7 +1248,10 @@ function consultar() {
         `;
 
 
-    } else {
+    }
+
+
+    else {
 
 
         resultado.innerHTML = `
@@ -549,13 +1264,11 @@ function consultar() {
 
                 <br><br>
 
-                No existe ningún informe asociado
+                No existe ningún análisis asociado
                 al código introducido.
 
-                <br><br>
-
-                Compruebe el código e inténtelo
-                de nuevo.
+                Compruebe la información disponible
+                en el expediente e inténtelo de nuevo.
 
             </div>
 
