@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Archivo Municipal - Oca de Arraya</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #e5e5e1;
+    color: #25292b;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background: #26343a;
+    color: white;
+    padding: 28px 30px;
+    border-bottom: 5px solid #9b9d96;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 23px;
+    letter-spacing: 2px;
+}
+
+header p {
+    margin: 7px 0 0;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #c8cbc8;
+}
+
+.navegacion {
+    width: 92%;
+    max-width: 900px;
+    margin: 20px auto 0;
+}
+
+.navegacion a {
+    color: #46575c;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.contenedor {
+    width: 92%;
+    max-width: 900px;
+    margin: 25px auto 50px;
+}
+
+.panel {
+    background: #f5f4ee;
+    border: 1px solid #a7a9a4;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+    padding: 35px;
+}
+
+.titulo {
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 18px;
+    margin-bottom: 30px;
+}
+
+.titulo h2 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.titulo p {
+    margin: 7px 0 0;
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.acceso {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #777;
+    background: white;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid #30383b;
+}
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    border: none;
+    background: #30383b;
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #171c1e;
+}
+
+#resultado {
+    display: none;
+    margin-top: 30px;
+}
+
+.exito {
+    background: #eef1ed;
+    border: 1px solid #a8b0a8;
+    padding: 22px;
+}
+
+.exito-titulo {
+    font-weight: bold;
+    font-size: 12px;
+    color: #3d5544;
+    margin-bottom: 12px;
+}
+
+.separador {
+    border-top: 1px solid #bbb;
+    margin: 20px 0;
+}
+
+.recurso {
+    background: white;
+    border: 1px solid #aaa;
+    padding: 20px;
+}
+
+.recurso h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.recurso p {
+    margin: 0;
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.boton-recurso {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 13px;
+    border: none;
+    background: #30383b;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.error {
+    background: #eee2df;
+    border: 1px solid #a77d77;
+    color: #702d27;
+    padding: 18px;
+    font-size: 11px;
+}
+
+#videoZona {
+    display: none;
+    margin-top: 30px;
+}
+
+.video-panel {
+    background: white;
+    border: 1px solid #999;
+    padding: 25px;
+}
+
+.video-panel h3 {
+    margin-top: 0;
+    font-size: 15px;
+}
+
+video {
+    width: 100%;
+    max-height: 500px;
+    background: black;
+    margin-top: 15px;
+}
+
+footer {
+    text-align: center;
+    margin: 25px;
+    font-size: 9px;
+    color: #777;
+    letter-spacing: 1px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        AYUNTAMIENTO DE OCA DE ARRAYA
+    </h1>
+
+    <p>
+        ARCHIVO MUNICIPAL · SISTEMA INTERNO
+    </p>
+
+</header>
+
+
+<div class="navegacion">
+
+    <a href="index.html">
+        ← VOLVER A INTRANET MUNICIPAL
+    </a>
+
+</div>
+
+
+<div class="contenedor">
+
+
+    <div class="panel">
+
+
+        <div class="titulo">
+
+            <h2>
+                ARCHIVO MUNICIPAL
+            </h2>
+
+            <p>
+                Acceso a documentación y registros
+                históricos del Ayuntamiento de Oca de Arraya.
+            </p>
+
+        </div>
+
+
+        <!-- PRIMER ACCESO -->
+
+        <div class="acceso">
+
+            <label for="passwordArchivo">
+
+                CONTRASEÑA DE ACCESO
+
+            </label>
+
+
+            <input
+                id="passwordArchivo"
+                type="password"
+                autocomplete="off"
+            >
+
+
+            <button onclick="accederArchivo()">
+
+                ACCEDER AL ARCHIVO
+
+            </button>
+
+
+            <div id="resultado"></div>
+
+        </div>
+
+
+        <!-- CONTENIDO DEL ARCHIVO -->
+
+        <div id="videoZona">
+
+
+            <div class="video-panel">
+
+                <h3>
+                    🎥 REGISTRO AUDIOVISUAL — MUSEO DE LA CIUDAD
+                </h3>
+
+                <p>
+                    Este registro se encuentra protegido
+                    mediante autorización adicional.
+                </p>
+
+
+                <!-- SEGUNDA CONTRASEÑA -->
+
+                <label for="passwordVideo">
+
+                    CONTRASEÑA DEL REGISTRO AUDIOVISUAL
+
+                </label>
+
+
+                <input
+                    id="passwordVideo"
+                    type="password"
+                    autocomplete="off"
+                >
+
+
+                <button onclick="accederVideo()">
+
+                    CONSULTAR REGISTRO
+
+                </button>
+
+
+                <div id="resultadoVideo"></div>
+
+
+                <!-- VÍDEO -->
+
+                <div id="videoResultado"
+                     style="display:none;">
+
+                    <h3>
+                        REGISTRO AUDIOVISUAL AUTORIZADO
+                    </h3>
+
+
+                    <video controls>
+
+                        <source
+                            src="visita-online.mp4"
+                            type="video/mp4"
+                            target="_blank"
+                        >
+
+                        Su navegador no permite
+                        reproducir este vídeo.
+
+                    </video>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<footer>
+
+    AYUNTAMIENTO DE OCA DE ARRAYA · ARCHIVO MUNICIPAL
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================================================
+   PRIMERA CONTRASEÑA
+===================================================== */
+
+
+function accederArchivo() {
+
+
+    const password =
+        document
+        .getElementById("passwordArchivo")
+        .value
+        .trim();
+
+
+    const resultado =
+        document.getElementById("resultado");
+
+
+    resultado.style.display = "block";
+
+
+    /*
+    CAMBIA "1234" POR LA CONTRASEÑA
+    REAL DEL ARCHIVO MUNICIPAL
+    */
+
+
+    if (password === "176549") {
+
+
+        resultado.innerHTML = `
+
+            <div class="exito">
+
+                <div class="exito-titulo">
+
+                    ✓ ACCESO AUTORIZADO
+
+                </div>
+
+
+                Acceso concedido al Archivo Municipal.
+
+
+                <div class="separador"></div>
+
+
+                <div class="recurso">
+
+                    <h3>
+                        🎥 MUSEO DE LA CIUDAD
+                    </h3>
+
+
+                    <p>
+
+                        Registro audiovisual
+                        disponible.
+
+                        Se requiere una autorización
+                        adicional para su consulta.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        document
+        .getElementById("videoZona")
+        .style.display = "block";
+
+
+    }
+
+    else {
+
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ACCESO DENEGADO
+                </strong>
+
+                <br><br>
+
+                La contraseña introducida
+                no es válida.
+
+            </div>
+
+        `;
+
+
+        document
+        .getElementById("videoZona")
+        .style.display = "none";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SEGUNDA CONTRASEÑA
+===================================================== */
+
+
+function accederVideo() {
+
+
+    const password =
+        document
+        .getElementById("passwordVideo")
+        .value
+        .trim();
+
+
+    const resultado =
+        document
+        .getElementById("resultadoVideo");
+
+
+    resultado.style.display = "block";
+
+
+    /*
+    CAMBIA "5678" POR LA CONTRASEÑA
+    REAL DEL VÍDEO
+    */
+
+
+    if (password === "1891") {
+
+
+        resultado.innerHTML = `
+
+            <div class="exito">
+
+                ✓ AUTORIZACIÓN VERIFICADA
+
+            </div>
+
+        `;
+
+
+        document
+        .getElementById("videoResultado")
+        .style.display = "block";
+
+
+    }
+
+    else {
+
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ACCESO DENEGADO
+                </strong>
+
+                <br><br>
+
+                La contraseña introducida
+                no es válida.
+
+            </div>
+
+        `;
+
+
+        document
+        .getElementById("videoResultado")
+        .style.display = "none";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
