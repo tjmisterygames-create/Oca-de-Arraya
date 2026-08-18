@@ -1,242 +1,578 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Comisaría de Oca de Arraya</title>
+<meta charset="UTF-8">
 
-    <style>
-        body {
-            margin: 0;
-            background: #e8e6df;
-            font-family: Arial, sans-serif;
-            color: #1f2528;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        header {
-            background: #20272b;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 5px solid #8c8c82;
-        }
+<title>Comisaría de Oca de Arraya</title>
 
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            letter-spacing: 2px;
-        }
+<style>
 
-        header p {
-            margin-top: 8px;
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        main {
-            max-width: 700px;
-            margin: 45px auto;
-            padding: 20px;
-        }
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at center, #f1efe7 0%, #d8d6cd 100%);
+    color: #202528;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-        .panel {
-            background: #f7f6f1;
-            border: 1px solid #aaa;
-            padding: 35px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
+/* CABECERA */
 
-        .title {
-            border-bottom: 2px solid #333;
-            padding-bottom: 12px;
-            margin-bottom: 30px;
-        }
+header {
+    background: #202629;
+    color: #eeeeea;
+    padding: 28px 20px;
+    text-align: center;
+    border-bottom: 5px solid #777970;
+}
 
-        .title h2 {
-            margin: 0;
-            font-size: 21px;
-        }
+header h1 {
+    margin: 0;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
 
-        .title p {
-            font-size: 12px;
-            color: #666;
-        }
+header p {
+    margin: 8px 0 0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #c5c5bf;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            font-size: 13px;
-        }
+/* CONTENEDOR */
 
-        input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 14px;
-            font-size: 20px;
-            letter-spacing: 5px;
-            border: 1px solid #777;
-            background: white;
-            text-align: center;
-        }
+.contenedor {
+    width: 92%;
+    max-width: 760px;
+    margin: 35px auto;
+}
 
-        button {
-            margin-top: 18px;
-            width: 100%;
-            padding: 14px;
-            background: #30383c;
-            color: white;
-            border: none;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
+/* DOCUMENTO */
 
-        button:hover {
-            background: #151a1c;
-        }
+.documento {
+    background: #f5f3eb;
+    border: 1px solid #999;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+}
 
-        #resultado {
-            margin-top: 30px;
-            display: none;
-            border-top: 2px solid #333;
-            padding-top: 25px;
-        }
+/* ENCABEZADO DEL DOCUMENTO */
 
-        .informe {
-            background: white;
-            border: 1px solid #aaa;
-            padding: 25px;
-        }
+.cabecera-documento {
+    border-bottom: 2px solid #292d2e;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
 
-        .informe h3 {
-            margin-top: 0;
-            border-bottom: 1px solid #aaa;
-            padding-bottom: 10px;
-        }
+.cabecera-documento h2 {
+    margin: 0;
+    font-size: 19px;
+    letter-spacing: 1px;
+}
 
-        .error {
-            color: #8b1e1e;
-            font-weight: bold;
-        }
+.cabecera-documento p {
+    margin: 6px 0 0;
+    font-size: 11px;
+    color: #686b68;
+}
 
-        .sello {
-            margin-top: 25px;
-            border: 2px solid #555;
-            display: inline-block;
-            padding: 8px 14px;
-            font-size: 11px;
-            font-weight: bold;
-            transform: rotate(-3deg);
-        }
+/* DATOS */
 
-        footer {
-            text-align: center;
-            font-size: 10px;
-            color: #777;
-            margin-top: 40px;
-        }
-    </style>
+.datos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.dato {
+    border: 1px solid #aaa;
+    padding: 10px;
+    background: #e8e6de;
+}
+
+.dato strong {
+    display: block;
+    font-size: 9px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.dato span {
+    font-size: 12px;
+}
+
+/* LABORATORIO */
+
+.laboratorio {
+    border-top: 4px solid #282d2f;
+    border-bottom: 1px solid #aaa;
+    padding: 20px 0 25px;
+}
+
+.laboratorio h3 {
+    margin-top: 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.descripcion {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* CAMPO */
+
+label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 7px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #777;
+    background: #fff;
+    text-align: center;
+    font-size: 21px;
+    letter-spacing: 6px;
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid #303638;
+}
+
+/* BOTÓN */
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    border: none;
+    background: #292f31;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #111516;
+}
+
+/* RESULTADO */
+
+#resultado {
+    display: none;
+    margin-top: 30px;
+}
+
+/* INFORME */
+
+.informe {
+    background: #fffef9;
+    border: 1px solid #999;
+    padding: 25px;
+}
+
+.informe-cabecera {
+    border-bottom: 1px solid #999;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+.informe-cabecera h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.informe-cabecera p {
+    margin: 5px 0 0;
+    font-size: 10px;
+    color: #666;
+}
+
+.informe p {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.resultado-final {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #777;
+    background: #ecebe4;
+}
+
+.resultado-final strong {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 10px;
+}
+
+.sello {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 9px 15px;
+    border: 2px solid #555;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transform: rotate(-3deg);
+}
+
+/* ERROR */
+
+.error {
+    padding: 18px;
+    border: 1px solid #9b7777;
+    background: #eee1df;
+    color: #762525;
+    font-size: 12px;
+}
+
+/* CARGANDO */
+
+.cargando {
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+    color: #555;
+}
+
+/* PIE */
+
+footer {
+    text-align: center;
+    margin: 25px 0 40px;
+    font-size: 9px;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+/* MÓVIL */
+
+@media (max-width: 600px) {
+
+    .documento {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 19px;
+    }
+
+    .datos {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
     <h1>COMISARÍA DE OCA DE ARRAYA</h1>
+
     <p>UNIDAD DE INVESTIGACIÓN CRIMINAL</p>
+
 </header>
 
-<main>
 
-    <div class="panel">
 
-        <div class="title">
+<div class="contenedor">
+
+
+    <div class="documento">
+
+
+        <div class="cabecera-documento">
+
             <h2>CENTRAL DE LABORATORIO</h2>
-            <p>Sistema de consulta de análisis criminalísticos</p>
+
+            <p>
+                SISTEMA DE CONSULTA DE ANÁLISIS CRIMINALÍSTICOS
+            </p>
+
         </div>
 
-        <label for="codigo">
-            INTRODUZCA EL CÓDIGO DE LA MUESTRA
-        </label>
 
-        <input 
-            type="text" 
-            id="codigo"
-            placeholder="________"
-        >
 
-        <button onclick="consultar()">
-            CONSULTAR RESULTADO
-        </button>
+        <div class="datos">
+
+            <div class="dato">
+
+                <strong>ORGANISMO</strong>
+
+                <span>Comisaría de Oca de Arraya</span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <strong>ÁREA</strong>
+
+                <span>Laboratorio Criminalístico</span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <strong>ACCESO</strong>
+
+                <span>Personal autorizado</span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <strong>SISTEMA</strong>
+
+                <span>Consulta de muestras</span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="laboratorio">
+
+            <h3>CONSULTA DE MUESTRA</h3>
+
+            <p class="descripcion">
+
+                Introduzca el código correspondiente a la muestra
+                o evidencia analizada.
+
+                El sistema devolverá el informe asociado
+                al código introducido.
+
+            </p>
+
+
+            <label for="codigo">
+
+                CÓDIGO DE MUESTRA
+
+            </label>
+
+
+            <input
+
+                id="codigo"
+
+                type="text"
+
+                placeholder="________"
+
+                autocomplete="off"
+
+            >
+
+
+            <button onclick="consultar()">
+
+                CONSULTAR RESULTADO
+
+            </button>
+
+
+        </div>
+
+
 
         <div id="resultado"></div>
 
+
     </div>
 
+
+
     <footer>
+
         DOCUMENTACIÓN INTERNA · COMISARÍA DE OCA DE ARRAYA
+
     </footer>
 
-</main>
+
+</div>
+
+
 
 <script>
 
+
 function consultar() {
+
 
     const codigo = document
         .getElementById("codigo")
         .value
         .trim();
 
-    const resultado = document.getElementById("resultado");
+
+    const resultado =
+        document.getElementById("resultado");
+
 
     resultado.style.display = "block";
 
-    if (codigo === "1234") {
+
+    /*
+    ==========================================
+    CÓDIGOS DE LOS INFORMES
+    ==========================================
+    */
+
+
+    if (codigo === "47291") {
+
 
         resultado.innerHTML = `
+
             <div class="informe">
 
-                <h3>INFORME DE ANÁLISIS Nº 001</h3>
 
-                <p><strong>Muestra:</strong> Evidencia 01</p>
+                <div class="informe-cabecera">
 
-                <p><strong>Departamento:</strong> Laboratorio Criminalístico</p>
+                    <h3>
+                        INFORME DE ANÁLISIS Nº 001/26
+                    </h3>
 
-                <p>
-                    El análisis de la muestra ha concluido.
-                    Los resultados obtenidos deberán ser
-                    contrastados con el resto de evidencias
-                    disponibles en el expediente.
-                </p>
+                    <p>
+                        LABORATORIO CRIMINALÍSTICO
+                    </p>
 
-                <p>
-                    <strong>RESULTADO:</strong><br>
-                    INFORMACIÓN PENDIENTE DE INCORPORAR
-                </p>
-
-                <div class="sello">
-                    RESULTADO VERIFICADO
                 </div>
 
+
+                <p>
+
+                    <strong>
+                        MUESTRA:
+                    </strong>
+
+                    Evidencia nº 01
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        TIPO DE ANÁLISIS:
+                    </strong>
+
+                    Análisis de muestra biológica
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        ESTADO:
+                    </strong>
+
+                    Análisis completado
+
+                </p>
+
+
+                <div class="resultado-final">
+
+                    <strong>
+                        RESULTADO DEL ANÁLISIS
+                    </strong>
+
+                    La muestra presenta características
+                    compatibles con material biológico
+                    de origen humano.
+
+                </div>
+
+
+                <p>
+
+                    El resultado deberá ser contrastado
+                    con el resto de evidencias incorporadas
+                    al expediente.
+
+                </p>
+
+
+                <div class="sello">
+
+                    RESULTADO VERIFICADO
+
+                </div>
+
+
             </div>
+
         `;
+
 
     } else {
 
-        resultado.innerHTML = `
-            <p class="error">
-                ⚠ CÓDIGO NO RECONOCIDO
-            </p>
 
-            <p>
-                No existe ningún análisis asociado
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ⚠ CÓDIGO NO RECONOCIDO
+                </strong>
+
+                <br><br>
+
+                No existe ningún informe asociado
                 al código introducido.
-            </p>
+
+                <br><br>
+
+                Compruebe el código e inténtelo
+                de nuevo.
+
+            </div>
+
         `;
+
     }
+
+
 }
+
+
+</script>
+
+
+</body>
+
+</html>
 
 </script>
 
