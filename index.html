@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Comisaría de Oca de Arraya</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #e8e6df;
+            font-family: Arial, sans-serif;
+            color: #1f2528;
+        }
+
+        header {
+            background: #20272b;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid #8c8c82;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+
+        .panel {
+            background: #f7f6f1;
+            border: 1px solid #aaa;
+            padding: 35px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .title {
+            border-bottom: 2px solid #333;
+            padding-bottom: 12px;
+            margin-bottom: 30px;
+        }
+
+        .title h2 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .title p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px;
+            font-size: 20px;
+            letter-spacing: 5px;
+            border: 1px solid #777;
+            background: white;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 18px;
+            width: 100%;
+            padding: 14px;
+            background: #30383c;
+            color: white;
+            border: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #151a1c;
+        }
+
+        #resultado {
+            margin-top: 30px;
+            display: none;
+            border-top: 2px solid #333;
+            padding-top: 25px;
+        }
+
+        .informe {
+            background: white;
+            border: 1px solid #aaa;
+            padding: 25px;
+        }
+
+        .informe h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #aaa;
+            padding-bottom: 10px;
+        }
+
+        .error {
+            color: #8b1e1e;
+            font-weight: bold;
+        }
+
+        .sello {
+            margin-top: 25px;
+            border: 2px solid #555;
+            display: inline-block;
+            padding: 8px 14px;
+            font-size: 11px;
+            font-weight: bold;
+            transform: rotate(-3deg);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 10px;
+            color: #777;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>COMISARÍA DE OCA DE ARRAYA</h1>
+    <p>UNIDAD DE INVESTIGACIÓN CRIMINAL</p>
+</header>
+
+<main>
+
+    <div class="panel">
+
+        <div class="title">
+            <h2>CENTRAL DE LABORATORIO</h2>
+            <p>Sistema de consulta de análisis criminalísticos</p>
+        </div>
+
+        <label for="codigo">
+            INTRODUZCA EL CÓDIGO DE LA MUESTRA
+        </label>
+
+        <input 
+            type="text" 
+            id="codigo"
+            placeholder="________"
+        >
+
+        <button onclick="consultar()">
+            CONSULTAR RESULTADO
+        </button>
+
+        <div id="resultado"></div>
+
+    </div>
+
+    <footer>
+        DOCUMENTACIÓN INTERNA · COMISARÍA DE OCA DE ARRAYA
+    </footer>
+
+</main>
+
+<script>
+
+function consultar() {
+
+    const codigo = document
+        .getElementById("codigo")
+        .value
+        .trim();
+
+    const resultado = document.getElementById("resultado");
+
+    resultado.style.display = "block";
+
+    if (codigo === "1234") {
+
+        resultado.innerHTML = `
+            <div class="informe">
+
+                <h3>INFORME DE ANÁLISIS Nº 001</h3>
+
+                <p><strong>Muestra:</strong> Evidencia 01</p>
+
+                <p><strong>Departamento:</strong> Laboratorio Criminalístico</p>
+
+                <p>
+                    El análisis de la muestra ha concluido.
+                    Los resultados obtenidos deberán ser
+                    contrastados con el resto de evidencias
+                    disponibles en el expediente.
+                </p>
+
+                <p>
+                    <strong>RESULTADO:</strong><br>
+                    INFORMACIÓN PENDIENTE DE INCORPORAR
+                </p>
+
+                <div class="sello">
+                    RESULTADO VERIFICADO
+                </div>
+
+            </div>
+        `;
+
+    } else {
+
+        resultado.innerHTML = `
+            <p class="error">
+                ⚠ CÓDIGO NO RECONOCIDO
+            </p>
+
+            <p>
+                No existe ningún análisis asociado
+                al código introducido.
+            </p>
+        `;
+    }
+}
+
+</script>
+
+</body>
+</html>
