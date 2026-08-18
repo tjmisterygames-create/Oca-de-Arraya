@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Intranet Municipal - Oca de Arraya</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #e4e5e2;
+    color: #252a2c;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background: #26343a;
+    color: white;
+    padding: 28px;
+    border-bottom: 5px solid #a4a59d;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+header p {
+    margin: 7px 0 0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #c8ccc8;
+}
+
+.contenedor {
+    width: 92%;
+    max-width: 1000px;
+    margin: 35px auto;
+}
+
+.panel {
+    background: #f5f4ee;
+    border: 1px solid #a7a9a4;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+.titulo {
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 18px;
+    margin-bottom: 25px;
+}
+
+.titulo h2 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.titulo p {
+    font-size: 11px;
+    color: #666;
+}
+
+.servicios {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.servicio {
+    background: #e8e8e2;
+    border: 1px solid #b5b6b1;
+    padding: 22px;
+    text-decoration: none;
+    color: #252a2c;
+    transition: 0.2s;
+}
+
+.servicio:hover {
+    background: #d9dad5;
+    transform: translateY(-2px);
+}
+
+.icono {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.servicio h3 {
+    margin: 0 0 7px;
+    font-size: 14px;
+}
+
+.servicio p {
+    margin: 0;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #666;
+}
+
+footer {
+    text-align: center;
+    font-size: 9px;
+    color: #777;
+    margin: 30px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+
+    .servicios {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 19px;
+    }
+
+    .panel {
+        padding: 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        AYUNTAMIENTO DE OCA DE ARRAYA
+    </h1>
+
+    <p>
+        INTRANET MUNICIPAL · RED INTERNA DE SERVICIOS
+    </p>
+
+</header>
+
+
+<div class="contenedor">
+
+
+    <div class="panel">
+
+
+        <div class="titulo">
+
+            <h2>
+                PORTAL INTERNO MUNICIPAL
+            </h2>
+
+            <p>
+                Acceso a los sistemas y servicios
+                electrónicos del Ayuntamiento.
+            </p>
+
+        </div>
+
+
+        <div class="servicios">
+
+
+            <a
+                class="servicio"
+                href="index.html"
+            >
+
+                <div class="icono">
+                    🚔
+                </div>
+
+                <h3>
+                    COMISARÍA DE OCA DE ARRAYA
+                </h3>
+
+                <p>
+                    Sistema interno de investigación
+                    y consulta de expedientes policiales.
+                </p>
+
+            </a>
+
+
+            <a
+                class="servicio"
+                href="#"
+            >
+
+                <div class="icono">
+                    🏥
+                </div>
+
+                <h3>
+                    SERVICIOS SANITARIOS
+                </h3>
+
+                <p>
+                    Acceso a los servicios y registros
+                    sanitarios municipales.
+                </p>
+
+            </a>
+
+
+            <a
+                class="servicio"
+                href="#"
+            >
+
+                <div class="icono">
+                    📹
+                </div>
+
+                <h3>
+                    VIDEOVIGILANCIA MUNICIPAL
+                </h3>
+
+                <p>
+                    Sistema de cámaras de seguridad
+                    municipal.
+                </p>
+
+            </a>
+
+
+            <a
+                class="servicio"
+                href="#"
+            >
+
+                <div class="icono">
+                    📁
+                </div>
+
+                <h3>
+                    ARCHIVO MUNICIPAL
+                </h3>
+
+                <p>
+                    Documentación y registros
+                    administrativos.
+                </p>
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<footer>
+
+    AYUNTAMIENTO DE OCA DE ARRAYA · SISTEMA INTERNO
+
+</footer>
+
+
+</body>
+
+</html>
