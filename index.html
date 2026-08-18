@@ -1389,104 +1389,60 @@ function consultar() {
     */
 
 
-    if (codigo === "1323") {
+   if (codigo === "1323") {
 
+    resultado.innerHTML = `
 
-        resultado.innerHTML = `
+        <div class="informe">
 
-            <div class="informe">
+            <div class="informe-cabecera">
 
+                <div>
 
-                <div class="informe-cabecera">
-
-                    <div>
-
-                        <h4>
-                            INFORME DE ANÁLISIS Nº 001/26
-                        </h4>
-
-                    </div>
-
-
-                    <span>
-
-                        LABORATORIO<br>
-                        CRIMINALÍSTICO
-
-                    </span>
+                    <h4>
+                        INFORME DE LABORATORIO Nº 1323
+                    </h4>
 
                 </div>
 
-
-                <p>
-
-                    <strong>
-                        MUESTRA:
-                    </strong>
-
-                    Evidencia nº 01
-
-                </p>
-
-
-                <p>
-
-                    <strong>
-                        TIPO DE ANÁLISIS:
-                    </strong>
-
-                    Análisis de muestra biológica
-
-                </p>
-
-
-                <p>
-
-                    <strong>
-                        ESTADO:
-                    </strong>
-
-                    ANÁLISIS COMPLETADO
-
-                </p>
-
-
-                <div class="resultado-final">
-
-                    <strong>
-                        RESULTADO DEL ANÁLISIS
-                    </strong>
-
-                    La muestra presenta características
-                    compatibles con material biológico
-                    de origen humano.
-
-                </div>
-
-
-                <p>
-
-                    El presente resultado deberá ser
-                    contrastado con el resto de evidencias
-                    incorporadas al expediente.
-
-                </p>
-
-
-                <div class="sello">
-
-                    RESULTADO VERIFICADO
-
-                </div>
-
+                <span>
+                    LABORATORIO<br>
+                    CRIMINALÍSTICO
+                </span>
 
             </div>
 
-        `;
+            <p>
+                <strong>ESTADO:</strong>
+                ANÁLISIS COMPLETADO
+            </p>
 
+            <div class="resultado-final">
 
-    }
+                <strong>
+                    RESULTADO DISPONIBLE
+                </strong>
 
+                El análisis correspondiente a las
+                muestras remitidas al laboratorio
+                se encuentra disponible para consulta.
+
+            </div>
+
+            <a
+                href="documentos/Laboratorio-1323.pdf"
+                target="_blank"
+                class="boton"
+                style="text-decoration:none; text-align:center;"
+            >
+                ABRIR INFORME DE LABORATORIO
+            </a>
+
+        </div>
+
+    `;
+
+}
 
     else {
 
