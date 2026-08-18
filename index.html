@@ -1444,7 +1444,115 @@ function consultar() {
 
 }
 
-    else {
+else if (codigo === "8157") {
+   resultado.innerHTML = `
+
+        <div class="informe">
+
+            <div class="informe-cabecera">
+
+                <div>
+
+                    <h4>
+                        INFORME DE LABORATORIO Nº 8157
+                    </h4>
+
+                </div>
+
+                <span>
+                    LABORATORIO<br>
+                    CRIMINALÍSTICO
+                </span>
+
+            </div>
+
+            <p>
+                <strong>ESTADO:</strong>
+                ANÁLISIS COMPLETADO
+            </p>
+
+            <div class="resultado-final">
+
+                <strong>
+                    RESULTADO DISPONIBLE
+                </strong>
+
+                El análisis correspondiente a las
+                muestras remitidas al laboratorio
+                se encuentra disponible para consulta.
+
+            </div>
+
+            <a
+                href="Laboratorio-8157.pdf"
+                target="_blank"
+                class="boton"
+                style="text-decoration:none; text-align:center;"
+            >
+                ABRIR INFORME DE LABORATORIO
+            </a>
+
+        </div>
+
+    `;
+
+}   
+
+else if (codigo === "1326") {
+   resultado.innerHTML = `
+
+        <div class="informe">
+
+            <div class="informe-cabecera">
+
+                <div>
+
+                    <h4>
+                        INFORME DE LABORATORIO Nº 1326
+                    </h4>
+
+                </div>
+
+                <span>
+                    LABORATORIO<br>
+                    CRIMINALÍSTICO
+                </span>
+
+            </div>
+
+            <p>
+                <strong>ESTADO:</strong>
+                ANÁLISIS COMPLETADO
+            </p>
+
+            <div class="resultado-final">
+
+                <strong>
+                    RESULTADO DISPONIBLE
+                </strong>
+
+                El análisis correspondiente a las
+                muestras remitidas al laboratorio
+                se encuentra disponible para consulta.
+
+            </div>
+
+            <a
+                href="Laboratorio-1326.pdf"
+                target="_blank"
+                class="boton"
+                style="text-decoration:none; text-align:center;"
+            >
+                ABRIR INFORME DE LABORATORIO
+            </a>
+
+        </div>
+
+    `;
+
+}   
+   
+   else {
 
 
         resultado.innerHTML = `
