@@ -1,1 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Videovigilancia Municipal - Oca de Arraya</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #e4e5e2;
+    color: #252a2c;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =====================================================
+   CABECERA
+===================================================== */
+
+header {
+    background: #26343a;
+    color: white;
+    padding: 28px;
+    border-bottom: 5px solid #a4a59d;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+header p {
+    margin: 7px 0 0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #c8ccc8;
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.contenedor {
+    width: 92%;
+    max-width: 1000px;
+    margin: 35px auto;
+}
+
+.panel {
+    background: #f5f4ee;
+    border: 1px solid #a7a9a4;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+
+/* =====================================================
+   TÍTULOS
+===================================================== */
+
+.titulo {
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 18px;
+    margin-bottom: 25px;
+}
+
+.titulo h2 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.titulo p {
+    font-size: 11px;
+    color: #666;
+}
+
+
+/* =====================================================
+   ACCESO
+===================================================== */
+
+.acceso {
+    background: #e8e8e2;
+    border: 1px solid #b5b6b1;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.acceso h3 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.acceso p {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    max-width: 500px;
+    padding: 14px;
+    border: 1px solid #777b78;
+    background: #fffefa;
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-align: center;
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid #30383b;
+}
+
+.boton {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 12px;
+    padding: 14px;
+    background: #30383b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.boton:hover {
+    background: #1d2325;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: #eee3e1;
+    border: 1px solid #9d7771;
+    color: #742a23;
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   VIDEOVIGILANCIA
+===================================================== */
+
+#videovigilancia {
+    display: none;
+}
+
+.estado-autorizado {
+    padding: 15px;
+    background: #e5e8e2;
+    border: 1px solid #a6aaa3;
+    margin-bottom: 25px;
+    font-size: 11px;
+}
+
+.estado-autorizado strong {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+
+/* =====================================================
+   CÁMARAS
+===================================================== */
+
+.camaras {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.camara {
+    background: #e8e8e2;
+    border: 1px solid #b5b6b1;
+    padding: 20px;
+}
+
+.camara-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #c1c2bd;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+}
+
+.camara-cabecera strong {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.camara-cabecera span {
+    font-size: 9px;
+    color: #777;
+}
+
+.camara p {
+    margin: 0 0 15px;
+    font-size: 10px;
+    color: #666;
+}
+
+.camara audio {
+    width: 100%;
+}
+
+
+/* =====================================================
+   VOLVER
+===================================================== */
+
+.volver {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #47727a;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   MÓVILES
+===================================================== */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 19px;
+    }
+
+    .panel {
+        padding: 20px;
+    }
+
+    .camaras {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        AYUNTAMIENTO DE OCA DE ARRAYA
+    </h1>
+
+    <p>
+        INTRANET MUNICIPAL · SISTEMA DE VIDEOVIGILANCIA
+    </p>
+
+</header>
+
+
+<div class="contenedor">
+
+
+    <a
+        href="index.html"
+        class="volver"
+    >
+        ← VOLVER A INTRANET MUNICIPAL
+    </a>
+
+
+    <div class="panel">
+
+
+        <!-- ACCESO -->
+
+        <div id="acceso">
+
+
+            <div class="titulo">
+
+                <h2>
+                    SISTEMA MUNICIPAL DE VIDEOVIGILANCIA
+                </h2>
+
+                <p>
+                    Acceso al sistema interno de cámaras
+                    de seguridad municipal.
+                </p>
+
+            </div>
+
+
+            <div class="acceso">
+
+                <h3>
+                    🔒 ACCESO RESTRINGIDO
+                </h3>
+
+                <p>
+                    Este sistema requiere autorización
+                    para consultar los registros de
+                    videovigilancia.
+                </p>
+
+
+                <label for="codigo">
+
+                    CÓDIGO DE ACCESO
+
+                </label>
+
+
+                <input
+                    id="codigo"
+                    type="password"
+                    autocomplete="off"
+                >
+
+
+                <button
+                    class="boton"
+                    onclick="desbloquear()"
+                >
+
+                    ACCEDER AL SISTEMA
+
+                </button>
+
+
+                <div
+                    id="error"
+                    class="error"
+                >
+
+                    <strong>
+                        ⚠ ACCESO DENEGADO
+                    </strong>
+
+                    <br><br>
+
+                    El código introducido no es válido.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- VIDEOVIGILANCIA DESBLOQUEADA -->
+
+        <div
+            id="videovigilancia"
+        >
+
+
+            <div class="titulo">
+
+                <h2>
+                    CÁMARAS DEL PARQUE DE SARA
+                </h2>
+
+                <p>
+                    Registros de videovigilancia
+                    asociados al sistema municipal.
+                </p>
+
+            </div>
+
+
+            <div class="estado-autorizado">
+
+                <strong>
+                    ✓ ACCESO AUTORIZADO
+                </strong>
+
+                Sistema de videovigilancia desbloqueado.
+                Registros disponibles para consulta.
+
+            </div>
+
+
+            <div class="camaras">
+
+
+                <!-- CÁMARA 001 -->
+
+                <div class="camara">
+
+                    <div class="camara-cabecera">
+
+                        <strong>
+                            CÁMARA 001
+                        </strong>
+
+                        <span>
+                            REGISTRO 001
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Registro de audio asociado
+                        a la cámara.
+                    </p>
+
+                    <audio controls>
+
+                        <source
+                            src="camara-001.mp3"
+                            type="audio/mpeg"
+                        >
+
+                        Tu navegador no puede reproducir
+                        este archivo.
+
+                    </audio>
+
+                </div>
+
+
+                <!-- CÁMARA 002 -->
+
+                <div class="camara">
+
+                    <div class="camara-cabecera">
+
+                        <strong>
+                            CÁMARA 002
+                        </strong>
+
+                        <span>
+                            REGISTRO 002
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Registro de audio asociado
+                        a la cámara.
+                    </p>
+
+                    <audio controls>
+
+                        <source
+                            src="camara-002.mp3"
+                            type="audio/mpeg"
+                        >
+
+                        Tu navegador no puede reproducir
+                        este archivo.
+
+                    </audio>
+
+                </div>
+
+
+                <!-- CÁMARA 003 -->
+
+                <div class="camara">
+
+                    <div class="camara-cabecera">
+
+                        <strong>
+                            CÁMARA 003
+                        </strong>
+
+                        <span>
+                            REGISTRO 003
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Registro de audio asociado
+                        a la cámara.
+                    </p>
+
+                    <audio controls>
+
+                        <source
+                            src="camara-003.mp3"
+                            type="audio/mpeg"
+                        >
+
+                        Tu navegador no puede reproducir
+                        este archivo.
+
+                    </audio>
+
+                </div>
+
+
+                <!-- CÁMARA 004 -->
+
+                <div class="camara">
+
+                    <div class="camara-cabecera">
+
+                        <strong>
+                            CÁMARA 004
+                        </strong>
+
+                        <span>
+                            REGISTRO 004
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Registro de audio asociado
+                        a la cámara.
+                    </p>
+
+                    <audio controls>
+
+                        <source
+                            src="camara-004.mp3"
+                            type="audio/mpeg"
+                        >
+
+                        Tu navegador no puede reproducir
+                        este archivo.
+
+                    </audio>
+
+                </div>
+
+
+                <!-- CÁMARA 005 -->
+
+                <div class="camara">
+
+                    <div class="camara-cabecera">
+
+                        <strong>
+                            CÁMARA 005
+                        </strong>
+
+                        <span>
+                            REGISTRO 005
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Registro de audio asociado
+                        a la cámara.
+                    </p>
+
+                    <audio controls>
+
+                        <source
+                            src="camara-005.mp3"
+                            type="audio/mpeg"
+                        >
+
+                        Tu navegador no puede reproducir
+                        este archivo.
+
+                    </audio>
+
+                </div>
+
+
+                <!-- CÁMARA 006 -->
+
+                <div class="camara">
+
+                    <div class="camara-cabecera">
+
+                        <strong>
+                            CÁMARA 006
+                        </strong>
+
+                        <span>
+                            REGISTRO 006
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Registro de audio asociado
+                        a la cámara.
+                    </p>
+
+                    <audio controls>
+
+                        <source
+                            src="camara-006.mp3"
+                            type="audio/mpeg"
+                        >
+
+                        Tu navegador no puede reproducir
+                        este archivo.
+
+                    </audio>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<footer>
+
+    AYUNTAMIENTO DE OCA DE ARRAYA · SISTEMA INTERNO
+
+</footer>
+
+
+<script>
+
+function desbloquear() {
+
+    const codigo =
+        document.getElementById("codigo").value.trim();
+
+    const acceso =
+        document.getElementById("acceso");
+
+    const videovigilancia =
+        document.getElementById("videovigilancia");
+
+    const error =
+        document.getElementById("error");
+
+
+    /*
+    ================================================
+    CONTRASEÑA
+    ================================================
+    CAMBIA "1234" POR LA CONTRASEÑA DEFINITIVA
+    ================================================
+    */
+
+
+    if (codigo === "004") {
+
+        acceso.style.display = "none";
+
+        videovigilancia.style.display = "block";
+
+    }
+
+    else {
+
+        error.style.display = "block";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
