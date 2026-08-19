@@ -918,84 +918,56 @@ footer {
     </div>
 
 
-    <ul class="menu">
+  <ul class="menu">
+
+    <li class="activo" onclick="mostrarSeccion('expediente')">
+
+        <span class="icono">📁</span>
+
+        <span>EXPEDIENTE</span>
+
+    </li>
 
 
-        <li class="activo" onclick="mostrarSeccion('expediente')">
+    <li onclick="mostrarSeccion('laboratorio')">
 
-            <span class="icono">📁</span>
+        <span class="icono">🔬</span>
 
-            <span>EXPEDIENTE</span>
+        <span>LABORATORIO</span>
 
-        </li>
+        <span class="estado">
+            ACTIVO
+        </span>
 
-
-       <li onclick="mostrarSeccion('laboratorio')">
-
-            <span class="icono">🔬</span>
-
-            <span>LABORATORIO</span>
-
-            <span class="estado">
-                ACTIVO
-            </span>
-
-        </li>
+    </li>
 
 
-        <li onclick="mostrarSeccion('clinica')">
+    <li onclick="mostrarSeccion('comunicaciones')">
 
-            <span class="icono">🏥</span>
+        <span class="icono">☎</span>
 
-            <span>ARCHIVO CLÍNICO</span>
+        <span>COMUNICACIONES</span>
 
-            <span class="estado">
-                ACTIVO
-            </span>
+        <span class="estado">
+            ACTIVO
+        </span>
 
-        </li>
-
-
-        <li onclick="mostrarSeccion('videovigilancia')">
-
-            <span class="icono">📹</span>
-
-            <span>VIDEOVIGILANCIA</span>
-
-            <span class="estado">
-                ACTIVO
-            </span>
-
-        </li>
+    </li>
 
 
-        <li onclick="mostrarSeccion('comunicaciones')">
+    <li onclick="mostrarSeccion('documentos')">
 
-            <span class="icono">☎</span>
+        <span class="icono">📄</span>
 
-            <span>COMUNICACIONES</span>
+        <span>DOCUMENTOS RESTRINGIDOS</span>
 
-            <span class="estado">
-                ACTIVO
-            </span>
+        <span class="estado">
+            RESTRINGIDO
+        </span>
 
-        </li>
+    </li>
 
-
-        <li onclick="mostrarSeccion('correo')">
-
-            <span class="icono">✉</span>
-
-            <span>CORREO</span>
-
-            <span class="estado">
-                RESTRINGIDO
-            </span>
-
-        </li>
-
-
-    </ul>
+</ul>
 
 
 </aside>
@@ -1064,7 +1036,7 @@ footer {
                     </div>
 
                     <div class="etiqueta">
-                        Archivo clínico
+                        
                     </div>
 
                 </div>
@@ -1182,106 +1154,6 @@ footer {
         </section>
 
     </section>
-
-
-
-    <!-- ARCHIVO CLÍNICO -->
-
-    <section id="clinica" class="seccion" style="display:none">
-
-        <div class="barra-expediente">
-
-            <h2>
-                ARCHIVO CLÍNICO
-            </h2>
-
-        </div>
-
-
-        <section class="panel">
-
-            <div class="panel-cabecera">
-
-                <h3>
-                    🏥 HISTORIAL MÉDICO
-                </h3>
-
-                <p>
-                    Consulta de documentación clínica
-                    incorporada al expediente.
-                </p>
-
-            </div>
-
-
-            <div class="resultado-final">
-
-                <strong>
-                    REGISTRO DISPONIBLE
-                </strong>
-
-                PRUEBA DE ESFUERZO CARDÍACA
-
-            </div>
-
-
-            <p>
-
-                Acceso autorizado para personal
-                investigador.
-
-            </p>
-
-        </section>
-
-    </section>
-
-
-
-    <!-- VIDEOVIGILANCIA -->
-
-    <section id="videovigilancia" class="seccion" style="display:none">
-
-        <div class="barra-expediente">
-
-            <h2>
-                SISTEMA DE VIDEOVIGILANCIA
-            </h2>
-
-        </div>
-
-
-        <section class="panel">
-
-            <div class="panel-cabecera">
-
-                <h3>
-                    📹 ARCHIVO DE CÁMARAS
-                </h3>
-
-                <p>
-                    Registros de videovigilancia
-                    asociados al expediente.
-                </p>
-
-            </div>
-
-
-            <div class="resultado-final">
-
-                <strong>
-                    REGISTRO DISPONIBLE
-                </strong>
-
-                Archivo de videovigilancia pendiente
-                de consulta.
-
-            </div>
-
-        </section>
-
-    </section>
-
 
 
     <!-- COMUNICACIONES -->
@@ -1472,51 +1344,49 @@ footer {
 </div>
 
 
+    <!-- DOCUMENTOS RESTRINGIDOS -->
 
-    <!-- CORREO -->
+<section id="documentos" class="seccion" style="display:none">
 
-    <section id="correo" class="seccion" style="display:none">
+    <div class="barra-expediente">
 
-        <div class="barra-expediente">
+        <h2>
+            DOCUMENTOS RESTRINGIDOS
+        </h2>
 
-            <h2>
-                SISTEMA DE CORREO
-            </h2>
+    </div>
+
+
+    <section class="panel">
+
+        <div class="panel-cabecera">
+
+            <h3>
+                📄 DOCUMENTACIÓN RESERVADA
+            </h3>
+
+            <p>
+                Documentación de acceso restringido
+                asociada al expediente.
+            </p>
 
         </div>
 
 
-        <section class="panel">
+        <div class="error">
 
-            <div class="panel-cabecera">
+            🔒 ACCESO RESTRINGIDO
 
-                <h3>
-                    ✉ CORREO ELECTRÓNICO
-                </h3>
+            <br><br>
 
-                <p>
-                    Acceso restringido.
-                </p>
+            La documentación de esta sección
+            requiere autorización previa.
 
-            </div>
-
-
-            <div class="error">
-
-                🔒 ACCESO RESTRINGIDO
-
-                <br><br>
-
-                Se requieren credenciales
-                de usuario para acceder
-                al contenido.
-
-            </div>
-
-        </section>
+        </div>
 
     </section>
 
+</section>
 
 </main>
 
