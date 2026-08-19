@@ -1497,14 +1497,132 @@ footer {
             style="display:none;"
         >
 
+            <!-- AUTORIZACIÓN SOBRE 01 -->
+
+<div
+    id="documentosNivel01"
+    style="display:none;"
+>
+
+    <div class="resultado-final">
+
+        <strong>
+            ✓ AUTORIZACIÓN VERIFICADA
+        </strong>
+
+        PERMISO DE APERTURA — SOBRE 01
+
+        <br><br>
+
+        El código introducido ha sido validado.
+
+        <br><br>
+
+        La documentación física asociada
+        a esta autorización puede ser abierta.
+
+    </div>
+
+
+    <div class="archivo-documento">
+
+        <strong>
+            ✉ SOBRE 01 — AUTORIZADO
+        </strong>
+
+        <p>
+            Consulte el material físico
+            correspondiente al expediente.
+        </p>
+
+        <p>
+            <strong>
+                ESTADO:
+            </strong>
+
+            AUTORIZADO PARA APERTURA
+        </p>
+
+    </div>
+
+
+    <!-- NIVEL 2 -->
+
+    <div class="recurso-documento nivel-02">
+
+        <div class="documento-cabecera">
+
+            <strong>
+                NIVEL DE AUTORIZACIÓN 02
+            </strong>
+
+            <span>
+                ACCESO RESERVADO
+            </span>
+
+        </div>
+
+
+        <p>
+            Esta autorización requiere una clave
+            obtenida durante la investigación.
+        </p>
+
+
+        <label for="codigoDocumentos02">
+
+            CLAVE DE AUTORIZACIÓN
+
+        </label>
+
+
+        <input
+            id="codigoDocumentos02"
+            type="password"
+            autocomplete="off"
+            placeholder="CLAVE"
+        >
+
+
+        <button
+            class="boton"
+            onclick="desbloquearDocumentos02()"
+        >
+
+            SOLICITAR AUTORIZACIÓN
+
+        </button>
+
+
+        <div
+            id="resultadoDocumentos02"
+            style="margin-top:15px;"
+        ></div>
+
+
+        <!-- AUTORIZACIÓN SOBRE 02 -->
+
+        <div
+            id="documentosNivel02"
+            style="display:none;"
+        >
+
             <div class="resultado-final">
 
                 <strong>
                     ✓ AUTORIZACIÓN VERIFICADA
                 </strong>
 
-                DOCUMENTACIÓN NIVEL 01
-                DISPONIBLE PARA CONSULTA.
+                PERMISO DE APERTURA — SOBRE 02
+
+                <br><br>
+
+                La clave introducida ha sido validada.
+
+                <br><br>
+
+                La documentación física asociada
+                a esta autorización puede ser abierta.
 
             </div>
 
@@ -1512,145 +1630,30 @@ footer {
             <div class="archivo-documento">
 
                 <strong>
-                    📄 DOCUMENTO RESTRINGIDO 01
+                    ✉ SOBRE 02 — AUTORIZADO
                 </strong>
 
                 <p>
-                    Documentación incorporada al expediente.
+                    Consulte el material físico
+                    correspondiente al segundo nivel
+                    del expediente.
                 </p>
-
-                <a
-                    href="documento-01.pdf"
-                    target="_blank"
-                    class="boton"
-                    style="text-decoration:none; text-align:center;"
-                >
-                    ABRIR DOCUMENTO
-                </a>
-
-            </div>
-
-
-            <div class="archivo-documento">
-
-                <strong>
-                    📄 DOCUMENTO RESTRINGIDO 02
-                </strong>
 
                 <p>
-                    Documentación incorporada al expediente.
-                </p>
-
-                <a
-                    href="documento-02.pdf"
-                    target="_blank"
-                    class="boton"
-                    style="text-decoration:none; text-align:center;"
-                >
-                    ABRIR DOCUMENTO
-                </a>
-
-            </div>
-
-
-            <!-- NIVEL 2 -->
-
-            <div class="recurso-documento nivel-02">
-
-                <div class="documento-cabecera">
-
                     <strong>
-                        NIVEL DE AUTORIZACIÓN 02
+                        ESTADO:
                     </strong>
 
-                    <span>
-                        ACCESO RESERVADO
-                    </span>
-
-                </div>
-
-
-                <p>
-                    Esta documentación requiere
-                    una autorización adicional.
+                    AUTORIZADO PARA APERTURA
                 </p>
-
-
-                <label for="codigoDocumentos02">
-
-                    CLAVE DE AUTORIZACIÓN
-
-                </label>
-
-
-                <input
-                    id="codigoDocumentos02"
-                    type="password"
-                    autocomplete="off"
-                >
-
-
-                <button
-                    class="boton"
-                    onclick="desbloquearDocumentos02()"
-                >
-
-                    DESBLOQUEAR DOCUMENTACIÓN
-
-                </button>
-
-
-                <div
-                    id="resultadoDocumentos02"
-                    style="margin-top:15px;"
-                ></div>
-
-
-                <!-- DOCUMENTOS NIVEL 2 -->
-
-                <div
-                    id="documentosNivel02"
-                    style="display:none;"
-                >
-
-                    <div class="resultado-final">
-
-                        <strong>
-                            ✓ AUTORIZACIÓN VERIFICADA
-                        </strong>
-
-                        DOCUMENTACIÓN NIVEL 02
-                        DISPONIBLE PARA CONSULTA.
-
-                    </div>
-
-
-                    <div class="archivo-documento">
-
-                        <strong>
-                            📄 DOCUMENTO RESTRINGIDO 03
-                        </strong>
-
-                        <p>
-                            Documentación reservada del expediente.
-                        </p>
-
-                        <a
-                            href="documento-03.pdf"
-                            target="_blank"
-                            class="boton"
-                            style="text-decoration:none; text-align:center;"
-                        >
-                            ABRIR DOCUMENTO
-                        </a>
-
-                    </div>
-
-                </div>
 
             </div>
 
         </div>
+
+    </div>
+
+</div>
 
     </div>
 
@@ -2083,7 +2086,7 @@ function desbloquearDocumentos01() {
         document.getElementById("documentosNivel01");
 
 
-    if (codigo === "381") {
+    if (codigo === "436") {
 
         resultado.innerHTML = `
 
