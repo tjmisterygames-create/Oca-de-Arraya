@@ -1546,112 +1546,263 @@ footer {
     </div>
 
 
-    <!-- NIVEL 2 -->
+  <!-- NIVEL 2 -->
 
-    <div class="recurso-documento nivel-02">
+<div class="recurso-documento nivel-02">
+
+    <div class="documento-cabecera">
+
+        <strong>
+            NIVEL DE AUTORIZACIÓN 02
+        </strong>
+
+        <span>
+            ACCESO RESERVADO
+        </span>
+
+    </div>
+
+
+    <p>
+        Esta autorización requiere una clave
+        obtenida durante la investigación.
+    </p>
+
+
+    <label for="codigoDocumentos02">
+
+        CLAVE DE AUTORIZACIÓN
+
+    </label>
+
+
+    <input
+        id="codigoDocumentos02"
+        type="password"
+        autocomplete="off"
+        placeholder="CLAVE"
+    >
+
+
+    <button
+        class="boton"
+        onclick="desbloquearDocumentos02()"
+    >
+
+        VALIDAR CLAVE
+
+    </button>
+
+
+    <div
+        id="resultadoDocumentos02"
+        style="margin-top:15px;"
+    ></div>
+
+
+    <!-- PREGUNTA 1 -->
+
+    <div
+        id="verificacion01"
+        style="display:none; margin-top:25px;"
+    >
 
         <div class="documento-cabecera">
 
             <strong>
-                NIVEL DE AUTORIZACIÓN 02
+                VERIFICACIÓN 01
             </strong>
 
             <span>
-                ACCESO RESERVADO
+                COMPROBACIÓN
             </span>
 
         </div>
 
 
         <p>
-            Esta autorización requiere una clave
-            obtenida durante la investigación.
+            ¿Cómo se llama la tercera víctima?
         </p>
 
 
-        <label for="codigoDocumentos02">
-
-            CLAVE DE AUTORIZACIÓN
-
-        </label>
-
-
         <input
-            id="codigoDocumentos02"
-            type="password"
+            id="respuesta01"
+            type="text"
             autocomplete="off"
-            placeholder="CLAVE"
+            placeholder="Introduzca su respuesta"
         >
 
 
         <button
             class="boton"
-            onclick="desbloquearDocumentos02()"
+            onclick="verificarPregunta01()"
         >
 
-            SOLICITAR AUTORIZACIÓN
+            VERIFICAR
 
         </button>
 
 
         <div
-            id="resultadoDocumentos02"
+            id="resultadoPregunta01"
             style="margin-top:15px;"
         ></div>
 
+    </div>
 
-        <!-- AUTORIZACIÓN SOBRE 02 -->
 
-        <div
-            id="documentosNivel02"
-            style="display:none;"
+    <!-- PREGUNTA 2 -->
+
+    <div
+        id="verificacion02"
+        style="display:none; margin-top:25px;"
+    >
+
+        <div class="documento-cabecera">
+
+            <strong>
+                VERIFICACIÓN 02
+            </strong>
+
+            <span>
+                COMPROBACIÓN
+            </span>
+
+        </div>
+
+
+        <p>
+            ¿Qué elemento conecta a todas las víctimas?
+        </p>
+
+
+        <input
+            id="respuesta02"
+            type="text"
+            autocomplete="off"
+            placeholder="Introduzca su respuesta"
         >
 
-            <div class="resultado-final">
 
-                <strong>
-                    ✓ AUTORIZACIÓN VERIFICADA
-                </strong>
+        <button
+            class="boton"
+            onclick="verificarPregunta02()"
+        >
 
-                PERMISO DE APERTURA — SOBRE 02
+            VERIFICAR
 
-                <br><br>
+        </button>
 
-                La clave introducida ha sido validada.
 
-                <br><br>
+        <div
+            id="resultadoPregunta02"
+            style="margin-top:15px;"
+        ></div>
 
+    </div>
+
+
+    <!-- PREGUNTA 3 -->
+
+    <div
+        id="verificacion03"
+        style="display:none; margin-top:25px;"
+    >
+
+        <div class="documento-cabecera">
+
+            <strong>
+                VERIFICACIÓN 03
+            </strong>
+
+            <span>
+                COMPROBACIÓN FINAL
+            </span>
+
+        </div>
+
+
+        <p>
+            ¿Cuándo crees que se produciría
+            el siguiente asesinato?
+            <br>
+            <small>(Formato DD/MM/AAAA)</small>
+        </p>
+
+
+        <input
+            id="respuesta03"
+            type="text"
+            autocomplete="off"
+            placeholder="DD/MM/AAAA"
+        >
+
+
+        <button
+            class="boton"
+            onclick="verificarPregunta03()"
+        >
+
+            VERIFICAR
+
+        </button>
+
+
+        <div
+            id="resultadoPregunta03"
+            style="margin-top:15px;"
+        ></div>
+
+    </div>
+
+
+    <!-- AUTORIZACIÓN FINAL -->
+
+    <div
+        id="documentosNivel02"
+        style="display:none; margin-top:25px;"
+    >
+
+        <div class="resultado-final">
+
+            <strong>
+                ✓ VERIFICACIÓN COMPLETADA
+            </strong>
+
+            <br><br>
+
+            PERMISO DE APERTURA — SOBRE 02
+
+            <br><br>
+
+            Las comprobaciones de seguridad
+            han sido superadas.
+
+            <br><br>
+
+            <strong>
+                ESTADO: AUTORIZADO PARA APERTURA
+            </strong>
+
+        </div>
+
+
+        <div class="archivo-documento">
+
+            <strong>
+                ✉ SOBRE 02 — AUTORIZADO
+            </strong>
+
+            <p>
                 La documentación física asociada
-                a esta autorización puede ser abierta.
-
-            </div>
-
-
-            <div class="archivo-documento">
-
-                <strong>
-                    ✉ SOBRE 02 — AUTORIZADO
-                </strong>
-
-                <p>
-                    Consulte el material físico
-                    correspondiente al segundo nivel
-                    del expediente.
-                </p>
-
-                <p>
-                    <strong>
-                        ESTADO:
-                    </strong>
-
-                    AUTORIZADO PARA APERTURA
-                </p>
-
-            </div>
+                a este nivel puede ser abierta.
+            </p>
 
         </div>
 
     </div>
+
+</div>
 
 </div>
 </div>
@@ -2142,13 +2293,16 @@ function desbloquearDocumentos01() {
 function desbloquearDocumentos02() {
 
     const codigo =
-        document.getElementById("codigoDocumentos02").value.trim().toUpperCase();
+        document.getElementById("codigoDocumentos02")
+        .value
+        .trim()
+        .toUpperCase();
 
     const resultado =
         document.getElementById("resultadoDocumentos02");
 
-    const documentos =
-        document.getElementById("documentosNivel02");
+    const pregunta =
+        document.getElementById("verificacion01");
 
 
     if (codigo === "ARRAYA") {
@@ -2158,23 +2312,20 @@ function desbloquearDocumentos02() {
             <div class="comunicacion-desbloqueada">
 
                 <strong>
-                    ✓ AUTORIZACIÓN VERIFICADA
+                    ✓ CLAVE DE AUTORIZACIÓN VALIDADA
                 </strong>
 
                 <p>
-                    Permiso de apertura — Sobre 02.
-                </p>
-
-                <p>
-                    La documentación física asociada
-                    a esta autorización puede ser abierta.
+                    Para completar la autorización,
+                    responda a las siguientes preguntas
+                    de verificación.
                 </p>
 
             </div>
 
         `;
 
-        documentos.style.display = "block";
+        pregunta.style.display = "block";
 
     }
 
@@ -2185,24 +2336,193 @@ function desbloquearDocumentos02() {
             <div class="error">
 
                 <strong>
-                    ⚠ ACCESO DENEGADO
+                    ⚠ CLAVE NO VÁLIDA
                 </strong>
 
                 <br><br>
 
-                La clave introducida no es válida.
+                La clave introducida no es correcta.
 
             </div>
 
         `;
 
-        documentos.style.display = "none";
+        pregunta.style.display = "none";
+
+    }
+
+}
+
+function verificarPregunta01() {
+
+    const respuesta =
+        document.getElementById("respuesta01")
+        .value
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    const resultado =
+        document.getElementById("resultadoPregunta01");
+
+    const siguiente =
+        document.getElementById("verificacion02");
+
+
+    if (
+        respuesta.includes("jesus navarrete")
+    ) {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                ✓ VERIFICACIÓN 01 SUPERADA
+
+            </div>
+
+        `;
+
+        siguiente.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                ⚠ RESPUESTA INCORRECTA
+
+                <br><br>
+
+                Revise la información del expediente
+                e inténtelo de nuevo.
+
+            </div>
+
+        `;
+
+        siguiente.style.display = "none";
 
     }
 
 }
     
-   
+function verificarPregunta02() {
+
+    const respuesta =
+        document.getElementById("respuesta02")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const resultado =
+        document.getElementById("resultadoPregunta02");
+
+    const siguiente =
+        document.getElementById("verificacion03");
+
+
+    if (
+        respuesta.includes("carnero")
+    ) {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                ✓ VERIFICACIÓN 02 SUPERADA
+
+            </div>
+
+        `;
+
+        siguiente.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                ⚠ RESPUESTA INCORRECTA
+
+                <br><br>
+
+                Revise la información del expediente
+                e inténtelo de nuevo.
+
+            </div>
+
+        `;
+
+        siguiente.style.display = "none";
+
+    }
+
+}
+
+ function verificarPregunta03() {
+
+    const respuesta =
+        document.getElementById("respuesta03")
+        .value
+        .trim();
+
+    const resultado =
+        document.getElementById("resultadoPregunta03");
+
+    const autorizacion =
+        document.getElementById("documentosNivel02");
+
+
+    if (
+        respuesta === "13/01/2025" ||
+        respuesta === "14/01/2025"
+    ) {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                ✓ VERIFICACIÓN 03 SUPERADA
+
+            </div>
+
+        `;
+
+        autorizacion.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                ⚠ RESPUESTA INCORRECTA
+
+                <br><br>
+
+                Introduzca una fecha con el formato
+                DD/MM/AAAA.
+
+            </div>
+
+        `;
+
+        autorizacion.style.display = "none";
+
+    }
+
+}   
+    
 </script>
 
 
