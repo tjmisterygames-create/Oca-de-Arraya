@@ -10,6 +10,52 @@
 <title>Comisaría de Oca de Arraya</title>
 
 
+.recurso-comunicacion {
+    margin-top: 28px;
+    border: 1px solid #b5b6b2;
+    background: #f1f1ec;
+    padding: 22px;
+}
+
+.comunicacion-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #c5c6c1;
+}
+
+.comunicacion-cabecera strong {
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.comunicacion-cabecera span {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #777;
+}
+
+.comunicacion-info {
+    padding: 16px 0;
+}
+
+.comunicacion-info p {
+    margin: 5px 0;
+    font-size: 11px;
+    color: #555;
+}
+
+.reproductor {
+    padding-top: 10px;
+    border-top: 1px solid #d0d1cc;
+}
+
+.reproductor audio {
+    width: 100%;
+}   
+   
+
 <style>
 
 /* =====================================================
@@ -1279,25 +1325,124 @@ footer {
 
 <div class="recurso-comunicacion">
 
-    <strong>
-        REGISTRO DE CONTESTADOR
-    </strong>
+    <div class="comunicacion-cabecera">
 
-    <p>
-        Grabación recuperada del sistema
-        de comunicaciones.
-    </p>
+        <strong>
+            REGISTRO DE COMUNICACIONES
+        </strong>
 
-    <audio controls style="width:100%; margin-top:15px;">
+        <span>
+            ACCESO RESTRINGIDO
+        </span>
 
-        <source
-            src="Contestador.mp3"
-            type="audio/mpeg"
+    </div>
+
+
+    <div class="comunicacion-info">
+
+        <p>
+            Los registros de comunicaciones se encuentran
+            protegidos mediante código de autorización.
+        </p>
+
+    </div>
+
+
+    <!-- IMAGEN-PISTA -->
+
+    <div class="pista-comunicacion">
+
+        <div class="pista-titulo">
+            PISTA DE AUTORIZACIÓN
+        </div>
+
+        <p>
+            Imagen localizada pegada en la esquina de la pantalla del ordenador.
+        </p>
+
+        <img
+            src="nota-ordenador.png"
+            alt="Imagen localizada pegada en la esquina de la pantalla del ordenador"
+            class="imagen-pista"
         >
 
-        Tu navegador no puede reproducir este audio.
+    </div>
 
-    </audio>
+
+    <!-- CONTRASEÑA -->
+
+    <div class="acceso-comunicacion">
+
+        <label for="codigoComunicaciones">
+
+            CÓDIGO DE ACCESO
+
+        </label>
+
+        <input
+            type="password"
+            id="codigoComunicaciones"
+            autocomplete="off"
+        >
+
+        <button onclick="desbloquearComunicaciones()">
+
+            DESBLOQUEAR ARCHIVOS
+
+        </button>
+
+        <div id="resultadoComunicaciones"></div>
+
+    </div>
+
+
+    <!-- AUDIOS OCULTOS -->
+
+    <div
+        id="audiosComunicaciones"
+        style="display:none;"
+    >
+
+        <div class="comunicacion-desbloqueada">
+
+            <strong>
+                ✓ AUTORIZACIÓN VERIFICADA
+            </strong>
+
+            <p>
+                Archivos de comunicaciones desbloqueados.
+            </p>
+
+        </div>
+
+
+        <div class="archivo-audio">
+
+            <strong>
+                ☎ REGISTRO DE CONTESTADOR
+            </strong>
+
+            <span>
+                Mensajes recibidos
+            </span>
+
+            <audio controls>
+
+                <source
+                    src="contestador-isabel.mp3"
+                    type="audio/mpeg"
+                >
+
+                Tu navegador no puede reproducir este audio.
+
+            </audio>
+
+        </div>
+
+
+        <!-- AQUÍ AÑADIREMOS LOS INTERROGATORIOS -->
+
+    </div>
 
 </div>
 
@@ -1689,6 +1834,78 @@ else if (codigo === "1495") {
 }
 
 
+/* =====================================================
+   ACCESO AL REGISTRO DE COMUNICACIONES
+===================================================== */
+
+function desbloquearComunicaciones() {
+
+    const codigo =
+        document.getElementById("codigoComunicaciones").value.trim();
+
+    const resultado =
+        document.getElementById("resultadoComunicaciones");
+
+    const audios =
+        document.getElementById("audiosComunicaciones");
+
+    resultado.style.display = "block";
+
+
+    /*
+    -----------------------------------------------
+    CONTRASEÑA DEL REGISTRO DE COMUNICACIONES
+    -----------------------------------------------
+    CAMBIA "1234" POR TU CONTRASEÑA REAL
+    -----------------------------------------------
+    */
+
+    if (codigo === "cantar") {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                ✓ AUTORIZACIÓN VERIFICADA
+
+                <br><br>
+
+                Los archivos de comunicaciones
+                han sido desbloqueados.
+
+            </div>
+
+        `;
+
+        audios.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ⚠ ACCESO DENEGADO
+                </strong>
+
+                <br><br>
+
+                El código introducido no es válido.
+
+            </div>
+
+        `;
+
+        audios.style.display = "none";
+
+    }
+
+}
+   
+   
 </script>
 
 
