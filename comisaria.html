@@ -1492,17 +1492,12 @@ footer {
 
         <!-- DOCUMENTOS NIVEL 1 -->
 
-        <div
-            id="documentosNivel01"
-            style="display:none;"
-        >
-
-            <!-- AUTORIZACIÓN SOBRE 01 -->
-
 <div
     id="documentosNivel01"
     style="display:none;"
 >
+
+    <!-- AUTORIZACIÓN SOBRE 01 -->
 
     <div class="resultado-final">
 
@@ -1524,287 +1519,289 @@ footer {
     </div>
 
 
+    <!-- DOCUMENTO / PISTA -->
+
     <div class="archivo-documento">
 
         <strong>
-            ✉ SOBRE 01 — AUTORIZADO
+            📄 DOCUMENTO RESTRINGIDO — PISTA
         </strong>
 
         <p>
-            Consulte el material físico
-            correspondiente al expediente.
+            Documento incorporado al expediente
+            tras la autorización del Sobre 01.
         </p>
 
-        <p>
-            <strong>
-                ESTADO:
-            </strong>
-
-            AUTORIZADO PARA APERTURA
-        </p>
+        <a
+            href="documento-pista.pdf"
+            target="_blank"
+            class="boton"
+            style="text-decoration:none; text-align:center;"
+        >
+            ABRIR DOCUMENTO
+        </a>
 
     </div>
 
 
-  <!-- NIVEL 2 -->
+    <!-- NIVEL 2 -->
 
-<div class="recurso-documento nivel-02">
-
-    <div class="documento-cabecera">
-
-        <strong>
-            NIVEL DE AUTORIZACIÓN 02
-        </strong>
-
-        <span>
-            ACCESO RESERVADO
-        </span>
-
-    </div>
-
-
-    <p>
-        Esta autorización requiere una clave
-        obtenida durante la investigación.
-    </p>
-
-
-    <label for="codigoDocumentos02">
-
-        CLAVE DE AUTORIZACIÓN
-
-    </label>
-
-
-    <input
-        id="codigoDocumentos02"
-        type="password"
-        autocomplete="off"
-        placeholder="CLAVE"
-    >
-
-
-    <button
-        class="boton"
-        onclick="desbloquearDocumentos02()"
-    >
-
-        VALIDAR CLAVE
-
-    </button>
-
-
-    <div
-        id="resultadoDocumentos02"
-        style="margin-top:15px;"
-    ></div>
-
-
-    <!-- PREGUNTA 1 -->
-
-    <div
-        id="verificacion01"
-        style="display:none; margin-top:25px;"
-    >
+    <div class="recurso-documento nivel-02">
 
         <div class="documento-cabecera">
 
             <strong>
-                VERIFICACIÓN 01
+                NIVEL DE AUTORIZACIÓN 02
             </strong>
 
             <span>
-                COMPROBACIÓN
+                ACCESO RESERVADO
             </span>
 
         </div>
 
 
         <p>
-            ¿Cómo se llama la tercera víctima?
+            Esta autorización requiere una clave
+            obtenida durante la investigación.
         </p>
 
 
+        <label for="codigoDocumentos02">
+
+            CLAVE DE AUTORIZACIÓN
+
+        </label>
+
+
         <input
-            id="respuesta01"
-            type="text"
+            id="codigoDocumentos02"
+            type="password"
             autocomplete="off"
-            placeholder="Introduzca su respuesta"
+            placeholder="CLAVE"
         >
 
 
         <button
             class="boton"
-            onclick="verificarPregunta01()"
+            onclick="desbloquearDocumentos02()"
         >
 
-            VERIFICAR
+            VALIDAR CLAVE
 
         </button>
 
 
         <div
-            id="resultadoPregunta01"
+            id="resultadoDocumentos02"
             style="margin-top:15px;"
         ></div>
 
-    </div>
 
-
-    <!-- PREGUNTA 2 -->
-
-    <div
-        id="verificacion02"
-        style="display:none; margin-top:25px;"
-    >
-
-        <div class="documento-cabecera">
-
-            <strong>
-                VERIFICACIÓN 02
-            </strong>
-
-            <span>
-                COMPROBACIÓN
-            </span>
-
-        </div>
-
-
-        <p>
-            ¿Qué elemento conecta a todas las víctimas?
-        </p>
-
-
-        <input
-            id="respuesta02"
-            type="text"
-            autocomplete="off"
-            placeholder="Introduzca su respuesta"
-        >
-
-
-        <button
-            class="boton"
-            onclick="verificarPregunta02()"
-        >
-
-            VERIFICAR
-
-        </button>
-
+        <!-- PREGUNTA 1 -->
 
         <div
-            id="resultadoPregunta02"
-            style="margin-top:15px;"
-        ></div>
-
-    </div>
-
-
-    <!-- PREGUNTA 3 -->
-
-    <div
-        id="verificacion03"
-        style="display:none; margin-top:25px;"
-    >
-
-        <div class="documento-cabecera">
-
-            <strong>
-                VERIFICACIÓN 03
-            </strong>
-
-            <span>
-                COMPROBACIÓN FINAL
-            </span>
-
-        </div>
-
-
-        <p>
-            ¿Cuándo crees que se produciría
-            el siguiente asesinato?
-            <br>
-            <small>(Formato DD/MM/AAAA)</small>
-        </p>
-
-
-        <input
-            id="respuesta03"
-            type="text"
-            autocomplete="off"
-            placeholder="DD/MM/AAAA"
+            id="verificacion01"
+            style="display:none; margin-top:25px;"
         >
 
+            <div class="documento-cabecera">
 
-        <button
-            class="boton"
-            onclick="verificarPregunta03()"
-        >
+                <strong>
+                    VERIFICACIÓN 01
+                </strong>
 
-            VERIFICAR
+                <span>
+                    COMPROBACIÓN
+                </span>
 
-        </button>
+            </div>
 
-
-        <div
-            id="resultadoPregunta03"
-            style="margin-top:15px;"
-        ></div>
-
-    </div>
-
-
-    <!-- AUTORIZACIÓN FINAL -->
-
-    <div
-        id="documentosNivel02"
-        style="display:none; margin-top:25px;"
-    >
-
-        <div class="resultado-final">
-
-            <strong>
-                ✓ VERIFICACIÓN COMPLETADA
-            </strong>
-
-            <br><br>
-
-            PERMISO DE APERTURA — SOBRE 02
-
-            <br><br>
-
-            Las comprobaciones de seguridad
-            han sido superadas.
-
-            <br><br>
-
-            <strong>
-                ESTADO: AUTORIZADO PARA APERTURA
-            </strong>
-
-        </div>
-
-
-        <div class="archivo-documento">
-
-            <strong>
-                ✉ SOBRE 02 — AUTORIZADO
-            </strong>
 
             <p>
-                La documentación física asociada
-                a este nivel puede ser abierta.
+                ¿Cómo se llama la tercera víctima?
             </p>
+
+
+            <input
+                id="respuesta01"
+                type="text"
+                autocomplete="off"
+                placeholder="Introduzca su respuesta"
+            >
+
+
+            <button
+                class="boton"
+                onclick="verificarPregunta01()"
+            >
+
+                VERIFICAR
+
+            </button>
+
+
+            <div
+                id="resultadoPregunta01"
+                style="margin-top:15px;"
+            ></div>
+
+        </div>
+
+
+        <!-- PREGUNTA 2 -->
+
+        <div
+            id="verificacion02"
+            style="display:none; margin-top:25px;"
+        >
+
+            <div class="documento-cabecera">
+
+                <strong>
+                    VERIFICACIÓN 02
+                </strong>
+
+                <span>
+                    COMPROBACIÓN
+                </span>
+
+            </div>
+
+
+            <p>
+                ¿Qué elemento conecta a todas las víctimas?
+            </p>
+
+
+            <input
+                id="respuesta02"
+                type="text"
+                autocomplete="off"
+                placeholder="Introduzca su respuesta"
+            >
+
+
+            <button
+                class="boton"
+                onclick="verificarPregunta02()"
+            >
+
+                VERIFICAR
+
+            </button>
+
+
+            <div
+                id="resultadoPregunta02"
+                style="margin-top:15px;"
+            ></div>
+
+        </div>
+
+
+        <!-- PREGUNTA 3 -->
+
+        <div
+            id="verificacion03"
+            style="display:none; margin-top:25px;"
+        >
+
+            <div class="documento-cabecera">
+
+                <strong>
+                    VERIFICACIÓN 03
+                </strong>
+
+                <span>
+                    COMPROBACIÓN FINAL
+                </span>
+
+            </div>
+
+
+            <p>
+                ¿Cuándo crees que se produciría
+                el siguiente asesinato?
+                <br>
+                <small>(Formato DD/MM/AAAA)</small>
+            </p>
+
+
+            <input
+                id="respuesta03"
+                type="text"
+                autocomplete="off"
+                placeholder="DD/MM/AAAA"
+            >
+
+
+            <button
+                class="boton"
+                onclick="verificarPregunta03()"
+            >
+
+                VERIFICAR
+
+            </button>
+
+
+            <div
+                id="resultadoPregunta03"
+                style="margin-top:15px;"
+            ></div>
+
+        </div>
+
+
+        <!-- AUTORIZACIÓN FINAL -->
+
+        <div
+            id="documentosNivel02"
+            style="display:none; margin-top:25px;"
+        >
+
+            <div class="resultado-final">
+
+                <strong>
+                    ✓ VERIFICACIÓN COMPLETADA
+                </strong>
+
+                <br><br>
+
+                PERMISO DE APERTURA — SOBRE 02
+
+                <br><br>
+
+                Las comprobaciones de seguridad
+                han sido superadas.
+
+                <br><br>
+
+                <strong>
+                    ESTADO: AUTORIZADO PARA APERTURA
+                </strong>
+
+            </div>
+
+
+            <div class="archivo-documento">
+
+                <strong>
+                    ✉ SOBRE 02 — AUTORIZADO
+                </strong>
+
+                <p>
+                    La documentación física asociada
+                    a esta autorización puede ser abierta.
+                </p>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
-
-</div>
 </div>
 
     </div>
