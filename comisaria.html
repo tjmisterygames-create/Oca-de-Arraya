@@ -1088,6 +1088,28 @@ footer {
 .icono-pistas {
     font-size: 25px;
 }    
+
+.titulo-recurso {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+.titulo-recurso img {
+
+    width: 22px;
+
+    height: 22px;
+
+    object-fit: contain;
+
+    display: block;
+
+}
     
 </style>
 
@@ -1198,7 +1220,9 @@ footer {
 
     <li onclick="mostrarSeccion('laboratorio')">
 
-        <span class="icono">🔬</span>
+        <span class="icono">
+            <img src="laboratorio.png" alt="">
+        </span>
 
         <span>LABORATORIO</span>
 
@@ -1211,7 +1235,9 @@ footer {
 
     <li onclick="mostrarSeccion('comunicaciones')">
 
-        <span class="icono">☎</span>
+        <span class="icono">
+            <img src="comunicaciones.png" alt="">
+        </span>
 
         <span>COMUNICACIONES</span>
 
@@ -1224,7 +1250,9 @@ footer {
 
     <li onclick="mostrarSeccion('documentos')">
 
-        <span class="icono">📄</span>
+        <span class="icono">
+            <img src="documentos.png" alt="">
+        </span>
 
         <span>DOCUMENTOS RESTRINGIDOS</span>
 
@@ -1241,7 +1269,9 @@ footer {
     style="display:none;"
 >
 
-    <span class="icono">🚨</span>
+    <span class="icono">
+        <img src="detencion.png" alt="">
+    </span>
 
     <span>DETENCIÓN</span>
 
@@ -1417,7 +1447,8 @@ footer {
             <div class="laboratorio">
 
                 <h3>
-                    🔬 CONSULTA DE MUESTRAS
+                     <img src="laboratorio.png" alt="">
+                        CONSULTA DE MUESTRAS
                 </h3>
 
                 <p class="laboratorio-descripcion">
@@ -1482,8 +1513,8 @@ footer {
         onclick="mostrarPistas()"
     >
 
-        <span class="icono-pistas">
-            💡
+        <span class="icono">
+            <img src="pistas.png" alt="">
         </span>
 
         <span>
@@ -1568,7 +1599,8 @@ footer {
             <div class="panel-cabecera">
 
                 <h3>
-                    ☎ REGISTRO DE COMUNICACIONES
+                    <img src="comunicaciones.png" alt="">
+                    REGISTRO DE COMUNICACIONES
                 </h3>
 
                 <p>
@@ -1688,7 +1720,8 @@ footer {
     <div class="archivo-audio">
 
         <strong>
-            ☎ REGISTRO DE CONTESTADOR
+            <img src="contestador.png" alt="">
+            REGISTRO DE CONTESTADOR
         </strong>
 
         <span>
@@ -1762,7 +1795,8 @@ footer {
     <div class="panel-cabecera">
 
         <h3>
-            📄 DOCUMENTACIÓN RESERVADA
+            <img src="documentos.png" alt="">
+            DOCUMENTACIÓN RESERVADA
         </h3>
 
         <p>
@@ -1863,7 +1897,8 @@ footer {
     <div class="archivo-documento">
 
         <strong>
-            📄 DOCUMENTO RESTRINGIDO — PISTA
+            <img src="documentos.png" alt="">
+            DOCUMENTO RESTRINGIDO — PISTA
         </strong>
 
         <p>
@@ -2183,7 +2218,8 @@ footer {
         <div class="panel-cabecera">
 
             <h3>
-                🚨 ORDEN DE DETENCIÓN
+                <img src="detencion.png" alt="">
+                ORDEN DE DETENCIÓN
             </h3>
 
             <p>
@@ -3118,7 +3154,8 @@ function intentarDetencion() {
             <div class="comunicacion-desbloqueada">
 
                 <strong>
-                    🚨 DETENCIÓN AUTORIZADA
+                    <img src="detencion.png" alt="">
+                    DETENCIÓN AUTORIZADA
                 </strong>
 
                 <p>
