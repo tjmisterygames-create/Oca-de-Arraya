@@ -509,6 +509,20 @@ header p {
 
 }
 
+.estado-tarjeta {
+
+    margin-top: 10px;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    color: #66746b;
+
+    text-transform: uppercase;
+
+}
+    
 .tarjeta:hover {
 
     background: #e8e9e4;
@@ -608,31 +622,45 @@ input:focus {
 
     margin-top: 12px;
 
-    padding: 14px;
+    padding: 11px 14px;
 
-    background: #30383b;
+    background: #343f43;
 
-    color: white;
+    color: #f1f2ee;
 
-    border: none;
+    border: 1px solid #273034;
 
     cursor: pointer;
 
-    font-weight: bold;
+    font-weight: 600;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
 
+    text-transform: uppercase;
+
+    text-align: center;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.1s ease;
 }
-
 
 .boton:hover {
 
-    background: #1d2325;
+    background: #455258;
+
+    border-color: #59666b;
 
 }
 
+.boton:active {
+
+    transform: translateY(1px);
+
+}
 
 /* =====================================================
    RESULTADOS
@@ -1196,7 +1224,7 @@ footer {
 
             <div class="expediente">
                 EXPEDIENTE<br>
-                <strong>OCA-2024-0025</strong>
+                <strong>OCA-2024-0125</strong>
             </div>
 
         </div>
@@ -1217,19 +1245,21 @@ footer {
             </div>
 
 
-            <div class="tarjetas">
+            <div class="tarjeta">
 
-                <div class="tarjeta">
-
-                    <div class="numero">
-                        04
-                    </div>
-
-                    <div class="etiqueta">
-                        Análisis de laboratorio
-                    </div>
-
+                <div class="numero">
+                    04
                 </div>
+
+                <div class="etiqueta">
+                    Análisis de laboratorio
+                </div>
+
+                <div class="estado-tarjeta">
+                    ● DISPONIBLE
+    </div>
+
+</div>
 
 
                 <div class="tarjeta">
