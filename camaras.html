@@ -34,6 +34,46 @@ header {
     border-bottom: 5px solid #a4a59d;
 }
 
+.titulo-municipal {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+.escudo-municipal {
+
+    width: 65px;
+
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+.escudo-municipal img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+}
+    
 header h1 {
     margin: 0;
     font-size: 25px;
@@ -87,6 +127,84 @@ header p {
     color: #666;
 }
 
+.titulo-seccion {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+.titulo-acceso {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.icono-acceso {
+
+    width: 20px;
+
+    height: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+}
+
+
+.icono-acceso img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+}    
+
+.icono-titulo {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.icono-titulo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+}    
 
 /* =====================================================
    ACCESO
@@ -193,7 +311,22 @@ input:focus {
     margin-bottom: 6px;
 }
 
+footer {
 
+    text-align: center;
+
+    font-size: 8px;
+
+    color: #858783;
+
+    margin: 35px auto 25px;
+
+    letter-spacing: 1.5px;
+
+    opacity: 0.75;
+
+}
+    
 /* =====================================================
    CÁMARAS
 ===================================================== */
@@ -205,28 +338,49 @@ input:focus {
 }
 
 .camara {
+
     background: #e8e8e2;
+
     border: 1px solid #b5b6b1;
-    padding: 20px;
+
+    padding: 18px;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+
 }
 
 .camara-cabecera {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     border-bottom: 1px solid #c1c2bd;
-    padding-bottom: 12px;
-    margin-bottom: 15px;
+
+    padding-bottom: 10px;
+
+    margin-bottom: 12px;
+
 }
 
 .camara-cabecera strong {
-    font-size: 12px;
-    letter-spacing: 1px;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
 }
 
 .camara-cabecera span {
-    font-size: 9px;
+
+    font-size: 8px;
+
     color: #777;
+
+    letter-spacing: 1px;
+
 }
 
 .camara p {
@@ -235,8 +389,14 @@ input:focus {
     color: #666;
 }
 
-.camara audio {
+.camara video {
+
     width: 100%;
+
+    height: auto;
+
+    display: block;
+
 }
 
 
@@ -273,6 +433,80 @@ input:focus {
         grid-template-columns: 1fr;
     }
 
+    .camara {
+
+        padding: 14px;
+
+    }
+
+
+    .camara-cabecera strong {
+
+        font-size: 10px;
+
+    }
+
+
+    .camara-cabecera span {
+
+        font-size: 7px;
+
+    }
+
+
+    .camara p {
+
+        font-size: 9px;
+
+    }
+    
+    .titulo-municipal {
+
+    gap: 10px;
+
+}
+
+
+.escudo-municipal {
+
+    width: 50px;
+
+    height: 50px;
+
+}
+
+
+.titulo-seccion {
+
+    align-items: flex-start;
+
+}
+
+
+.icono-titulo {
+
+    width: 34px;
+
+    height: 34px;
+
+}
+
+
+.titulo h2 {
+
+    font-size: 16px;
+
+}
+
+
+footer {
+
+    font-size: 7px;
+
+    margin: 30px 15px 20px;
+
+}
+    
 }
 
 </style>
@@ -285,9 +519,22 @@ input:focus {
 
 <header>
 
+    <div class="titulo-municipal">
+
+    <div class="escudo-municipal">
+
+        <img
+            src="emblema-ayuntamiento.png"
+            alt="Emblema del Ayuntamiento de Oca de Arraya"
+        >
+
+    </div>
+
     <h1>
         AYUNTAMIENTO DE OCA DE ARRAYA
     </h1>
+
+</div>
 
     <p>
         INTRANET MUNICIPAL · SISTEMA DE VIDEOVIGILANCIA
@@ -317,23 +564,47 @@ input:focus {
 
             <div class="titulo">
 
-                <h2>
-                    SISTEMA MUNICIPAL DE VIDEOVIGILANCIA
-                </h2>
+    <div class="titulo-seccion">
 
-                <p>
-                    Acceso al sistema interno de cámaras
-                    de seguridad municipal.
-                </p>
+        <div class="icono-titulo">
 
-            </div>
+            <img
+                src="camaras.png"
+                alt="Videovigilancia municipal"
+            >
+
+        </div>
+
+        <h2>
+            SISTEMA MUNICIPAL DE VIDEOVIGILANCIA
+        </h2>
+
+    </div>
+
+    <p>
+        Acceso al sistema interno de cámaras
+        de seguridad municipal.
+    </p>
+
+</div>
 
 
             <div class="acceso">
 
-                <h3>
-                    🔒 ACCESO RESTRINGIDO
-                </h3>
+                <h3 class="titulo-acceso">
+
+    <span class="icono-acceso">
+
+        <img
+            src="candado.png"
+            alt=""
+        >
+
+    </span>
+
+    ACCESO RESTRINGIDO
+
+</h3>
 
                 <p>
                     Este sistema requiere autorización
