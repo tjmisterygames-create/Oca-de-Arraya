@@ -1,1 +1,3252 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Comisaría de Oca de Arraya</title>
+
+
+<style>
+
+
+.recurso-comunicacion {
+    margin-top: 28px;
+    border: 1px solid #b5b6b2;
+    background: #f1f1ec;
+    padding: 22px;
+}
+
+.comunicacion-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #c5c6c1;
+}
+
+.comunicacion-cabecera strong {
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.comunicacion-cabecera span {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #777;
+}
+
+.comunicacion-info {
+    padding: 16px 0;
+}
+
+.comunicacion-info p {
+    margin: 5px 0;
+    font-size: 11px;
+    color: #555;
+}
+
+.reproductor {
+    padding-top: 10px;
+    border-top: 1px solid #d0d1cc;
+}
+
+.reproductor audio {
+    width: 100%;
+}   
+   
+    
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    background: #dfe1de;
+
+    color: #252a2c;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   CABECERA
+===================================================== */
+
+header {
+    background: #26343a;
+
+    color: #f1f1ec;
+
+    padding: 25px 30px;
+
+    border-bottom: 4px solid #8f928b;
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,0.15);
+}
+
+
+.escudo {
+
+    width: 55px;
+    height: 65px;
+
+    border: 2px solid #c5c7c1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 18px;
+
+    font-size: 25px;
+
+}
+
+
+header h1 {
+    margin: 0;
+
+    font-size: 23px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+header p {
+    margin: 7px 0 0;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #c8ccc8;
+
+    text-transform: uppercase;
+}
+
+
+.estado-sistema {
+
+    margin-left: auto;
+
+    text-align: right;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    color: #d3d5d1;
+
+}
+
+
+.estado-sistema .activo {
+
+    color: #aebfa8;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
+   ESTRUCTURA PRINCIPAL
+===================================================== */
+
+.contenedor {
+
+    display: flex;
+
+    min-height: calc(100vh - 92px);
+
+}
+
+
+/* =====================================================
+   MENÚ LATERAL
+===================================================== */
+
+.sidebar {
+
+    width: 235px;
+
+    background: #30393d;
+
+    color: white;
+
+    padding: 25px 0;
+
+}
+
+
+.sidebar-titulo {
+
+    padding: 0 22px 15px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #aeb3b0;
+
+    border-bottom: 1px solid #4c5558;
+
+}
+
+
+.menu {
+
+    list-style: none;
+
+    margin: 0;
+
+    padding: 15px 0;
+
+}
+
+
+.menu li {
+
+    padding: 14px 22px;
+
+    border-left: 4px solid transparent;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.menu li:hover {
+
+    background: #3b464a;
+
+}
+
+
+.menu li.activo {
+
+    background: #414c50;
+
+    border-left: 4px solid #c2c4bd;
+
+}
+
+
+.menu .icono {
+
+    display: inline-block;
+
+    width: 25px;
+
+    font-size: 15px;
+
+}
+
+
+.menu .estado {
+
+    float: right;
+
+    font-size: 9px;
+
+    color: #aeb5b1;
+
+    margin-top: 3px;
+
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.contenido {
+
+    flex: 1;
+
+    padding: 35px;
+
+    max-width: 1200px;
+
+}
+
+
+/* =====================================================
+   BARRA SUPERIOR DEL EXPEDIENTE
+===================================================== */
+
+.barra-expediente {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.barra-expediente h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.expediente {
+
+    font-size: 10px;
+
+    color: #626966;
+
+    text-align: right;
+
+}
+
+
+.expediente strong {
+
+    color: #292e30;
+
+}
+
+
+/* =====================================================
+   PANEL PRINCIPAL
+===================================================== */
+
+.panel {
+    background: #f5f4ee;
+
+    border: 1px solid #a7a9a4;
+
+    padding: 28px;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,0.10);
+}
+
+
+.panel-cabecera {
+
+    border-bottom: 1px solid #b5b6b0;
+
+    padding-bottom: 18px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.panel-cabecera h3 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.panel-cabecera p {
+
+    margin: 6px 0 0;
+
+    font-size: 10px;
+
+    color: #6d716e;
+
+}
+
+
+/* =====================================================
+   TARJETAS DE INFORMACIÓN
+===================================================== */
+
+.tarjetas {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.tarjeta {
+
+    background: #e5e5df;
+
+    border: 1px solid #b1b2ac;
+
+    padding: 18px;
+
+}
+
+
+.tarjeta .numero {
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+
+}
+
+
+.tarjeta .etiqueta {
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    color: #656a67;
+
+}
+
+
+/* =====================================================
+   LABORATORIO
+===================================================== */
+
+.laboratorio {
+
+    border-top: 4px solid #30383b;
+
+    padding-top: 22px;
+
+}
+
+
+.laboratorio h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 17px;
+
+}
+
+
+.laboratorio-descripcion {
+
+    font-size: 11px;
+
+    color: #656a67;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+
+}
+
+
+label {
+
+    display: block;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+
+}
+
+
+input {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    padding: 15px;
+
+    border: 1px solid #777b78;
+
+    background: #fffefa;
+
+    font-size: 20px;
+
+    letter-spacing: 6px;
+
+    text-align: center;
+
+    outline: none;
+
+}
+
+
+input:focus {
+
+    border: 2px solid #30383b;
+
+}
+
+
+.boton {
+
+    display: block;
+
+    width: 100%;
+
+    max-width: 500px;
+
+    margin-top: 12px;
+
+    padding: 14px;
+
+    background: #30383b;
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.boton:hover {
+
+    background: #1d2325;
+
+}
+
+
+/* =====================================================
+   RESULTADOS
+===================================================== */
+
+#resultado {
+
+    display: none;
+
+    margin-top: 30px;
+
+}
+
+
+.informe {
+
+    background: #fffefa;
+
+    border: 1px solid #999c98;
+
+    padding: 25px;
+
+}
+
+
+.informe-cabecera {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    border-bottom: 2px solid #303638;
+
+    padding-bottom: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.informe-cabecera h4 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.informe-cabecera span {
+
+    font-size: 9px;
+
+    color: #666;
+
+    text-align: right;
+
+}
+
+
+.informe p {
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+}
+
+
+.resultado-final {
+
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: #e9e9e3;
+
+    border: 1px solid #a6a7a1;
+
+}
+
+
+.resultado-final strong {
+
+    display: block;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.sello {
+
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 9px 14px;
+
+    border: 2px solid #555;
+
+    color: #555;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    transform: rotate(-3deg);
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error {
+
+    padding: 18px;
+
+    background: #eee3e1;
+
+    border: 1px solid #9d7771;
+
+    color: #742a23;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   PIE
+===================================================== */
+
+footer {
+
+    font-size: 9px;
+
+    color: #707470;
+
+    text-align: center;
+
+    padding: 20px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =====================================================
+   MÓVILES
+===================================================== */
+
+@media (max-width: 800px) {
+
+    header {
+
+        padding: 0 18px;
+
+    }
+
+
+    .escudo {
+
+        width: 45px;
+
+        height: 52px;
+
+        font-size: 20px;
+
+        margin-right: 12px;
+
+    }
+
+
+    .cabecera-texto h1 {
+
+        font-size: 16px;
+
+    }
+
+
+    .estado-sistema {
+
+        display: none;
+
+    }
+
+
+    .sidebar {
+
+        width: 70px;
+
+    }
+
+
+    .sidebar-titulo,
+
+    .menu li span:not(.icono),
+
+    .menu .estado {
+
+        display: none;
+
+    }
+
+
+    .menu li {
+
+        text-align: center;
+
+        padding: 17px 5px;
+
+    }
+
+
+    .menu .icono {
+
+        width: auto;
+
+    }
+
+
+    .contenido {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .tarjetas {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .panel {
+
+        padding: 20px;
+
+    }
+
+
+    .barra-expediente {
+
+        display: block;
+
+    }
+
+
+    .expediente {
+
+        text-align: left;
+
+        margin-top: 8px;
+
+    }
+
+
+    .informe-cabecera {
+
+        display: block;
+
+    }
+
+}
+
+.recurso-documento {
+    margin-top: 20px;
+    padding: 22px;
+    background: #f1f1ec;
+    border: 1px solid #b5b6b2;
+}
+
+.documento-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #c5c6c1;
+}
+
+.documento-cabecera strong {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.documento-cabecera span {
+    font-size: 9px;
+    color: #777;
+    letter-spacing: 1px;
+}
+
+.recurso-documento > p {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.6;
+    margin: 16px 0;
+}
+
+.archivo-documento {
+    margin-top: 15px;
+    padding: 18px;
+    background: #fffefa;
+    border: 1px solid #b5b6b2;
+}
+
+.archivo-documento strong {
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.archivo-documento p {
+    font-size: 10px;
+    color: #666;
+}
+
+.nivel-02 {
+    margin-top: 30px;
+    border-top: 3px solid #30383b;
+}
+
+.boton-pistas-contenedor {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.boton-pistas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: transparent;
+    border: none;
+
+    color: #26343a;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    cursor: pointer;
+
+    padding: 8px 12px;
+
+    transition: 0.2s;
+}
+
+.boton-pistas:hover {
+    background: #e8e8e2;
+}
+
+.icono-pistas {
+    font-size: 25px;
+}    
+    
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =====================================================
+     CABECERA
+===================================================== -->
+
+
+<header>
+
+
+    <div class="escudo">
+
+        ⚖
+
+    </div>
+
+
+    <div class="cabecera-texto">
+
+        <h1>
+            COMISARÍA DE OCA DE ARRAYA
+        </h1>
+
+        <p>
+            UNIDAD DE INVESTIGACIÓN CRIMINAL
+        </p>
+
+    </div>
+
+
+    <div class="estado-sistema">
+
+        SISTEMA INTERNO<br>
+
+        <span class="activo">
+            ● SISTEMA OPERATIVO
+        </span>
+
+    </div>
+
+
+</header>
+
+<div style="width:92%; max-width:850px; margin:20px auto 0;">
+
+    <a
+        href="index.html"
+        style="
+            text-decoration:none;
+            color:#47727a;
+            font-size:11px;
+            font-weight:bold;
+            letter-spacing:1px;
+        "
+    >
+        ← VOLVER A INTRANET MUNICIPAL
+    </a>
+
+</div>
+
+<div class="contenedor">
+
+
+<!-- =====================================================
+     MENÚ
+===================================================== -->
+
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-titulo">
+
+        SISTEMA DE INVESTIGACIÓN
+
+    </div>
+
+
+  <ul class="menu">
+
+    <li class="activo" onclick="mostrarSeccion('expediente')">
+
+        <span class="icono">📁</span>
+
+        <span>EXPEDIENTE</span>
+
+    </li>
+
+
+    <li onclick="mostrarSeccion('laboratorio')">
+
+        <span class="icono">🔬</span>
+
+        <span>LABORATORIO</span>
+
+        <span class="estado">
+            ACTIVO
+        </span>
+
+    </li>
+
+
+    <li onclick="mostrarSeccion('comunicaciones')">
+
+        <span class="icono">☎</span>
+
+        <span>COMUNICACIONES</span>
+
+        <span class="estado">
+            ACTIVO
+        </span>
+
+    </li>
+
+
+    <li onclick="mostrarSeccion('documentos')">
+
+        <span class="icono">📄</span>
+
+        <span>DOCUMENTOS RESTRINGIDOS</span>
+
+        <span class="estado">
+            RESTRINGIDO
+        </span>
+
+    </li>
+
+
+      <li
+    id="menuDetencion"
+    onclick="mostrarSeccion('detencion')"
+    style="display:none;"
+>
+
+    <span class="icono">🚨</span>
+
+    <span>DETENCIÓN</span>
+
+    <span class="estado">
+        ACTIVO
+    </span>
+
+</li>
+
+<li
+    onclick="reiniciarInvestigacion()"
+    style="margin-top:25px; border-top:1px solid #555; padding-top:18px;"
+>
+
+    <span class="icono">
+        ↻
+    </span>
+
+    <span>
+        REINICIAR INVESTIGACIÓN
+    </span>
+
+</li>
+      
+</ul>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     CONTENIDO
+===================================================== -->
+
+
+<main class="contenido">
+
+    <!-- EXPEDIENTE -->
+
+    <section id="expediente" class="seccion">
+
+        <div class="barra-expediente">
+
+            <h2>
+                CENTRAL DE INVESTIGACIÓN
+            </h2>
+
+            <div class="expediente">
+                EXPEDIENTE<br>
+                <strong>OCA-2026-001</strong>
+            </div>
+
+        </div>
+
+
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    ESTADO DEL EXPEDIENTE
+                </h3>
+
+                <p>
+                    Información general de la investigación.
+                </p>
+
+            </div>
+
+
+            <div class="tarjetas">
+
+                <div class="tarjeta">
+
+                    <div class="numero">
+                        04
+                    </div>
+
+                    <div class="etiqueta">
+                        Análisis de laboratorio
+                    </div>
+
+                </div>
+
+
+                <div class="tarjeta">
+
+                    <div class="numero">
+                        01
+                    </div>
+
+                    <div class="etiqueta">
+                        
+                    </div>
+
+                </div>
+
+
+                <div class="tarjeta">
+
+                    <div class="numero">
+                        01
+                    </div>
+
+                    <div class="etiqueta">
+                        Acceso restringido
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    INFORMACIÓN DEL CASO
+                </h3>
+
+            </div>
+
+            <p>
+                Expediente abierto para la investigación
+                de los acontecimientos registrados en
+                Oca de Arraya.
+            </p>
+
+            <p>
+                Utilice los recursos disponibles en el
+                sistema para consultar la información
+                incorporada a la investigación.
+            </p>
+
+            <p>
+                Agradecemos muchísimo su ayuda Comisaria
+                Porras.
+            </p>
+           
+        </section>
+
+    </section>
+
+
+
+    <!-- LABORATORIO -->
+
+    <section id="laboratorio" class="seccion" style="display:none">
+
+        <div class="barra-expediente">
+
+            <h2>
+                LABORATORIO CRIMINALÍSTICO
+            </h2>
+
+        </div>
+
+
+        <section class="panel">
+
+            <div class="laboratorio">
+
+                <h3>
+                    🔬 CONSULTA DE MUESTRAS
+                </h3>
+
+                <p class="laboratorio-descripcion">
+
+                    Introduzca el código asociado a la
+                    muestra para consultar el informe
+                    correspondiente.
+
+                </p>
+
+
+                <label for="codigo">
+
+                    CÓDIGO DE MUESTRA
+
+                </label>
+
+
+                <input
+                    id="codigo"
+                    type="text"
+                    placeholder="________"
+                    autocomplete="off"
+                >
+
+
+                <button
+                    class="boton"
+                    onclick="consultar()"
+                >
+
+                    CONSULTAR RESULTADO
+
+                </button>
+
+
+                <div id="resultado"></div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <!-- COMUNICACIONES -->
+
+    <section id="comunicaciones" class="seccion" style="display:none">
+
+        <div class="barra-expediente">
+
+            <h2>
+                CENTRAL DE COMUNICACIONES
+            </h2>
+
+        </div>
+
+        <div class="boton-pistas-contenedor">
+
+    <button
+        class="boton-pistas"
+        onclick="mostrarPistas()"
+    >
+
+        <span class="icono-pistas">
+            💡
+        </span>
+
+        <span>
+            PISTAS DE<br>
+            INVESTIGACIÓN
+        </span>
+
+    </button>
+
+<section
+    id="panelPistas"
+    class="panel panel-pistas"
+    style="display:none;"
+>
+
+    <div class="panel-cabecera">
+
+        <h3>
+            💡 PISTAS PARA LA INVESTIGACIÓN
+        </h3>
+
+        <p>
+            Seleccione una pista para consultar
+            información adicional sobre el caso.
+        </p>
+
+    </div>
+
+
+    <div class="lista-pistas">
+
+        <button
+            class="pista-icono"
+            onclick="mostrarPista(1)"
+        >
+            🔎
+            <span>PISTA 01</span>
+        </button>
+
+
+        <button
+            class="pista-icono"
+            onclick="mostrarPista(2)"
+        >
+            📄
+            <span>PISTA 02</span>
+        </button>
+
+
+        <button
+            class="pista-icono"
+            onclick="mostrarPista(3)"
+        >
+            🕵️
+            <span>PISTA 03</span>
+        </button>
+
+
+        <button
+            class="pista-icono"
+            onclick="mostrarPista(4)"
+        >
+            🧩
+            <span>PISTA 04</span>
+        </button>
+
+    </div>
+
+
+    <div
+        id="mensajePista"
+        class="mensaje-pista"
+        style="display:none;"
+    ></div>
+
+</section>
+            
+</div>
+
+        <section class="panel">
+
+            <div class="panel-cabecera">
+
+                <h3>
+                    ☎ REGISTRO DE COMUNICACIONES
+                </h3>
+
+                <p>
+                    Comunicaciones telefónicas y
+                    declaraciones incorporadas al caso.
+                </p>
+
+            </div>
+
+
+            <div class="resultado-final">
+
+    <strong>
+        ARCHIVOS DISPONIBLES
+    </strong>
+
+    Registros de llamadas e interrogatorios.
+
+</div>
+
+
+<div class="recurso-comunicacion">
+
+    <div class="comunicacion-cabecera">
+
+        <strong>
+            REGISTRO DE COMUNICACIONES
+        </strong>
+
+        <span>
+            ACCESO RESTRINGIDO
+        </span>
+
+    </div>
+
+
+    <div class="comunicacion-info">
+
+        <p>
+            Los registros de comunicaciones se encuentran
+            protegidos mediante código de autorización.
+        </p>
+
+    </div>
+
+
+    <!-- IMAGEN-PISTA -->
+
+    <div class="pista-comunicacion">
+
+        <div class="pista-titulo">
+            PISTA DE AUTORIZACIÓN
+        </div>
+
+        <p>
+            Imagen localizada pegada en la esquina de la pantalla del ordenador.
+        </p>
+
+        <img
+            src="nota-ordenador.png"
+            alt="Imagen localizada pegada en la esquina de la pantalla del ordenador"
+            class="imagen-pista"
+        >
+
+    </div>
+
+
+    <!-- CONTRASEÑA -->
+
+    <div class="acceso-comunicacion">
+
+        <label for="codigoComunicaciones">
+
+            CÓDIGO DE ACCESO
+
+        </label>
+
+        <input
+            type="password"
+            id="codigoComunicaciones"
+            autocomplete="off"
+        >
+
+        <button onclick="desbloquearComunicaciones()">
+
+            DESBLOQUEAR ARCHIVOS
+
+        </button>
+
+        <div id="resultadoComunicaciones"></div>
+
+    </div>
+
+
+<!-- AUDIOS OCULTOS -->
+
+<div
+    id="audiosComunicaciones"
+    style="display:none;"
+>
+
+    <div class="comunicacion-desbloqueada">
+
+        <strong>
+            ✓ AUTORIZACIÓN VERIFICADA
+        </strong>
+
+        <p>
+            Archivos de comunicaciones desbloqueados.
+        </p>
+
+    </div>
+
+
+    <!-- CONTESTADOR -->
+
+    <div class="archivo-audio">
+
+        <strong>
+            ☎ REGISTRO DE CONTESTADOR
+        </strong>
+
+        <span>
+            Mensajes recibidos
+        </span>
+
+        <audio controls>
+
+            <source
+                src="Contestador.mp3"
+                type="audio/mpeg"
+            >
+
+            Tu navegador no puede reproducir este audio.
+
+        </audio>
+
+    </div>
+
+
+    <!-- INTERROGATORIO -->
+
+    <div class="archivo-audio">
+
+        <strong>
+            🎙 INTERROGATORIO — 1781
+        </strong>
+
+        <span>
+            Declaración policial
+        </span>
+
+        <audio controls>
+
+            <source
+                src="interrogatorio-1781.mp3"
+                type="audio/mpeg"
+            >
+
+            Tu navegador no puede reproducir este audio.
+
+        </audio>
+
+    </div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</section>
+
+
+<!-- DOCUMENTOS RESTRINGIDOS -->
+
+<section id="documentos" class="seccion" style="display:none">
+
+    <div class="barra-expediente">
+
+    <h2>
+        DOCUMENTOS RESTRINGIDOS
+    </h2>
+
+</div>
+
+
+<section class="panel">
+
+    <div class="panel-cabecera">
+
+        <h3>
+            📄 DOCUMENTACIÓN RESERVADA
+        </h3>
+
+        <p>
+            Documentación de acceso restringido
+            asociada al expediente.
+        </p>
+
+    </div>
+
+
+    <!-- NIVEL 1 -->
+
+    <div class="recurso-documento">
+
+        <div class="documento-cabecera">
+
+            <strong>
+                NIVEL DE AUTORIZACIÓN 01
+            </strong>
+
+            <span>
+                ACCESO RESTRINGIDO
+            </span>
+
+        </div>
+
+
+        <p>
+            Introduzca el código de autorización
+            correspondiente a la documentación inicial.
+        </p>
+
+
+        <label for="codigoDocumentos01">
+
+            CÓDIGO DE AUTORIZACIÓN
+
+        </label>
+
+
+        <input
+            id="codigoDocumentos01"
+            type="password"
+            inputmode="numeric"
+            maxlength="3"
+            placeholder="___"
+            autocomplete="off"
+        >
+
+
+        <button
+            class="boton"
+            onclick="desbloquearDocumentos01()"
+        >
+
+            ACCEDER A DOCUMENTACIÓN
+
+        </button>
+
+
+        <div
+            id="resultadoDocumentos01"
+            style="margin-top:15px;"
+        ></div>
+
+
+        <!-- DOCUMENTOS NIVEL 1 -->
+
+<div
+    id="documentosNivel01"
+    style="display:none;"
+>
+
+    <!-- AUTORIZACIÓN SOBRE 01 -->
+
+    <div class="resultado-final">
+
+        <strong>
+            ✓ AUTORIZACIÓN VERIFICADA
+        </strong>
+
+        PERMISO DE APERTURA — SOBRE 01
+
+        <br><br>
+
+        El código introducido ha sido validado.
+
+        <br><br>
+
+        La documentación física asociada
+        a esta autorización puede ser abierta.
+
+    </div>
+
+
+    <!-- DOCUMENTO / PISTA -->
+
+    <div class="archivo-documento">
+
+        <strong>
+            📄 DOCUMENTO RESTRINGIDO — PISTA
+        </strong>
+
+        <p>
+            Documento incorporado al expediente
+            tras la autorización del Sobre 01.
+        </p>
+
+        <a
+            href="documento-pista.pdf"
+            target="_blank"
+            class="boton"
+            style="text-decoration:none; text-align:center;"
+        >
+            ABRIR DOCUMENTO
+        </a>
+
+    </div>
+
+
+    <!-- NIVEL 2 -->
+
+    <div class="recurso-documento nivel-02">
+
+        <div class="documento-cabecera">
+
+            <strong>
+                NIVEL DE AUTORIZACIÓN 02
+            </strong>
+
+            <span>
+                ACCESO RESERVADO
+            </span>
+
+        </div>
+
+
+        <p>
+            Esta autorización requiere una clave
+            obtenida durante la investigación.
+        </p>
+
+
+        <label for="codigoDocumentos02">
+
+            CLAVE DE AUTORIZACIÓN
+
+        </label>
+
+
+        <input
+            id="codigoDocumentos02"
+            type="password"
+            autocomplete="off"
+            placeholder="CLAVE"
+        >
+
+
+        <button
+            class="boton"
+            onclick="desbloquearDocumentos02()"
+        >
+
+            VALIDAR CLAVE
+
+        </button>
+
+
+        <div
+            id="resultadoDocumentos02"
+            style="margin-top:15px;"
+        ></div>
+
+
+        <!-- PREGUNTA 1 -->
+
+        <div
+            id="verificacion01"
+            style="display:none; margin-top:25px;"
+        >
+
+            <div class="documento-cabecera">
+
+                <strong>
+                    VERIFICACIÓN 01
+                </strong>
+
+                <span>
+                    COMPROBACIÓN
+                </span>
+
+            </div>
+
+
+            <p>
+                ¿Cómo se llama la tercera víctima?
+            </p>
+
+
+            <input
+                id="respuesta01"
+                type="text"
+                autocomplete="off"
+                placeholder="Introduzca su respuesta"
+            >
+
+
+            <button
+                class="boton"
+                onclick="verificarPregunta01()"
+            >
+
+                VERIFICAR
+
+            </button>
+
+
+            <div
+                id="resultadoPregunta01"
+                style="margin-top:15px;"
+            ></div>
+
+        </div>
+
+
+        <!-- PREGUNTA 2 -->
+
+        <div
+            id="verificacion02"
+            style="display:none; margin-top:25px;"
+        >
+
+            <div class="documento-cabecera">
+
+                <strong>
+                    VERIFICACIÓN 02
+                </strong>
+
+                <span>
+                    COMPROBACIÓN
+                </span>
+
+            </div>
+
+
+            <p>
+                ¿Qué elemento conecta a todas las víctimas?
+            </p>
+
+
+            <input
+                id="respuesta02"
+                type="text"
+                autocomplete="off"
+                placeholder="Introduzca su respuesta"
+            >
+
+
+            <button
+                class="boton"
+                onclick="verificarPregunta02()"
+            >
+
+                VERIFICAR
+
+            </button>
+
+
+            <div
+                id="resultadoPregunta02"
+                style="margin-top:15px;"
+            ></div>
+
+        </div>
+
+
+        <!-- PREGUNTA 3 -->
+
+        <div
+            id="verificacion03"
+            style="display:none; margin-top:25px;"
+        >
+
+            <div class="documento-cabecera">
+
+                <strong>
+                    VERIFICACIÓN 03
+                </strong>
+
+                <span>
+                    COMPROBACIÓN FINAL
+                </span>
+
+            </div>
+
+
+            <p>
+                ¿Cuándo crees que se produciría
+                el siguiente asesinato?
+                <br>
+                <small>(Formato DD/MM/AAAA)</small>
+            </p>
+
+
+            <input
+                id="respuesta03"
+                type="text"
+                autocomplete="off"
+                placeholder="DD/MM/AAAA"
+            >
+
+
+            <button
+                class="boton"
+                onclick="verificarPregunta03()"
+            >
+
+                VERIFICAR
+
+            </button>
+
+
+            <div
+                id="resultadoPregunta03"
+                style="margin-top:15px;"
+            ></div>
+
+        </div>
+
+
+        <!-- AUTORIZACIÓN FINAL -->
+
+        <div
+            id="documentosNivel02"
+            style="display:none; margin-top:25px;"
+        >
+
+            <div class="resultado-final">
+
+                <strong>
+                    ✓ VERIFICACIÓN COMPLETADA
+                </strong>
+
+                <br><br>
+
+                PERMISO DE APERTURA — SOBRE 02
+
+                <br><br>
+
+                Las comprobaciones de seguridad
+                han sido superadas.
+
+                <br><br>
+
+                <strong>
+                    ESTADO: AUTORIZADO PARA APERTURA
+                </strong>
+
+            </div>
+
+
+            <div class="archivo-documento">
+
+                <strong>
+                    ✉ SOBRE 02 — AUTORIZADO
+                </strong>
+
+                <p>
+                    La documentación física asociada
+                    a esta autorización puede ser abierta.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
+</section>
+
+<!-- =====================================================
+     DETENCIÓN
+===================================================== -->
+
+<section
+    id="detencion"
+    class="seccion"
+    style="display:none"
+>
+
+    <div class="barra-expediente">
+
+        <h2>
+            UNIDAD DE DETENCIONES
+        </h2>
+
+        <div class="expediente">
+
+            FASE FINAL<br>
+
+            <strong>
+                INVESTIGACIÓN
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <section class="panel">
+
+        <div class="panel-cabecera">
+
+            <h3>
+                🚨 ORDEN DE DETENCIÓN
+            </h3>
+
+            <p>
+                Identificación del responsable
+                de los acontecimientos investigados.
+            </p>
+
+        </div>
+
+
+        <div class="resultado-final">
+
+            <strong>
+                AUTORIZACIÓN FINAL CONCEDIDA
+            </strong>
+
+            La investigación ha alcanzado su fase final.
+
+            <br><br>
+
+            Consulte la lista de sospechosos
+            proporcionada durante la investigación
+            e identifique al responsable.
+
+        </div>
+
+
+        <div class="recurso-documento">
+
+            <div class="documento-cabecera">
+
+                <strong>
+                    IDENTIFICACIÓN DEL SOSPECHOSO
+                </strong>
+
+                <span>
+                    ACCESO AUTORIZADO
+                </span>
+
+            </div>
+
+
+            <p>
+                Introduzca el nombre y apellidos
+                del sospechoso que considera responsable.
+            </p>
+
+
+            <label for="sospechosoDetencion">
+
+                SOSPECHOSO
+
+            </label>
+
+
+            <input
+                id="sospechosoDetencion"
+                type="text"
+                placeholder="Nombre y apellidos"
+                autocomplete="off"
+                style="letter-spacing:1px;"
+            >
+
+
+            <button
+                class="boton"
+                onclick="intentarDetencion()"
+            >
+
+                CONFIRMAR DETENCIÓN
+
+            </button>
+
+
+            <div
+                id="resultadoDetencion"
+                style="margin-top:15px;"
+            ></div>
+
+
+            <div
+                id="intentosDetencion"
+                style="
+                    margin-top:12px;
+                    font-size:10px;
+                    color:#666;
+                "
+            >
+                OPORTUNIDADES DISPONIBLES: 2
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+    
+</main>
+
+
+</div>
+
+
+
+<footer>
+
+    DOCUMENTACIÓN INTERNA · COMISARÍA DE OCA DE ARRAYA
+    · ACCESO RESTRINGIDO
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================================================
+   SISTEMA DE CONSULTA
+===================================================== */
+
+
+function mostrarSeccion(seccion) {
+
+    const secciones =
+        document.querySelectorAll(".seccion");
+
+    secciones.forEach(function(elemento) {
+
+        elemento.style.display = "none";
+
+    });
+
+
+    const seleccionada =
+        document.getElementById(seccion);
+
+    if (seleccionada) {
+
+        seleccionada.style.display = "block";
+
+    }
+
+
+    const botones =
+        document.querySelectorAll(".menu li");
+
+    botones.forEach(function(boton) {
+
+        boton.classList.remove("activo");
+
+    });
+
+
+    if (typeof event !== "undefined" && event.currentTarget) {
+
+    event.currentTarget.classList.add("activo");
+
+}
+
+}
+
+   
+function consultar() {
+
+
+    const codigo =
+        document.getElementById("codigo").value.trim();
+
+
+    const resultado =
+        document.getElementById("resultado");
+
+
+    resultado.style.display = "block";
+
+
+    /*
+    -----------------------------------------------
+    CÓDIGO DE PRUEBA
+    -----------------------------------------------
+    */
+
+
+   if (codigo === "1323") {
+
+    resultado.innerHTML = `
+
+        <div class="informe">
+
+            <div class="informe-cabecera">
+
+                <div>
+
+                    <h4>
+                        INFORME DE LABORATORIO Nº 1323
+                    </h4>
+
+                </div>
+
+                <span>
+                    LABORATORIO<br>
+                    CRIMINALÍSTICO
+                </span>
+
+            </div>
+
+            <p>
+                <strong>ESTADO:</strong>
+                ANÁLISIS COMPLETADO
+            </p>
+
+            <div class="resultado-final">
+
+                <strong>
+                    RESULTADO DISPONIBLE
+                </strong>
+
+                El análisis correspondiente a las
+                muestras remitidas al laboratorio
+                se encuentra disponible para consulta.
+
+            </div>
+
+            <a
+                href="Laboratorio-1323.pdf"
+                target="_blank"
+                class="boton"
+                style="text-decoration:none; text-align:center;"
+            >
+                ABRIR INFORME DE LABORATORIO
+            </a>
+
+        </div>
+
+    `;
+
+}
+
+else if (codigo === "8157") {
+   resultado.innerHTML = `
+
+        <div class="informe">
+
+            <div class="informe-cabecera">
+
+                <div>
+
+                    <h4>
+                        INFORME DE LABORATORIO Nº 8157
+                    </h4>
+
+                </div>
+
+                <span>
+                    LABORATORIO<br>
+                    CRIMINALÍSTICO
+                </span>
+
+            </div>
+
+            <p>
+                <strong>ESTADO:</strong>
+                ANÁLISIS COMPLETADO
+            </p>
+
+            <div class="resultado-final">
+
+                <strong>
+                    RESULTADO DISPONIBLE
+                </strong>
+
+                El análisis correspondiente a las
+                muestras remitidas al laboratorio
+                se encuentra disponible para consulta.
+
+            </div>
+
+            <a
+                href="Laboratorio-8157.pdf.pdf"
+                target="_blank"
+                class="boton"
+                style="text-decoration:none; text-align:center;"
+            >
+                ABRIR INFORME DE LABORATORIO
+            </a>
+
+        </div>
+
+    `;
+
+}   
+
+else if (codigo === "1326") {
+   resultado.innerHTML = `
+
+        <div class="informe">
+
+            <div class="informe-cabecera">
+
+                <div>
+
+                    <h4>
+                        INFORME DE LABORATORIO Nº 1326
+                    </h4>
+
+                </div>
+
+                <span>
+                    LABORATORIO<br>
+                    CRIMINALÍSTICO
+                </span>
+
+            </div>
+
+            <p>
+                <strong>ESTADO:</strong>
+                ANÁLISIS COMPLETADO
+            </p>
+
+            <div class="resultado-final">
+
+                <strong>
+                    RESULTADO DISPONIBLE
+                </strong>
+
+                El análisis correspondiente a las
+                muestras remitidas al laboratorio
+                se encuentra disponible para consulta.
+
+            </div>
+
+            <a
+                href="Laboratorio-1326.pdf.pdf"
+                target="_blank"
+                class="boton"
+                style="text-decoration:none; text-align:center;"
+            >
+                ABRIR INFORME DE LABORATORIO
+            </a>
+
+        </div>
+
+    `;
+
+}   
+
+else if (codigo === "1495") {
+   resultado.innerHTML = `
+
+        <div class="informe">
+
+            <div class="informe-cabecera">
+
+                <div>
+
+                    <h4>
+                        INFORME DE LABORATORIO Nº 1495
+                    </h4>
+
+                </div>
+
+                <span>
+                    LABORATORIO<br>
+                    CRIMINALÍSTICO
+                </span>
+
+            </div>
+
+            <p>
+                <strong>ESTADO:</strong>
+                ANÁLISIS COMPLETADO
+            </p>
+
+            <div class="resultado-final">
+
+                <strong>
+                    RESULTADO DISPONIBLE
+                </strong>
+
+                El análisis correspondiente a las
+                muestras remitidas al laboratorio
+                se encuentra disponible para consulta.
+
+            </div>
+
+           <a
+    href="Laboratorio-1495.pdf.pdf"
+    target="_blank"
+    class="boton"
+    style="text-decoration:none; text-align:center;"
+>
+    🔬 ABRIR RESULTADO DE LABORATORIO
+</a>
+
+<a
+    href="Analitica-1495.png.jpg"
+    target="_blank"
+    class="boton"
+    style="text-decoration:none; text-align:center; margin-top:10px;"
+>
+    🩺 ABRIR ANALÍTICA ASOCIADA
+</a>
+
+        </div>
+
+    `;
+
+}   
+   
+   else {
+
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ⚠ CÓDIGO NO RECONOCIDO
+                </strong>
+
+                <br><br>
+
+                No existe ningún análisis asociado
+                al código introducido.
+
+                Compruebe la información disponible
+                en el expediente e inténtelo de nuevo.
+
+            </div>
+
+        `;
+
+    }
+
+
+}
+
+
+/* =====================================================
+   ACCESO AL REGISTRO DE COMUNICACIONES
+===================================================== */
+
+function desbloquearComunicaciones() {
+
+    const codigo =
+        document.getElementById("codigoComunicaciones").value.trim();
+
+    const resultado =
+        document.getElementById("resultadoComunicaciones");
+
+    const audios =
+        document.getElementById("audiosComunicaciones");
+
+    resultado.style.display = "block";
+
+
+    /*
+    -----------------------------------------------
+    CONTRASEÑA DEL REGISTRO DE COMUNICACIONES
+    -----------------------------------------------
+    CAMBIA "1234" POR TU CONTRASEÑA REAL
+    -----------------------------------------------
+    */
+
+    if (codigo === "cantar") {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                ✓ AUTORIZACIÓN VERIFICADA
+
+                <br><br>
+
+                Los archivos de comunicaciones
+                han sido desbloqueados.
+
+            </div>
+
+        `;
+
+        audios.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ⚠ ACCESO DENEGADO
+                </strong>
+
+                <br><br>
+
+                El código introducido no es válido.
+
+            </div>
+
+        `;
+
+        audios.style.display = "none";
+
+    }
+
+}
+
+
+/* =====================================================
+   DOCUMENTOS RESTRINGIDOS
+===================================================== */
+
+function desbloquearDocumentos01() {
+
+    const codigo =
+        document.getElementById("codigoDocumentos01").value.trim();
+
+    const resultado =
+        document.getElementById("resultadoDocumentos01");
+
+    const documentos =
+        document.getElementById("documentosNivel01");
+
+
+    if (codigo === "436") {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                <strong>
+                    ✓ AUTORIZACIÓN VERIFICADA
+                </strong>
+
+                <p>
+                    Permiso de apertura — Sobre 01.
+                </p>
+
+                <p>
+                    La documentación física asociada
+                    a esta autorización puede ser abierta.
+                </p>
+
+            </div>
+
+        `;
+
+        documentos.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ⚠ ACCESO DENEGADO
+                </strong>
+
+                <br><br>
+
+                El código introducido no es válido.
+
+            </div>
+
+        `;
+
+        documentos.style.display = "none";
+
+    }
+
+}
+
+
+function desbloquearDocumentos02() {
+
+    const codigo =
+        document.getElementById("codigoDocumentos02")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const resultado =
+        document.getElementById("resultadoDocumentos02");
+
+    const pregunta =
+        document.getElementById("verificacion01");
+
+
+    if (codigo === "ARRAYA") {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                <strong>
+                    ✓ CLAVE DE AUTORIZACIÓN VALIDADA
+                </strong>
+
+                <p>
+                    Para completar la autorización,
+                    responda a las siguientes preguntas
+                    de verificación.
+                </p>
+
+            </div>
+
+        `;
+
+        pregunta.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ⚠ CLAVE NO VÁLIDA
+                </strong>
+
+                <br><br>
+
+                La clave introducida no es correcta.
+
+            </div>
+
+        `;
+
+        pregunta.style.display = "none";
+
+    }
+
+}
+
+function verificarPregunta01() {
+
+    const respuesta =
+        document.getElementById("respuesta01")
+        .value
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    const resultado =
+        document.getElementById("resultadoPregunta01");
+
+    const siguiente =
+        document.getElementById("verificacion02");
+
+
+    if (
+        respuesta.includes("jesus navarrete")
+    ) {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                ✓ VERIFICACIÓN 01 SUPERADA
+
+            </div>
+
+        `;
+
+        siguiente.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                ⚠ RESPUESTA INCORRECTA
+
+                <br><br>
+
+                Revise la información del expediente
+                e inténtelo de nuevo.
+
+            </div>
+
+        `;
+
+        siguiente.style.display = "none";
+
+    }
+
+}
+    
+function verificarPregunta02() {
+
+    const respuesta =
+        document.getElementById("respuesta02")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const resultado =
+        document.getElementById("resultadoPregunta02");
+
+    const siguiente =
+        document.getElementById("verificacion03");
+
+
+    if (
+        respuesta.includes("carnero")
+    ) {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                ✓ VERIFICACIÓN 02 SUPERADA
+
+            </div>
+
+        `;
+
+        siguiente.style.display = "block";
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                ⚠ RESPUESTA INCORRECTA
+
+                <br><br>
+
+                Revise la información del expediente
+                e inténtelo de nuevo.
+
+            </div>
+
+        `;
+
+        siguiente.style.display = "none";
+
+    }
+
+}
+
+ function verificarPregunta03() {
+
+    const respuesta =
+        document.getElementById("respuesta03")
+        .value
+        .trim();
+
+    const resultado =
+        document.getElementById("resultadoPregunta03");
+
+    const autorizacion =
+        document.getElementById("documentosNivel02");
+
+
+    if (
+        respuesta === "13/01/2025" ||
+        respuesta === "14/01/2025"
+    ) {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                ✓ VERIFICACIÓN 03 SUPERADA
+
+            </div>
+
+        `;
+
+        autorizacion.style.display = "block";
+        desbloquearDetencion();
+        
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                ⚠ RESPUESTA INCORRECTA
+
+                <br><br>
+
+                Introduzca una fecha con el formato
+                DD/MM/AAAA.
+
+            </div>
+
+        `;
+
+        autorizacion.style.display = "none";
+
+    }
+
+}   
+
+/* =====================================================
+   DESBLOQUEO DE DETENCIÓN
+===================================================== */
+
+function desbloquearDetencion() {
+
+    const menu =
+        document.getElementById("menuDetencion");
+
+    if (menu) {
+
+        menu.style.display = "block";
+
+    }
+
+
+    localStorage.setItem(
+        "detencionDesbloqueada",
+        "true"
+    );
+
+}
+
+
+/* =====================================================
+   COMPROBAR DETENCIÓN AL CARGAR
+===================================================== */
+
+function comprobarDetencion() {
+
+    const desbloqueada =
+        localStorage.getItem(
+            "detencionDesbloqueada"
+        );
+
+    const menu =
+        document.getElementById("menuDetencion");
+
+
+    if (
+        desbloqueada === "true" &&
+        menu
+    ) {
+
+        menu.style.display = "block";
+
+    }
+
+}
+
+
+/* =====================================================
+   INTENTOS DE DETENCIÓN
+===================================================== */
+
+let intentosDetencion =
+    Number(
+        localStorage.getItem(
+            "intentosDetencion"
+        )
+    );
+
+
+if (
+    !intentosDetencion ||
+    intentosDetencion < 1 ||
+    intentosDetencion > 2
+) {
+
+    intentosDetencion = 2;
+
+}
+
+
+/* =====================================================
+   IDENTIFICACIÓN DEL SOSPECHOSO
+===================================================== */
+
+function intentarDetencion() {
+
+    const campo =
+        document.getElementById(
+            "sospechosoDetencion"
+        );
+
+    const resultado =
+        document.getElementById(
+            "resultadoDetencion"
+        );
+
+    const contador =
+        document.getElementById(
+            "intentosDetencion"
+        );
+
+
+    const sospechoso =
+        campo.value
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+
+    /*
+    -----------------------------------------------
+    NOMBRE DEL CULPABLE
+    CAMBIA ESTE NOMBRE POR EL DEFINITIVO
+    -----------------------------------------------
+    */
+
+    const culpable =
+        "jose maria tejero hermosilla";
+
+
+    if (sospechoso === culpable) {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                <strong>
+                    🚨 DETENCIÓN AUTORIZADA
+                </strong>
+
+                <p>
+                    IDENTIFICACIÓN CONFIRMADA.
+                </p>
+
+                <p>
+                    El sospechoso indicado ha sido
+                    identificado como responsable
+                    de los acontecimientos investigados.
+                </p>
+
+                <p>
+                    <strong>
+                        ORDEN DE DETENCIÓN EMITIDA
+                    </strong>
+                </p>
+
+                <p>
+                    EXPEDIENTE OCA-2026-001
+                </p>
+
+            </div>
+
+        `;
+
+
+        campo.disabled = true;
+
+
+        document.querySelector(
+            "#detencion button"
+        ).disabled = true;
+
+
+        contador.innerHTML =
+            "INVESTIGACIÓN FINALIZADA";
+
+        return;
+
+    }
+
+
+    /*
+    -----------------------------------------------
+    RESPUESTA INCORRECTA
+    -----------------------------------------------
+    */
+
+    intentosDetencion--;
+
+    localStorage.setItem(
+        "intentosDetencion",
+        intentosDetencion
+    );
+
+
+    if (intentosDetencion > 0) {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ⚠ IDENTIFICACIÓN INCORRECTA
+                </strong>
+
+                <br><br>
+
+                El sospechoso indicado
+                no coincide con el responsable.
+
+                <br><br>
+
+                Revise las pruebas antes
+                de realizar una nueva identificación.
+
+            </div>
+
+        `;
+
+        contador.innerHTML =
+            "OPORTUNIDADES DISPONIBLES: " +
+            intentosDetencion;
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    🔴 IDENTIFICACIÓN FALLIDA
+                </strong>
+
+                <br><br>
+
+                Se han agotado las oportunidades
+                de identificación.
+
+                <br><br>
+
+                ORDEN DE DETENCIÓN DENEGADA.
+
+            </div>
+
+        `;
+
+
+        campo.disabled = true;
+
+
+        document.querySelector(
+            "#detencion button"
+        ).disabled = true;
+
+
+        contador.innerHTML =
+            "OPORTUNIDADES DISPONIBLES: 0";
+
+    }
+
+}
+
+
+/* =====================================================
+   INICIAR SISTEMA
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        comprobarDetencion();
+
+    }
+);
+
+
+/* =====================================================
+   REINICIAR INVESTIGACIÓN
+===================================================== */
+
+function reiniciarInvestigacion() {
+
+    const confirmar = confirm(
+
+        "¿Desea reiniciar la investigación?\n\n" +
+
+        "Se eliminará el progreso de esta partida " +
+        "y será necesario volver a superar las " +
+        "autorizaciones."
+
+    );
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------
+       ELIMINAR PROGRESO
+    ----------------------------------------------- */
+
+    localStorage.removeItem(
+        "detencionDesbloqueada"
+    );
+
+    localStorage.removeItem(
+        "intentosDetencion"
+    );
+
+
+    /* -----------------------------------------------
+       OCULTAR DETENCIÓN
+    ----------------------------------------------- */
+
+    const menuDetencion =
+        document.getElementById(
+            "menuDetencion"
+        );
+
+    if (menuDetencion) {
+
+        menuDetencion.style.display = "none";
+
+    }
+
+
+    /* -----------------------------------------------
+       VOLVER AL EXPEDIENTE PRINCIPAL
+    ----------------------------------------------- */
+
+    mostrarSeccion("expediente");
+
+    alert(
+        "Investigación reiniciada correctamente."
+    );
+
+}
+
+function mostrarPistas() {
+
+    const panel =
+        document.getElementById("panelPistas");
+
+    if (panel.style.display === "none") {
+
+        panel.style.display = "block";
+
+    } else {
+
+        panel.style.display = "none";
+
+    }
+
+}
+
+function mostrarPista(numero) {
+
+    const mensaje =
+        document.getElementById("mensajePista");
+
+
+    if (numero === 1) {
+
+        mensaje.innerHTML = `
+
+            <strong>
+                PISTA 01
+            </strong>
+
+            <p>
+                Aquí escribiremos la primera pista
+                de la investigación.
+            </p>
+
+        `;
+
+    }
+
+
+    else if (numero === 2) {
+
+        mensaje.innerHTML = `
+
+            <strong>
+                PISTA 02
+            </strong>
+
+            <p>
+                Aquí escribiremos la segunda pista
+                de la investigación.
+            </p>
+
+        `;
+
+    }
+
+
+    else if (numero === 3) {
+
+        mensaje.innerHTML = `
+
+            <strong>
+                PISTA 03
+            </strong>
+
+            <p>
+                Aquí escribiremos la tercera pista
+                de la investigación.
+            </p>
+
+        `;
+
+    }
+
+
+    else if (numero === 4) {
+
+        mensaje.innerHTML = `
+
+            <strong>
+                PISTA 04
+            </strong>
+
+            <p>
+                Aquí escribiremos la cuarta pista
+                de la investigación.
+            </p>
+
+        `;
+
+    }
+
+
+    mensaje.style.display = "block";
+
+}
+    
+</script>
+
+
+</body>
+
+</html>
