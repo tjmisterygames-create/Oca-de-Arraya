@@ -1022,6 +1022,38 @@ footer {
 
     </li>
 
+
+      <li
+    id="menuDetencion"
+    onclick="mostrarSeccion('detencion')"
+    style="display:none;"
+>
+
+    <span class="icono">🚨</span>
+
+    <span>DETENCIÓN</span>
+
+    <span class="estado">
+        ACTIVO
+    </span>
+
+</li>
+
+<li
+    onclick="reiniciarInvestigacion()"
+    style="margin-top:25px; border-top:1px solid #555; padding-top:18px;"
+>
+
+    <span class="icono">
+        ↻
+    </span>
+
+    <span>
+        REINICIAR INVESTIGACIÓN
+    </span>
+
+</li>
+      
 </ul>
 
 
@@ -1810,6 +1842,138 @@ footer {
 
 </section>
 
+<!-- =====================================================
+     DETENCIÓN
+===================================================== -->
+
+<section
+    id="detencion"
+    class="seccion"
+    style="display:none"
+>
+
+    <div class="barra-expediente">
+
+        <h2>
+            UNIDAD DE DETENCIONES
+        </h2>
+
+        <div class="expediente">
+
+            FASE FINAL<br>
+
+            <strong>
+                INVESTIGACIÓN
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <section class="panel">
+
+        <div class="panel-cabecera">
+
+            <h3>
+                🚨 ORDEN DE DETENCIÓN
+            </h3>
+
+            <p>
+                Identificación del responsable
+                de los acontecimientos investigados.
+            </p>
+
+        </div>
+
+
+        <div class="resultado-final">
+
+            <strong>
+                AUTORIZACIÓN FINAL CONCEDIDA
+            </strong>
+
+            La investigación ha alcanzado su fase final.
+
+            <br><br>
+
+            Consulte la lista de sospechosos
+            proporcionada durante la investigación
+            e identifique al responsable.
+
+        </div>
+
+
+        <div class="recurso-documento">
+
+            <div class="documento-cabecera">
+
+                <strong>
+                    IDENTIFICACIÓN DEL SOSPECHOSO
+                </strong>
+
+                <span>
+                    ACCESO AUTORIZADO
+                </span>
+
+            </div>
+
+
+            <p>
+                Introduzca el nombre y apellidos
+                del sospechoso que considera responsable.
+            </p>
+
+
+            <label for="sospechosoDetencion">
+
+                SOSPECHOSO
+
+            </label>
+
+
+            <input
+                id="sospechosoDetencion"
+                type="text"
+                placeholder="Nombre y apellidos"
+                autocomplete="off"
+                style="letter-spacing:1px;"
+            >
+
+
+            <button
+                class="boton"
+                onclick="intentarDetencion()"
+            >
+
+                CONFIRMAR DETENCIÓN
+
+            </button>
+
+
+            <div
+                id="resultadoDetencion"
+                style="margin-top:15px;"
+            ></div>
+
+
+            <div
+                id="intentosDetencion"
+                style="
+                    margin-top:12px;
+                    font-size:10px;
+                    color:#666;
+                "
+            >
+                OPORTUNIDADES DISPONIBLES: 2
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+    
 </main>
 
 
@@ -1866,7 +2030,11 @@ function mostrarSeccion(seccion) {
     });
 
 
+    if (typeof event !== "undefined" && event.currentTarget) {
+
     event.currentTarget.classList.add("activo");
+
+}
 
 }
 
@@ -2494,7 +2662,8 @@ function verificarPregunta02() {
         `;
 
         autorizacion.style.display = "block";
-
+        desbloquearDetencion();
+        
     }
 
     else {
@@ -2519,6 +2688,335 @@ function verificarPregunta02() {
     }
 
 }   
+
+/* =====================================================
+   DESBLOQUEO DE DETENCIÓN
+===================================================== */
+
+function desbloquearDetencion() {
+
+    const menu =
+        document.getElementById("menuDetencion");
+
+    if (menu) {
+
+        menu.style.display = "block";
+
+    }
+
+
+    localStorage.setItem(
+        "detencionDesbloqueada",
+        "true"
+    );
+
+}
+
+
+/* =====================================================
+   COMPROBAR DETENCIÓN AL CARGAR
+===================================================== */
+
+function comprobarDetencion() {
+
+    const desbloqueada =
+        localStorage.getItem(
+            "detencionDesbloqueada"
+        );
+
+    const menu =
+        document.getElementById("menuDetencion");
+
+
+    if (
+        desbloqueada === "true" &&
+        menu
+    ) {
+
+        menu.style.display = "block";
+
+    }
+
+}
+
+
+/* =====================================================
+   INTENTOS DE DETENCIÓN
+===================================================== */
+
+let intentosDetencion =
+    Number(
+        localStorage.getItem(
+            "intentosDetencion"
+        )
+    );
+
+
+if (
+    !intentosDetencion ||
+    intentosDetencion < 1 ||
+    intentosDetencion > 2
+) {
+
+    intentosDetencion = 2;
+
+}
+
+
+/* =====================================================
+   IDENTIFICACIÓN DEL SOSPECHOSO
+===================================================== */
+
+function intentarDetencion() {
+
+    const campo =
+        document.getElementById(
+            "sospechosoDetencion"
+        );
+
+    const resultado =
+        document.getElementById(
+            "resultadoDetencion"
+        );
+
+    const contador =
+        document.getElementById(
+            "intentosDetencion"
+        );
+
+
+    const sospechoso =
+        campo.value
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+
+    /*
+    -----------------------------------------------
+    NOMBRE DEL CULPABLE
+    CAMBIA ESTE NOMBRE POR EL DEFINITIVO
+    -----------------------------------------------
+    */
+
+    const culpable =
+        "jose maria tejero hermosilla";
+
+
+    if (sospechoso === culpable) {
+
+        resultado.innerHTML = `
+
+            <div class="comunicacion-desbloqueada">
+
+                <strong>
+                    🚨 DETENCIÓN AUTORIZADA
+                </strong>
+
+                <p>
+                    IDENTIFICACIÓN CONFIRMADA.
+                </p>
+
+                <p>
+                    El sospechoso indicado ha sido
+                    identificado como responsable
+                    de los acontecimientos investigados.
+                </p>
+
+                <p>
+                    <strong>
+                        ORDEN DE DETENCIÓN EMITIDA
+                    </strong>
+                </p>
+
+                <p>
+                    EXPEDIENTE OCA-2026-001
+                </p>
+
+            </div>
+
+        `;
+
+
+        campo.disabled = true;
+
+
+        document.querySelector(
+            "#detencion button"
+        ).disabled = true;
+
+
+        contador.innerHTML =
+            "INVESTIGACIÓN FINALIZADA";
+
+        return;
+
+    }
+
+
+    /*
+    -----------------------------------------------
+    RESPUESTA INCORRECTA
+    -----------------------------------------------
+    */
+
+    intentosDetencion--;
+
+    localStorage.setItem(
+        "intentosDetencion",
+        intentosDetencion
+    );
+
+
+    if (intentosDetencion > 0) {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ⚠ IDENTIFICACIÓN INCORRECTA
+                </strong>
+
+                <br><br>
+
+                El sospechoso indicado
+                no coincide con el responsable.
+
+                <br><br>
+
+                Revise las pruebas antes
+                de realizar una nueva identificación.
+
+            </div>
+
+        `;
+
+        contador.innerHTML =
+            "OPORTUNIDADES DISPONIBLES: " +
+            intentosDetencion;
+
+    }
+
+    else {
+
+        resultado.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    🔴 IDENTIFICACIÓN FALLIDA
+                </strong>
+
+                <br><br>
+
+                Se han agotado las oportunidades
+                de identificación.
+
+                <br><br>
+
+                ORDEN DE DETENCIÓN DENEGADA.
+
+            </div>
+
+        `;
+
+
+        campo.disabled = true;
+
+
+        document.querySelector(
+            "#detencion button"
+        ).disabled = true;
+
+
+        contador.innerHTML =
+            "OPORTUNIDADES DISPONIBLES: 0";
+
+    }
+
+}
+
+
+/* =====================================================
+   INICIAR SISTEMA
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        comprobarDetencion();
+
+    }
+);
+
+
+/* =====================================================
+   REINICIAR INVESTIGACIÓN
+===================================================== */
+
+function reiniciarInvestigacion() {
+
+    const confirmar = confirm(
+
+        "¿Desea reiniciar la investigación?\n\n" +
+
+        "Se eliminará el progreso de esta partida " +
+        "y será necesario volver a superar las " +
+        "autorizaciones."
+
+    );
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------
+       ELIMINAR PROGRESO
+    ----------------------------------------------- */
+
+    localStorage.removeItem(
+        "detencionDesbloqueada"
+    );
+
+    localStorage.removeItem(
+        "intentosDetencion"
+    );
+
+
+    /* -----------------------------------------------
+       OCULTAR DETENCIÓN
+    ----------------------------------------------- */
+
+    const menuDetencion =
+        document.getElementById(
+            "menuDetencion"
+        );
+
+    if (menuDetencion) {
+
+        menuDetencion.style.display = "none";
+
+    }
+
+
+    /* -----------------------------------------------
+       VOLVER AL EXPEDIENTE PRINCIPAL
+    ----------------------------------------------- */
+
+    mostrarSeccion("expediente");
+
+    alert(
+        "Investigación reiniciada correctamente."
+    );
+
+}
     
 </script>
 
