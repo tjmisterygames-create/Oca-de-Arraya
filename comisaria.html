@@ -226,6 +226,35 @@ header p {
     text-transform: uppercase;
 }
 
+.sidebar-info {
+
+    padding: 15px 20px 18px;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    color: #7f8986;
+
+    line-height: 1.5;
+
+    border-bottom: 1px solid #414c50;
+
+}
+
+.sidebar-info span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 7px;
+
+    color: #68736f;
+
+    letter-spacing: 1.2px;
+
+}
 
 .menu {
 
@@ -251,6 +280,12 @@ header p {
 
     cursor: pointer;
 
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+   
     transition:
         background 0.2s ease,
         color 0.2s ease,
@@ -290,6 +325,16 @@ header p {
 
 }
 
+.menu .icono img {
+
+    width: 20px;
+
+    height: 20px;
+
+    object-fit: contain;
+
+    display: block;
+}    
 
 .menu .estado {
 
@@ -1128,12 +1173,23 @@ footer {
 
     </div>
 
+<div class="sidebar-info">
+
+    AYUNTAMIENTO DE OCA DE ARRAYA
+
+    <span>
+        UNIDAD DE INVESTIGACIÓN
+    </span>
+
+</div>
 
   <ul class="menu">
 
     <li class="activo" onclick="mostrarSeccion('expediente')">
 
-        <span class="icono">📁</span>
+        <span class="icono">
+            <img src="expediente.png" alt="">
+        </span>
 
         <span>EXPEDIENTE</span>
 
