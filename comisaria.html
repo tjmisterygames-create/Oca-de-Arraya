@@ -439,45 +439,72 @@ header p {
 
     grid-template-columns: repeat(3, 1fr);
 
-    gap: 15px;
+    gap: 12px;
+
+    margin-bottom: 25px;
 
 }
 
 
 .tarjeta {
 
-    background: #e5e5df;
+    background: #f1f1eb;
 
-    border: 1px solid #b1b2ac;
+    border: 1px solid #b4b7b2;
 
-    padding: 18px;
+    border-top: 3px solid #59656a;
+
+    padding: 16px 18px;
+
+    min-height: 82px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
 
 }
 
-
 .tarjeta .numero {
 
-    font-size: 23px;
+    font-size: 21px;
 
-    font-weight: bold;
+    font-weight: 600;
 
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+
+    color: #293236;
+
+    letter-spacing: 1px;
 
 }
 
 
 .tarjeta .etiqueta {
 
-    font-size: 9px;
+    font-size: 8px;
 
     text-transform: uppercase;
 
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 
-    color: #656a67;
+    color: #68706d;
 
 }
 
+.tarjeta:hover {
+
+    background: #e8e9e4;
+
+    border-color: #919792;
+
+}
+    
 
 /* =====================================================
    LABORATORIO
