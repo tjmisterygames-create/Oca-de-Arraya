@@ -1160,24 +1160,26 @@ footer {
 
 @media (max-width: 600px) {
 
-    /* La barra lateral pasa arriba */
+    /* ================================
+       BARRA LATERAL EN MÓVIL
+       ================================ */
 
     .sidebar {
 
-        width: 100%;
+        width: 100% !important;
 
-        min-height: auto;
+        height: auto !important;
 
-        position: relative;
+        min-height: 0 !important;
 
-        top: auto;
+        position: relative !important;
 
-        left: auto;
+        top: auto !important;
+
+        left: auto !important;
 
     }
 
-
-    /* Título de la barra */
 
     .sidebar-titulo {
 
@@ -1188,8 +1190,6 @@ footer {
     }
 
 
-    /* Información secundaria */
-
     .sidebar-info {
 
         display: none;
@@ -1197,11 +1197,13 @@ footer {
     }
 
 
-    /* Menú horizontal */
+    /* MENÚ HORIZONTAL */
 
     .menu {
 
         display: flex;
+
+        width: 100%;
 
         overflow-x: auto;
 
@@ -1214,7 +1216,7 @@ footer {
     }
 
 
-    /* Cada opción */
+    /* OPCIONES DEL MENÚ */
 
     .menu li {
 
@@ -1234,6 +1236,8 @@ footer {
 
         justify-content: center;
 
+        align-items: center;
+
         gap: 5px;
 
         text-align: center;
@@ -1243,7 +1247,7 @@ footer {
     }
 
 
-    /* Iconos */
+    /* ICONOS */
 
     .menu .icono img {
 
@@ -1254,7 +1258,7 @@ footer {
     }
 
 
-    /* Estados */
+    /* OCULTAMOS LOS ESTADOS */
 
     .menu .estado {
 
@@ -1263,7 +1267,7 @@ footer {
     }
 
 
-    /* Elemento activo */
+    /* ELEMENTO ACTIVO */
 
     .menu li.activo {
 
@@ -1274,7 +1278,7 @@ footer {
     }
 
 
-    /* Reinicio */
+    /* REINICIAR */
 
     .menu li:last-child {
 
@@ -1283,6 +1287,48 @@ footer {
         border-top: none !important;
 
         padding-top: 9px !important;
+
+    }
+
+
+    /* ================================
+       CONTENIDO PRINCIPAL
+       ================================ */
+
+    .principal {
+
+        margin-left: 0 !important;
+
+        width: 100% !important;
+
+    }
+
+
+    /* CONTENEDORES */
+
+    .contenedor {
+
+        width: 94%;
+
+        margin: 20px auto;
+
+    }
+
+
+    /* PANELES */
+
+    .panel {
+
+        padding: 20px;
+
+    }
+
+
+    /* TARJETAS */
+
+    .tarjetas {
+
+        grid-template-columns: 1fr;
 
     }
 
