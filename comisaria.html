@@ -1083,12 +1083,28 @@ footer {
 
 .boton-pistas:hover {
     background: #e8e8e2;
+} 
+
+.boton-pistas .icono img {
+
+    width: 32px;
+
+    height: 32px;
+
+    min-width: 32px;
+
+    max-width: 32px;
+
+    min-height: 32px;
+
+    max-height: 32px;
+
+    object-fit: contain;
+
+    display: block;
+
 }
-
-.icono-pistas {
-    font-size: 25px;
-}    
-
+    
 .titulo-recurso {
 
     display: flex;
@@ -1135,6 +1151,140 @@ footer {
     object-fit: contain !important;
 
     display: block !important;
+
+}
+
+/* =========================================
+   ADAPTACIÓN PARA MÓVILES
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    /* La barra lateral pasa arriba */
+
+    .sidebar {
+
+        width: 100%;
+
+        min-height: auto;
+
+        position: relative;
+
+        top: auto;
+
+        left: auto;
+
+    }
+
+
+    /* Título de la barra */
+
+    .sidebar-titulo {
+
+        padding: 14px 16px;
+
+        font-size: 9px;
+
+    }
+
+
+    /* Información secundaria */
+
+    .sidebar-info {
+
+        display: none;
+
+    }
+
+
+    /* Menú horizontal */
+
+    .menu {
+
+        display: flex;
+
+        overflow-x: auto;
+
+        padding: 8px;
+
+        margin: 0;
+
+        gap: 5px;
+
+    }
+
+
+    /* Cada opción */
+
+    .menu li {
+
+        flex: 0 0 auto;
+
+        width: auto;
+
+        min-width: 72px;
+
+        padding: 9px 8px;
+
+        border-left: none;
+
+        border-bottom: 3px solid transparent;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 5px;
+
+        text-align: center;
+
+        font-size: 8px;
+
+    }
+
+
+    /* Iconos */
+
+    .menu .icono img {
+
+        width: 20px;
+
+        height: 20px;
+
+    }
+
+
+    /* Estados */
+
+    .menu .estado {
+
+        display: none;
+
+    }
+
+
+    /* Elemento activo */
+
+    .menu li.activo {
+
+        border-left: none;
+
+        border-bottom: 3px solid #aeb7b3;
+
+    }
+
+
+    /* Reinicio */
+
+    .menu li:last-child {
+
+        margin-top: 0 !important;
+
+        border-top: none !important;
+
+        padding-top: 9px !important;
+
+    }
 
 }
     
@@ -1559,8 +1709,9 @@ footer {
 
     <div class="panel-cabecera">
 
-        <h3>
-            💡 PISTAS PARA LA INVESTIGACIÓN
+        <h3 class="titulo-recurso">
+            <img src="pistas.png" alt="">
+            PISTAS PARA LA INVESTIGACIÓN
         </h3>
 
         <p>
