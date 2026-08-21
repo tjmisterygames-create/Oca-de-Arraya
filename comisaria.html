@@ -513,6 +513,124 @@ header p {
 
 }
 
+/* =====================================================
+   PISTAS DE INVESTIGACIÓN
+===================================================== */
+
+.lista-pistas {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+}
+
+
+.pista-icono {
+
+    background: #e8e8e2;
+
+    border: 1px solid #b5b6b1;
+
+    padding: 18px 12px;
+
+    min-height: 145px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    cursor: pointer;
+
+    color: #26343a;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    transition: 0.2s ease;
+
+}
+
+.mensaje-pista {
+
+    margin-top: 25px;
+
+    padding: 22px;
+
+    background: #f1f1ec;
+
+    border: 1px solid #b5b6b1;
+
+    border-left: 4px solid #30383b;
+
+    line-height: 1.6;
+
+    font-size: 11px;
+
+}
+
+.mensaje-pista strong {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+}
+
+.mensaje-pista p {
+
+    margin: 0;
+
+    color: #555;
+
+}
+    
+.pista-icono img {
+
+    width: 72px;
+
+    height: 72px;
+
+    object-fit: contain;
+
+    display: block;
+
+}
+
+
+.pista-icono span {
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.pista-icono:hover {
+
+    background: #dfe1dc;
+
+    transform: translateY(-2px);
+
+    border-color: #7d8581;
+
+}
 
 /* =====================================================
    TARJETAS DE INFORMACIÓN
@@ -1400,6 +1518,39 @@ footer {
 
     }
 
+    .lista-pistas {
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.pista-icono {
+
+    min-height: 125px;
+
+    padding: 12px 8px;
+
+}
+
+
+.pista-icono img {
+
+    width: 58px;
+
+    height: 58px;
+
+}
+
+
+.pista-icono span {
+
+    font-size: 9px;
+
+}
+
 }
     
 </style>
@@ -1511,6 +1662,15 @@ footer {
 
     </li>
 
+    <li onclick="mostrarSeccion('pistas')">
+
+    <span class="icono">
+        <img src="pistas.png" alt="">
+    </span>
+
+    <span>PISTAS</span>
+
+    </li>
 
     <li onclick="mostrarSeccion('laboratorio')">
 
@@ -1721,7 +1881,134 @@ footer {
 
     </section>
 
+<!-- =====================================================
+     PISTAS
+===================================================== -->
 
+<section
+    id="pistas"
+    class="seccion"
+    style="display:none"
+>
+
+    <div class="barra-expediente">
+
+        <h2>
+            PISTAS DE INVESTIGACIÓN
+        </h2>
+
+    </div>
+
+
+    <section class="panel">
+
+        <div class="panel-cabecera">
+
+            <h3 class="titulo-recurso">
+
+                <img
+                    src="pistas.png"
+                    alt=""
+                >
+
+                PISTAS PARA LA INVESTIGACIÓN
+
+            </h3>
+
+            <p>
+
+                Seleccione una pista para consultar
+                información adicional sobre el caso.
+
+            </p>
+
+        </div>
+
+
+        <div class="lista-pistas">
+
+
+            <button
+                class="pista-icono"
+                onclick="mostrarPista(1)"
+            >
+
+                <img
+                    src="pista-1.png"
+                    alt="Pista 01"
+                >
+
+                <span>
+                    PISTA 01
+                </span>
+
+            </button>
+
+
+            <button
+                class="pista-icono"
+                onclick="mostrarPista(2)"
+            >
+
+                <img
+                    src="pista-2.png"
+                    alt="Pista 02"
+                >
+
+                <span>
+                    PISTA 02
+                </span>
+
+            </button>
+
+
+            <button
+                class="pista-icono"
+                onclick="mostrarPista(3)"
+            >
+
+                <img
+                    src="pista-3.png"
+                    alt="Pista 03"
+                >
+
+                <span>
+                    PISTA 03
+                </span>
+
+            </button>
+
+
+            <button
+                class="pista-icono"
+                onclick="mostrarPista(4)"
+            >
+
+                <img
+                    src="pista-4.png"
+                    alt="Pista 04"
+                >
+
+                <span>
+                    PISTA 04
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+        <div
+            id="mensajePista"
+            class="mensaje-pista"
+            style="display:none;"
+        ></div>
+
+
+    </section>
+
+</section>
 
     <!-- LABORATORIO -->
 
@@ -1800,94 +2087,6 @@ footer {
 
         </div>
 
-        <div class="boton-pistas-contenedor">
-
-    <button
-        class="boton-pistas"
-        onclick="mostrarPistas()"
-    >
-
-        <span class="icono">
-            <img src="pistas.png" alt="">
-        </span>
-
-        <span>
-            PISTAS DE<br>
-            INVESTIGACIÓN
-        </span>
-
-    </button>
-
-<section
-    id="panelPistas"
-    class="panel panel-pistas"
-    style="display:none;"
->
-
-    <div class="panel-cabecera">
-
-        <h3 class="titulo-recurso">
-            <img src="pistas.png" alt="">
-            PISTAS PARA LA INVESTIGACIÓN
-        </h3>
-
-        <p>
-            Seleccione una pista para consultar
-            información adicional sobre el caso.
-        </p>
-
-    </div>
-
-
-    <div class="lista-pistas">
-
-        <button
-            class="pista-icono"
-            onclick="mostrarPista(1)"
-        >
-            🔎
-            <span>PISTA 01</span>
-        </button>
-
-
-        <button
-            class="pista-icono"
-            onclick="mostrarPista(2)"
-        >
-            📄
-            <span>PISTA 02</span>
-        </button>
-
-
-        <button
-            class="pista-icono"
-            onclick="mostrarPista(3)"
-        >
-            🕵️
-            <span>PISTA 03</span>
-        </button>
-
-
-        <button
-            class="pista-icono"
-            onclick="mostrarPista(4)"
-        >
-            🧩
-            <span>PISTA 04</span>
-        </button>
-
-    </div>
-
-
-    <div
-        id="mensajePista"
-        class="mensaje-pista"
-        style="display:none;"
-    ></div>
-
-</section>
-            
-</div>
 
         <section class="panel">
 
@@ -3666,22 +3865,6 @@ function reiniciarInvestigacion() {
 
 }
 
-function mostrarPistas() {
-
-    const panel =
-        document.getElementById("panelPistas");
-
-    if (panel.style.display === "none") {
-
-        panel.style.display = "block";
-
-    } else {
-
-        panel.style.display = "none";
-
-    }
-
-}
 
 function mostrarPista(numero) {
 
