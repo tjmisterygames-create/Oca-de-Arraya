@@ -48,11 +48,23 @@ header {
 
     margin-right: 15px;
 
-    font-size: 23px;
+    flex-shrink: 0;
 
-    color: #47727a;
+    overflow: hidden;
 }
 
+.logo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+}    
+    
 header h1 {
     margin: 0;
 
@@ -363,6 +375,15 @@ footer {
 
     }
 
+    .logo {
+
+    width: 45px;
+
+    height: 45px;
+
+    margin-right: 10px;
+
+}
 }
 
 </style>
@@ -377,8 +398,13 @@ footer {
 <header>
 
     <div class="logo">
-        ❄
-    </div>
+
+    <img
+        src="boreal.png"
+        alt="Logotipo de Clínica Boreal"
+    >
+
+</div>
 
     <div>
 
