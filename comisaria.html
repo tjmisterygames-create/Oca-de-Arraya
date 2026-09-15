@@ -2413,7 +2413,7 @@ footer {
     <div class="archivo-documento">
 
         <strong class="icono-documento">
-            <img src="circulo-final.png" alt="">
+            <img id="pistaSobre02" src="" alt="">
             DOCUMENTO RESTRINGIDO — PISTA
         </strong>
 
@@ -3325,6 +3325,56 @@ function desbloquearDocumentos01() {
 
 }
 
+/* =====================================================
+   PISTA ALEATORIA — SOBRE 02
+===================================================== */
+
+function obtenerPistaSobre02() {
+
+    const pistas = [
+        {
+            imagen: "circulo-3.png",
+            clave: "PEREZA"
+        },
+        {
+            imagen: "circulo-5.png",
+            clave: "GULA"
+        },
+        {
+            imagen: "circulo-6.png",
+            clave: "VIOLENCIA"
+        }
+    ];
+
+    let pistaGuardada =
+        localStorage.getItem("pistaSobre02");
+
+    if (!pistaGuardada) {
+
+        const indice =
+            Math.floor(Math.random() * pistas.length);
+
+        pistaGuardada =
+            JSON.stringify(pistas[indice]);
+
+        localStorage.setItem(
+            "pistaSobre02",
+            pistaGuardada
+        );
+    }
+
+    const pista =
+        JSON.parse(pistaGuardada);
+
+    const imagen =
+        document.getElementById("pistaSobre02");
+
+    if (imagen) {
+        imagen.src = pista.imagen;
+    }
+
+    return pista;
+}
 
 function desbloquearDocumentos02() {
 
@@ -3341,7 +3391,25 @@ function desbloquearDocumentos02() {
         document.getElementById("verificacion01");
 
 
-    if (codigo === "VIOLENCIA") {
+ function desbloquearDocumentos02() {
+
+    const codigo =
+        document.getElementById("codigoDocumentos02")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const resultado =
+        document.getElementById("resultadoDocumentos02");
+
+    const pregunta =
+        document.getElementById("verificacion01");
+
+    const pista =
+        obtenerPistaSobre02();
+
+
+    if (codigo === pista.clave) {
 
         resultado.innerHTML = `
 
@@ -3820,6 +3888,7 @@ document.addEventListener(
     function() {
 
         comprobarDetencion();
+        obtenerPistaSobre02();
 
     }
 );
@@ -3861,6 +3930,9 @@ function reiniciarInvestigacion() {
         "intentosDetencion"
     );
 
+    localStorage.removeItem(
+    "pistaSobre02"
+    );
 
     /* -----------------------------------------------
        OCULTAR DETENCIÓN
