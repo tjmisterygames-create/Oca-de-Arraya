@@ -1552,6 +1552,28 @@ footer {
 }
 
 }
+
+/* =========================================
+   ICONO DEL DOCUMENTO RESTRINGIDO
+   ========================================= */
+
+.icono-documento {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icono-documento img {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    max-width: 48px;
+    min-height: 48px;
+    max-height: 48px;
+
+    object-fit: contain;
+    display: block;
+}
     
 </style>
 
@@ -2390,7 +2412,7 @@ footer {
 
     <div class="archivo-documento">
 
-        <strong>
+        <strong class="icono-documento">
             <img src="circulo-final.png" alt="">
             DOCUMENTO RESTRINGIDO — PISTA
         </strong>
@@ -2401,7 +2423,7 @@ footer {
         </p>
 
         <a
-            href="documento-pista.pdf"
+            href="circulo-final.png"
             target="_blank"
             class="boton"
             style="text-decoration:none; text-align:center;"
