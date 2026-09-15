@@ -1028,7 +1028,7 @@ footer {
    MÓVILES
 ===================================================== */
 
- (max-width: 800px) {
+@media (max-width: 800px) {
 
     header {
 
@@ -1125,7 +1125,7 @@ footer {
 }
 
 
- (max-width: 500px) {
+@media (max-width: 500px) {
 
     .panel {
 
@@ -1317,102 +1317,152 @@ footer {
 
 @media (max-width: 600px) {
 
-    /* CONTENEDOR */
-
     .contenedor {
-        display: flex;
-        flex-direction: column;
-        width: 94%;
-        min-height: auto;
-        margin: 20px auto;
-    }
 
+    display: flex;
 
+    flex-direction: column;
+
+    width: 94%;
+
+    min-height: auto;
+
+    margin: 20px auto;
+
+}
+    
     /* ================================
        BARRA LATERAL EN MÓVIL
        ================================ */
 
+   
+    
     .sidebar {
+
         width: 100% !important;
+
         height: auto !important;
+
         min-height: 0 !important;
+
         position: relative !important;
+
         top: auto !important;
+
         left: auto !important;
+
         align-self: stretch;
+        
     }
 
 
     .sidebar-titulo {
+
         padding: 14px 16px;
+
         font-size: 9px;
+
     }
 
 
     .sidebar-info {
+
         display: none;
+
     }
 
 
     /* MENÚ HORIZONTAL */
 
     .menu {
+
         display: flex;
+
         width: 100%;
+
         overflow-x: auto;
+
         padding: 8px;
+
         margin: 0;
+
         gap: 5px;
+
     }
 
 
     /* OPCIONES DEL MENÚ */
 
     .menu li {
+
         flex: 0 0 auto;
+
         width: auto;
+
         min-width: 72px;
+
         padding: 9px 8px;
+
         border-left: none;
+
         border-bottom: 3px solid transparent;
+
         flex-direction: column;
+
         justify-content: center;
+
         align-items: center;
+
         gap: 5px;
+
         text-align: center;
+
         font-size: 8px;
+
     }
 
 
     /* ICONOS */
 
     .menu .icono img {
+
         width: 20px;
+
         height: 20px;
+
     }
 
 
     /* OCULTAMOS LOS ESTADOS */
 
     .menu .estado {
+
         display: none;
+
     }
 
 
     /* ELEMENTO ACTIVO */
 
     .menu li.activo {
+
         border-left: none;
+
         border-bottom: 3px solid #aeb7b3;
+
     }
 
 
     /* REINICIAR */
 
     .menu li:last-child {
+
         margin-top: 0 !important;
+
         border-top: none !important;
+
         padding-top: 9px !important;
+
     }
 
 
@@ -1421,70 +1471,85 @@ footer {
        ================================ */
 
     .contenido {
+
         margin-left: 0 !important;
+
         width: 100% !important;
-    }
 
-
-    /* IMAGEN DE PISTA */
+}
 
     .imagen-pista {
+
         width: 100%;
+
         max-width: 100%;
+
         height: auto;
+
         margin: 15px auto;
+
+}
+
+    /* CONTENEDORES */
+
+    .contenedor {
+
+        width: 94%;
+
+        margin: 20px auto;
+
     }
 
 
     /* PANELES */
 
     .panel {
+
         padding: 20px;
+
     }
 
 
     /* TARJETAS */
 
     .tarjetas {
+
         grid-template-columns: 1fr;
+
     }
-
-
-    /* PISTAS */
 
     .lista-pistas {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+
+}
 
 
-    .pista-icono {
-        min-height: 125px;
-        padding: 12px 8px;
-    }
+.pista-icono {
+
+    min-height: 125px;
+
+    padding: 12px 8px;
+
+}
 
 
-    .pista-icono img {
-        width: 58px;
-        height: 58px;
-    }
+.pista-icono img {
+
+    width: 58px;
+
+    height: 58px;
+
+}
 
 
-    .pista-icono span {
-        font-size: 9px;
-    }
+.pista-icono span {
 
+    font-size: 9px;
 
-    /* ICONO DEL DOCUMENTO RESTRINGIDO */
-
-    .icono-documento img {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        max-width: 40px;
-        min-height: 40px;
-        max-height: 40px;
-    }
+}
 
 }
     
@@ -2325,7 +2390,7 @@ footer {
 
     <div class="archivo-documento">
 
-        <strong class="icono-documento">
+        <strong>
             <img src="circulo-final.png" alt="">
             DOCUMENTO RESTRINGIDO — PISTA
         </strong>
@@ -2336,7 +2401,7 @@ footer {
         </p>
 
         <a
-            href="circulo-final.png"
+            href="documento-pista.pdf"
             target="_blank"
             class="boton"
             style="text-decoration:none; text-align:center;"
