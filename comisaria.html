@@ -2795,6 +2795,235 @@ footer {
     </section>
 
 </section>
+
+<section
+    id="encuestaJuego"
+    class="seccion"
+    style="display:none;"
+>
+
+    <div class="barra-expediente">
+        <h2>INFORME DE EXPERIENCIA</h2>
+    </div>
+
+    <section class="panel final-panel">
+
+        <h3>VALORACIÓN DE LA INVESTIGACIÓN</h3>
+
+        <p>
+            El expediente está cerrado.
+            Antes de abandonar el sistema, nos gustaría conocer
+            vuestra opinión sobre la experiencia.
+        </p>
+
+        <div class="pregunta-encuesta">
+
+            <strong>
+                ¿Qué valoración general le dais al juego?
+            </strong>
+
+            <div class="estrellas">
+
+                <label>
+                    <input type="radio" name="valoracion" value="1">
+                    ★
+                </label>
+
+                <label>
+                    <input type="radio" name="valoracion" value="2">
+                    ★★
+                </label>
+
+                <label>
+                    <input type="radio" name="valoracion" value="3">
+                    ★★★
+                </label>
+
+                <label>
+                    <input type="radio" name="valoracion" value="4">
+                    ★★★★
+                </label>
+
+                <label>
+                    <input type="radio" name="valoracion" value="5">
+                    ★★★★★
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="pregunta-encuesta">
+
+            <strong>
+                ¿Cómo os ha parecido la dificultad?
+            </strong>
+
+            <select id="dificultadJuego">
+
+                <option value="">
+                    Seleccionar...
+                </option>
+
+                <option>Muy fácil</option>
+                <option>Fácil</option>
+                <option>Adecuada</option>
+                <option>Difícil</option>
+                <option>Muy difícil</option>
+
+            </select>
+
+        </div>
+
+        <div class="pregunta-encuesta">
+
+            <strong>
+                ¿Qué parte os ha gustado más?
+            </strong>
+
+            <div class="opciones-encuesta">
+
+                <label>
+                    <input type="checkbox" value="Investigación">
+                    Investigación
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Puzles">
+                    Puzles
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Historia">
+                    Historia
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Documentos">
+                    Documentos
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Página web">
+                    Página web
+                </label>
+
+                <label>
+                    <input type="checkbox" value="Ambientación">
+                    Ambientación
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="pregunta-encuesta">
+
+            <strong>
+                ¿En qué momento sentisteis que habíais
+                descubierto algo importante?
+            </strong>
+
+            <textarea
+                id="momentoClave"
+                rows="3"
+                placeholder="Contadnos ese momento..."
+            ></textarea>
+
+        </div>
+
+        <div class="pregunta-encuesta">
+
+            <strong>
+                ¿Hubo alguna parte que os resultara
+                confusa o frustrante?
+            </strong>
+
+            <textarea
+                id="problemasJuego"
+                rows="3"
+                placeholder="Podéis contarnos qué ocurrió..."
+            ></textarea>
+
+        </div>
+
+        <div class="pregunta-encuesta">
+
+            <strong>
+                ¿Qué cambiaríais o mejoraríais?
+            </strong>
+
+            <textarea
+                id="mejorasJuego"
+                rows="3"
+                placeholder="Cualquier sugerencia nos ayuda..."
+            ></textarea>
+
+        </div>
+
+        <div class="pregunta-encuesta">
+
+            <strong>
+                ¿Recomendaríais Oca de Arraya?
+            </strong>
+
+            <div class="opciones-radio">
+
+                <label>
+                    <input
+                        type="radio"
+                        name="recomendaria"
+                        value="Sí"
+                    >
+                    Sí
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="recomendaria"
+                        value="No"
+                    >
+                    No
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="recomendaria"
+                        value="No estoy seguro/a"
+                    >
+                    No estoy seguro/a
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="pregunta-encuesta">
+
+            <strong>
+                Comentarios adicionales
+            </strong>
+
+            <textarea
+                id="comentariosJuego"
+                rows="4"
+                placeholder="¿Queréis contarnos algo más?"
+            ></textarea>
+
+        </div>
+
+        <button
+            class="boton"
+            onclick="enviarEncuesta()"
+        >
+            ENVIAR INFORME
+        </button>
+
+    </section>
+
+</section>
     
     <div class="barra-expediente">
 
@@ -4270,6 +4499,24 @@ function enviarEncuesta() {
             "Compruebe la conexión a Internet."
         );
 
+    });
+
+}
+
+function mostrarEncuesta() {
+
+    document.getElementById("finalJuego").style.display = "none";
+
+    const encuesta =
+        document.getElementById("encuestaJuego");
+
+    if (encuesta) {
+        encuesta.style.display = "block";
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
 
 }
