@@ -2792,6 +2792,141 @@ footer {
             CONTINUAR
         </button>
 
+        function enviarEncuesta() {
+
+    const valoracion =
+        document.querySelector(
+            'input[name="valoracion"]:checked'
+        )?.value || "";
+
+    const dificultad =
+        document.getElementById(
+            "dificultadJuego"
+        ).value;
+
+    const partes =
+        [...document.querySelectorAll(
+            '.opciones-encuesta input[type="checkbox"]:checked'
+        )]
+        .map(input => input.value)
+        .join(", ");
+
+    const momentoClave =
+        document.getElementById(
+            "momentoClave"
+        ).value.trim();
+
+    const problemas =
+        document.getElementById(
+            "problemasJuego"
+        ).value.trim();
+
+    const mejoras =
+        document.getElementById(
+            "mejorasJuego"
+        ).value.trim();
+
+    const recomendaria =
+        document.querySelector(
+            'input[name="recomendaria"]:checked'
+        )?.value || "";
+
+    const comentarios =
+        document.getElementById(
+            "comentariosJuego"
+        ).value.trim();
+
+
+    const datos = {
+
+        valoracion: valoracion,
+
+        dificultad: dificultad,
+
+        parteFavorita: partes,
+
+        momentoClave: momentoClave,
+
+        problemas: problemas,
+
+        mejoras: mejoras,
+
+        recomendaria: recomendaria,
+
+        comentarios: comentarios
+
+    };
+
+
+    fetch("https://script.google.com/macros/s/AKfycbwAnmC0-iLqWOijahuZV5ZflhhQ0GVjnlxjl_BMaOlqKSL9mPDzLl4MbWQtOJgg83ZD/exec", {
+
+        method: "POST",
+
+        body: JSON.stringify(datos)
+
+    })
+    .then(() => {
+
+        document.getElementById(
+            "encuestaJuego"
+        ).innerHTML = `
+
+            <div class="barra-expediente">
+
+                <h2>
+                    EXPEDIENTE CERRADO
+                </h2>
+
+            </div>
+
+            <section class="panel final-panel">
+
+                <div class="final-icono">
+                    ✓
+                </div>
+
+                <h3>
+                    INFORME RECIBIDO
+                </h3>
+
+                <p>
+                    Gracias por vuestra colaboración.
+                </p>
+
+                <p>
+                    Vuestra valoración ha sido registrada
+                    correctamente.
+                </p>
+
+                <p>
+                    <strong>
+                        OCA DE ARRAYA · EXPEDIENTE 1-2025
+                    </strong>
+                </p>
+
+            </section>
+
+        `;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    })
+    .catch(error => {
+
+        console.error(error);
+
+        alert(
+            "No se ha podido enviar la valoración. " +
+            "Compruebe la conexión a Internet."
+        );
+
+    });
+
+}
+        
     </section>
 
 </section>
