@@ -1575,9 +1575,6 @@ footer {
     display: block;
 }
     
-
-/* INFORME FINAL Y VALORACION */
-#feedbackFinal{display:none;margin-top:25px}.feedback-panel{background:#f4f4ef;border:1px solid #aeb2ae;padding:24px}.feedback-panel h3{margin:0 0 6px;font-size:15px;letter-spacing:1.2px}.feedback-panel .intro{font-size:11px;color:#666;margin:0 0 22px}.feedback-field{margin-top:18px}.feedback-field label{margin-bottom:8px}.rating{display:flex;gap:8px;flex-wrap:wrap}.rating input{position:absolute;opacity:0;pointer-events:none}.rating label{width:42px;height:38px;margin:0;border:1px solid #aeb2ae;background:#fffefa;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;letter-spacing:0;font-weight:bold}.rating label:hover,.rating input:checked+label{background:#30383b;color:#fff;border-color:#30383b}.feedback-options{display:grid;gap:8px}.feedback-options label{margin:0;display:flex;align-items:center;gap:8px;font-weight:normal;letter-spacing:0;font-size:10px;cursor:pointer}.feedback-options input{width:auto;margin:0;padding:0}.feedback-panel textarea{width:100%;min-height:90px;padding:12px;border:1px solid #777b78;background:#fffefa;font-family:Arial,Helvetica,sans-serif;font-size:11px;resize:vertical;outline:none}.feedback-panel select{width:100%;max-width:500px;padding:12px;border:1px solid #777b78;background:#fffefa;font-size:11px;outline:none}.feedback-panel .boton{max-width:500px}.feedback-success{margin-top:15px;padding:18px;background:#eef1ed;border:1px solid #a8b0a8;color:#3d5544;font-size:11px}.final-cierre{margin-top:20px;padding:22px;border:1px solid #8f928b;background:#e9e9e3}.final-cierre .estado-final{font-size:9px;letter-spacing:1.5px;color:#626966;margin-bottom:7px}.final-cierre h4{margin:0;font-size:18px;letter-spacing:1.5px}.final-cierre p{font-size:11px;line-height:1.7;margin:12px 0 0;color:#555}.sello-final{display:inline-block;margin-top:18px;padding:8px 12px;border:2px solid #555;color:#555;font-size:9px;font-weight:bold;letter-spacing:1px;transform:rotate(-2deg)}
 </style>
 
 </head>
@@ -2844,39 +2841,7 @@ footer {
 
         </div>
 
-    
-        <div id="feedbackFinal">
-            <div class="feedback-panel">
-                <h3>INFORME DE EXPERIENCIA</h3>
-                <p class="intro">Antes de cerrar el expediente, nos gustaría conocer vuestra opinión sobre la investigación.</p>
-                <div class="feedback-field"><label>VALORACIÓN GENERAL</label><div class="rating">
-                    <input id="valor1" name="valoracion" type="radio" value="1"><label for="valor1">1</label>
-                    <input id="valor2" name="valoracion" type="radio" value="2"><label for="valor2">2</label>
-                    <input id="valor3" name="valoracion" type="radio" value="3"><label for="valor3">3</label>
-                    <input id="valor4" name="valoracion" type="radio" value="4"><label for="valor4">4</label>
-                    <input id="valor5" name="valoracion" type="radio" value="5"><label for="valor5">5</label>
-                </div></div>
-                <div class="feedback-field"><label for="dificultad">DIFICULTAD DEL JUEGO</label><select id="dificultad"><option value="">Seleccionar...</option><option>Muy fácil</option><option>Fácil</option><option>Adecuada</option><option>Difícil</option><option>Muy difícil</option></select></div>
-                <div class="feedback-field"><label>¿QUÉ PARTE OS HA GUSTADO MÁS?</label><div class="feedback-options">
-                    <label><input type="checkbox" name="favorita" value="Investigación"> Investigación</label>
-                    <label><input type="checkbox" name="favorita" value="Puzles"> Puzles y deducciones</label>
-                    <label><input type="checkbox" name="favorita" value="Historia"> Historia</label>
-                    <label><input type="checkbox" name="favorita" value="Documentos"> Documentos físicos</label>
-                    <label><input type="checkbox" name="favorita" value="Web"> Página web</label>
-                    <label><input type="checkbox" name="favorita" value="Ambientación"> Ambientación</label>
-                </div></div>
-                <div class="feedback-field"><label for="momentoClave">¿EN QUÉ MOMENTO SENTISTEIS QUE HABÍAIS DESCUBIERTO ALGO IMPORTANTE?</label><textarea id="momentoClave"></textarea></div>
-                <div class="feedback-field"><label for="confuso">¿HUBO ALGUNA PARTE CONFUSA O FRUSTRANTE?</label><textarea id="confuso"></textarea></div>
-                <div class="feedback-field"><label for="mejoraria">¿QUÉ CAMBIARÍAIS O MEJORARÍAIS?</label><textarea id="mejoraria"></textarea></div>
-                <div class="feedback-field"><label>¿RECOMENDARÍAIS OCA DE ARRAYA?</label><div class="feedback-options">
-                    <label><input type="radio" name="recomendaria" value="Sí"> Sí</label><label><input type="radio" name="recomendaria" value="No"> No</label><label><input type="radio" name="recomendaria" value="No estoy seguro/a"> No estoy seguro/a</label>
-                </div></div>
-                <div class="feedback-field"><label for="comentarios">COMENTARIOS ADICIONALES</label><textarea id="comentarios"></textarea></div>
-                <button class="boton" type="button" onclick="enviarValoracion()">ENVIAR INFORME DE EXPERIENCIA</button>
-                <div id="resultadoFeedback"></div>
-            </div>
-        </div>
-</section>
+    </section>
 
 </section>
     
@@ -3813,17 +3778,6 @@ function intentarDetencion() {
 
         `;
 
-        resultado.innerHTML += `
-            <div class="final-cierre">
-                <div class="estado-final">EXPEDIENTE CERRADO · INVESTIGACIÓN FINALIZADA</div>
-                <h4>CASO RESUELTO</h4>
-                <p>La investigación ha concluido. Las pruebas han sido revisadas, las conexiones del caso han sido reconstruidas y la identidad del responsable ha sido confirmada.</p>
-                <span class="sello-final">COMISARÍA PORRAS · OCA DE ARRAYA</span>
-            </div>
-        `;
-
-        const feedback = document.getElementById("feedbackFinal");
-        if (feedback) { feedback.style.display = "block"; feedback.scrollIntoView({behavior:"smooth",block:"start"}); }
 
         campo.disabled = true;
 
@@ -3980,9 +3934,6 @@ function reiniciarInvestigacion() {
     "pistaSobre02"
     );
 
-    const feedback = document.getElementById("feedbackFinal");
-    if (feedback) feedback.style.display = "none";
-
     /* -----------------------------------------------
        OCULTAR DETENCIÓN
     ----------------------------------------------- */
@@ -4094,15 +4045,6 @@ function mostrarPista(numero) {
 
 }
     
-
-function enviarValoracion(){
- const v=document.querySelector('input[name="valoracion"]:checked'), d=document.getElementById("dificultad").value, r=document.querySelector('input[name="recomendaria"]:checked'), out=document.getElementById("resultadoFeedback");
- if(!v||!d||!r){out.innerHTML='<div class="error"><strong>FALTAN ALGUNOS DATOS</strong><br><br>Indique valoración general, dificultad y si recomendaría el juego.</div>';return;}
- const datos={fecha:new Date().toISOString(),valoracion:v.value,dificultad:d,favoritas:Array.from(document.querySelectorAll('input[name="favorita"]:checked')).map(e=>e.value),momentoClave:document.getElementById("momentoClave").value.trim(),confuso:document.getElementById("confuso").value.trim(),mejoraria:document.getElementById("mejoraria").value.trim(),recomendaria:r.value,comentarios:document.getElementById("comentarios").value.trim()};
- const arr=JSON.parse(localStorage.getItem("valoracionesOcaDeArraya")||"[]");arr.push(datos);localStorage.setItem("valoracionesOcaDeArraya",JSON.stringify(arr));
- out.innerHTML='<div class="feedback-success"><strong>✓ INFORME RECIBIDO</strong><br><br>Gracias por vuestra colaboración. La valoración ha quedado registrada en este dispositivo.<br><br><strong>EXPEDIENTE 1-2025 · OCA DE ARRAYA</strong></div>';
- document.querySelectorAll('#feedbackFinal input,#feedbackFinal select,#feedbackFinal textarea,#feedbackFinal button').forEach(e=>e.disabled=true);
-}
 </script>
 
 
