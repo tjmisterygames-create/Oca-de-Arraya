@@ -2713,6 +2713,89 @@ footer {
     style="display:none"
 >
 
+    <!-- =====================================================
+     FINAL DE LA INVESTIGACIÓN
+===================================================== -->
+
+<section
+    id="finalJuego"
+    class="seccion"
+    style="display:none;"
+>
+
+    <div class="barra-expediente">
+
+        <h2>
+            EXPEDIENTE CERRADO
+        </h2>
+
+    </div>
+
+
+    <section class="panel final-panel">
+
+        <div class="final-cabecera">
+
+            <div class="final-icono">
+                ✓
+            </div>
+
+            <h3>
+                INVESTIGACIÓN FINALIZADA
+            </h3>
+
+            <p>
+                El expediente ha sido completado
+                y la investigación ha llegado a su fin.
+            </p>
+
+        </div>
+
+
+        <div class="resultado-final">
+
+            <strong>
+                CASO RESUELTO
+            </strong>
+
+            <p>
+                Todas las pruebas disponibles han sido
+                analizadas y la investigación ha sido
+                completada.
+            </p>
+
+        </div>
+
+
+        <div class="final-separador"></div>
+
+
+        <div class="final-mensaje">
+
+            <p>
+                Gracias por vuestra colaboración.
+            </p>
+
+            <p>
+                Antes de cerrar definitivamente el expediente,
+                nos gustaría conocer vuestra experiencia
+                durante la investigación.
+            </p>
+
+        </div>
+
+
+        <button
+            class="boton"
+            onclick="mostrarEncuesta()"
+        >
+            CONTINUAR
+        </button>
+
+    </section>
+
+</section>
+    
     <div class="barra-expediente">
 
         <h2>
@@ -3775,6 +3858,8 @@ function intentarDetencion() {
         contador.innerHTML =
             "INVESTIGACIÓN FINALIZADA";
 
+        mostrarFinal();
+
         return;
 
     }
@@ -4029,6 +4114,17 @@ function mostrarPista(numero) {
     mensaje.style.display = "block";
 
 }
+
+    function mostrarFinal() {
+
+    const final =
+        document.getElementById("finalJuego");
+
+    if (final) {
+        final.style.display = "block";
+    }
+
+}
     
 </script>
 
@@ -4046,7 +4142,62 @@ function mostrarPista(numero) {
 
 <title>Comisaría de Oca de Arraya</title>
 
+/* =====================================================
+   PANTALLA FINAL
+===================================================== */
 
+.final-panel {
+    text-align: center;
+}
+
+.final-cabecera {
+    padding: 10px 0 20px;
+}
+
+.final-icono {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+
+    border: 2px solid #47727a;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #47727a;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.final-cabecera h3 {
+    margin: 0;
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: #315b63;
+}
+
+.final-cabecera p {
+    margin: 10px auto 0;
+    max-width: 500px;
+    font-size: 11px;
+    color: #687579;
+    line-height: 1.6;
+}
+
+.final-separador {
+    border-top: 1px solid #d4dcde;
+    margin: 25px 0;
+}
+
+.final-mensaje {
+    font-size: 11px;
+    color: #687579;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+    
 <style>
 
 .imagen-pista {
