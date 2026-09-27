@@ -4283,11 +4283,18 @@ function intentarDetencion() {
 
 
         contador.innerHTML =
-            "INVESTIGACIÓN FINALIZADA";
+    "INVESTIGACIÓN FINALIZADA";
 
-        mostrarFinal();
+mostrarFinal();
 
-        return;
+setTimeout(function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}, 700);
+
+return;
 
     }
 
@@ -4682,10 +4689,12 @@ function enviarEncuesta() {
 
         `;
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+       setTimeout(function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}, 500);
 
     })
     .catch(error => {
