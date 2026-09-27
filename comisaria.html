@@ -1797,6 +1797,76 @@ footer {
     line-height: 1.3;
     text-align: center;
 }
+
+/* =====================================================
+   RESULTADO DE DETENCIÓN
+===================================================== */
+
+#resultadoDetencion {
+    margin-top: 15px;
+}
+
+/* Caja de resultado correcta */
+#resultadoDetencion .comunicacion-desbloqueada {
+    padding: 18px;
+}
+
+/* Cabecera con icono + título */
+#resultadoDetencion .titulo-detencion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 0 28px 0;
+    text-align: center;
+}
+
+/* Tamaño del icono */
+#resultadoDetencion .titulo-detencion img {
+    width: 90px;
+    height: 90px;
+    max-width: 90px;
+    max-height: 90px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Título */
+#resultadoDetencion .titulo-detencion strong {
+    display: block;
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+/* Texto del resultado */
+#resultadoDetencion .comunicacion-desbloqueada > p {
+    margin: 12px 0;
+    text-align: left;
+}
+
+/* Resultado de error */
+#resultadoDetencion .error {
+    text-align: left;
+}
+
+/* Cabecera del error */
+#resultadoDetencion .error .titulo-detencion {
+    margin-bottom: 24px;
+}
+
+/* Título de error */
+#resultadoDetencion .error .titulo-detencion strong {
+    color: #742a23;
+}
+
+/* Texto del error */
+#resultadoDetencion .error > p {
+    margin: 12px 0;
+    text-align: left;
+}
     
 </style>
 
@@ -4269,32 +4339,40 @@ function intentarDetencion() {
 
             <div class="comunicacion-desbloqueada">
 
-                <div class="titulo-detencion">
-                    <img src="asesino-correcto.png" alt="">
-                    <strong>DETENCIÓN AUTORIZADA</strong>
-                </div>
+    <div class="titulo-detencion">
 
-                <p>
-                    IDENTIFICACIÓN CONFIRMADA.
-                </p>
+        <img
+            src="asesino-correcto.png"
+            alt="Detención autorizada"
+        >
 
-                <p>
-                    El sospechoso indicado ha sido
-                    identificado como responsable
-                    de los acontecimientos investigados.
-                </p>
+        <strong>
+            DETENCIÓN AUTORIZADA
+        </strong>
 
-                <p>
-                    <strong>
-                        ORDEN DE DETENCIÓN EMITIDA
-                    </strong>
-                </p>
+    </div>
 
-                <p>
-                    EXPEDIENTE OCA-2026-001
-                </p>
+    <p>
+        IDENTIFICACIÓN CONFIRMADA.
+    </p>
 
-            </div>
+    <p>
+        El sospechoso indicado ha sido
+        identificado como responsable
+        de los acontecimientos investigados.
+    </p>
+
+    <p>
+        <strong>
+            ORDEN DE DETENCIÓN EMITIDA
+        </strong>
+    </p>
+
+    <p>
+        EXPEDIENTE OCA-2026-001
+    </p>
+
+</div>
 
         `;
 
@@ -4344,22 +4422,30 @@ return;
 
             <div class="error">
 
-                <div class="titulo-detencion">
-                    <img src="asesino-erroneo.png" alt="">
-                     <strong>IDENTIFICACIÓN INCORRECTA</strong>
-                </div>
+    <div class="titulo-detencion">
 
-                <br><br>
+        <img
+            src="asesino-erroneo.png"
+            alt="Identificación incorrecta"
+        >
 
-                El sospechoso indicado
-                no coincide con el responsable.
+        <strong>
+            IDENTIFICACIÓN INCORRECTA
+        </strong>
 
-                <br><br>
+    </div>
 
-                Revise las pruebas antes
-                de realizar una nueva identificación.
+    <p>
+        El sospechoso indicado
+        no coincide con el responsable.
+    </p>
 
-            </div>
+    <p>
+        Revise las pruebas antes
+        de realizar una nueva identificación.
+    </p>
+
+</div>
 
         `;
 
