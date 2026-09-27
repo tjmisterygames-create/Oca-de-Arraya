@@ -4080,8 +4080,8 @@ function intentarDetencion() {
 
 
         document.querySelector(
-            "#detencion button"
-        ).disabled = true;
+    '#detencion button[onclick="intentarDetencion()"]'
+    ).disabled = true;
 
 
         contador.innerHTML =
