@@ -1880,7 +1880,7 @@ footer {
 
 .final-icono {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin-bottom: 15px;
 }
@@ -1894,6 +1894,48 @@ footer {
     display: block;
 }
     
+
+/* =====================================================
+   SELECTOR DE IDIOMA
+===================================================== */
+
+.selector-idioma {
+    position: absolute;
+    top: 18px;
+    right: 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+.selector-idioma button {
+    background: transparent;
+    color: #c9ceca;
+    border: 1px solid #68736f;
+    padding: 5px 8px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.selector-idioma button:hover,
+.selector-idioma button.activo {
+    background: #455258;
+    color: #ffffff;
+    border-color: #aeb5b1;
+}
+
+@media (max-width: 800px) {
+    .selector-idioma {
+        top: 12px;
+        right: 14px;
+    }
+}
+
 </style>
 
 </head>
@@ -1944,6 +1986,11 @@ footer {
 
     </div>
 
+
+    <div class="selector-idioma" aria-label="Selector de idioma">
+        <button type="button" id="btnIdiomaES" onclick="cambiarIdioma('es')">🇪🇸 ES</button>
+        <button type="button" id="btnIdiomaEN" onclick="cambiarIdioma('en')">🇬🇧 EN</button>
+    </div>
 
 </header>
 
@@ -4866,6 +4913,293 @@ function mostrarEncuesta() {
 
 }
     
+
+/* =====================================================
+   SISTEMA BILINGÜE ES / EN
+===================================================== */
+
+const TRADUCCIONES = {
+    "COMISARÍA DE OCA DE ARRAYA": "OCA DE ARRAYA POLICE STATION",
+    "UNIDAD DE INVESTIGACIÓN CRIMINAL": "CRIMINAL INVESTIGATION UNIT",
+    "SISTEMA INTERNO": "INTERNAL SYSTEM",
+    "● SISTEMA OPERATIVO": "● SYSTEM OPERATIONAL",
+    "← VOLVER A INTRANET MUNICIPAL": "← BACK TO MUNICIPAL INTRANET",
+    "SISTEMA DE INVESTIGACIÓN": "INVESTIGATION SYSTEM",
+    "AYUNTAMIENTO DE OCA DE ARRAYA": "OCA DE ARRAYA MUNICIPALITY",
+    "UNIDAD DE INVESTIGACIÓN": "INVESTIGATION UNIT",
+    "EXPEDIENTE": "CASE FILE",
+    "PISTAS": "HINTS",
+    "LABORATORIO": "LABORATORY",
+    "ACTIVO": "ACTIVE",
+    "COMUN.": "COMM.",
+    "RESTRINGIDO": "RESTRICTED",
+    "DOCUMENTOS RESTRINGIDOS": "RESTRICTED DOCUMENTS",
+    "AUTORIZACIÓN": "AUTHORIZATION",
+    "DETENCIÓN": "ARREST",
+    "REINICIAR INVESTIGACIÓN": "RESET INVESTIGATION",
+    "CENTRAL DE INVESTIGACIÓN": "INVESTIGATION CENTER",
+    "ESTADO DEL EXPEDIENTE": "CASE FILE STATUS",
+    "Información general de la investigación.": "General investigation information.",
+    "Análisis de laboratorio": "Laboratory analysis",
+    "● DISPONIBLE": "● AVAILABLE",
+    "Registros de audio": "Audio records",
+    "● RESTRINGIDO": "● RESTRICTED",
+    "Documentos de Acceso restringido": "Restricted-access documents",
+    "● AUTORIZACIÓN": "● AUTHORIZATION",
+    "INFORMACIÓN DEL CASO": "CASE INFORMATION",
+    "Expediente abierto para la investigación de los acontecimientos registrados en Oca de Arraya.": "Case file opened to investigate the events recorded in Oca de Arraya.",
+    "Utilice los recursos disponibles en el sistema para consultar la información incorporada a la investigación.": "Use the resources available in the system to review the information added to the investigation.",
+    "Agradecemos muchísimo su ayuda Comisaria Porras.": "We greatly appreciate your help, Inspector Porras.",
+    "PISTAS DE INVESTIGACIÓN": "INVESTIGATION HINTS",
+    "PISTAS PARA LA INVESTIGACIÓN": "INVESTIGATION HINTS",
+    "Seleccione una pista para consultar información adicional sobre el caso.": "Select a hint to view additional information about the case.",
+    "PISTA 01": "HINT 01", "PISTA 02": "HINT 02", "PISTA 03": "HINT 03", "PISTA 04": "HINT 04",
+    "LABORATORIO CRIMINALÍSTICO": "FORENSIC LABORATORY",
+    "CONSULTA DE MUESTRAS": "SAMPLE QUERY",
+    "Introduzca el código asociado a la muestra para consultar el informe correspondiente.": "Enter the code associated with the sample to view the corresponding report.",
+    "CÓDIGO DE MUESTRA": "SAMPLE CODE",
+    "CONSULTAR RESULTADO": "VIEW RESULT",
+    "COMUNICACIONES": "COMMUNICATIONS",
+    "CENTRAL DE COMUNICACIONES": "COMMUNICATIONS CENTER",
+    "REGISTRO DE COMUNICACIONES": "COMMUNICATIONS LOG",
+    "Comunicaciones telefónicas y declaraciones incorporadas al caso.": "Telephone communications and statements added to the case.",
+    "ARCHIVOS DISPONIBLES": "AVAILABLE FILES",
+    "Registros de llamadas e interrogatorios.": "Call records and interrogations.",
+    "ACCESO RESTRINGIDO": "RESTRICTED ACCESS",
+    "Los registros de comunicaciones se encuentran protegidos mediante código de autorización.": "The communications records are protected by an authorization code.",
+    "IMAGEN-PISTA": "HINT IMAGE",
+    "PISTA DE AUTORIZACIÓN": "AUTHORIZATION HINT",
+    "Imagen localizada pegada en la esquina de la pantalla del ordenador.": "Image found attached to the corner of the computer screen.",
+    "CONTRASEÑA": "PASSWORD",
+    "CÓDIGO DE ACCESO": "ACCESS CODE",
+    "DESBLOQUEAR ARCHIVOS": "UNLOCK FILES",
+    "AUDIOS OCULTOS": "HIDDEN AUDIO",
+    "✓ AUTORIZACIÓN VERIFICADA": "✓ AUTHORIZATION VERIFIED",
+    "Archivos de comunicaciones desbloqueados.": "Communications files unlocked.",
+    "CONTESTADOR": "ANSWERING MACHINE",
+    "REGISTRO DE CONTESTADOR": "ANSWERING MACHINE LOG",
+    "Mensajes recibidos": "Received messages",
+    "Tu navegador no puede reproducir este audio.": "Your browser cannot play this audio.",
+    "INTERROGATORIO": "INTERROGATION",
+    "🎙 INTERROGATORIO — 1781": "🎙 INTERROGATION — 1781",
+    "Declaración policial": "Police statement",
+    "DOCUMENTACIÓN RESERVADA": "RESTRICTED DOCUMENTATION",
+    "Documentación de acceso restringido asociada al expediente.": "Restricted-access documentation associated with the case file.",
+    "NIVEL 1": "LEVEL 1",
+    "NIVEL DE AUTORIZACIÓN 01": "AUTHORIZATION LEVEL 01",
+    "Introduzca el código de autorización correspondiente para avanzar en más documentación.": "Enter the corresponding authorization code to access further documentation.",
+    "CÓDIGO DE AUTORIZACIÓN": "AUTHORIZATION CODE",
+    "ACCEDER A DOCUMENTACIÓN": "ACCESS DOCUMENTATION",
+    "DOCUMENTOS NIVEL 1": "LEVEL 1 DOCUMENTS",
+    "AUTORIZACIÓN SOBRE 01": "AUTHORIZATION — ENVELOPE 01",
+    "PERMISO DE APERTURA — SOBRE 01": "OPENING PERMIT — ENVELOPE 01",
+    "El código introducido ha sido validado.": "The code entered has been validated.",
+    "La documentación física asociada a esta autorización puede ser abierta.": "The physical documentation associated with this authorization may now be opened.",
+    "DOCUMENTO / PISTA": "DOCUMENT / HINT",
+    "DOCUMENTO RESTRINGIDO — PISTA": "RESTRICTED DOCUMENT — HINT",
+    "La clave de autorización para recibir la apertura del Sobre 02 se encuentra en la resolución de este documento.": "The authorization key required to open Envelope 02 is contained in the resolution of this document.",
+    "ABRIR DOCUMENTO": "OPEN DOCUMENT",
+    "NIVEL 2": "LEVEL 2",
+    "NIVEL DE AUTORIZACIÓN 02": "AUTHORIZATION LEVEL 02",
+    "ACCESO RESERVADO": "RESTRICTED ACCESS",
+    "Esta autorización requiere la clave obtenida durante el desarrollo de la investigación.": "This authorization requires the key obtained during the investigation.",
+    "CLAVE DE AUTORIZACIÓN": "AUTHORIZATION KEY",
+    "VALIDAR CLAVE": "VALIDATE KEY",
+    "PREGUNTA 1": "QUESTION 1",
+    "VERIFICACIÓN 01": "VERIFICATION 01",
+    "COMPROBACIÓN": "CHECK",
+    "¿Cómo se llama la tercera víctima?": "What is the name of the third victim?",
+    "VERIFICAR": "VERIFY",
+    "PREGUNTA 2": "QUESTION 2",
+    "VERIFICACIÓN 02": "VERIFICATION 02",
+    "¿Qué elemento conecta a todas las víctimas?": "What element connects all the victims?",
+    "PREGUNTA 3": "QUESTION 3",
+    "VERIFICACIÓN 03": "VERIFICATION 03",
+    "COMPROBACIÓN FINAL": "FINAL CHECK",
+    "¿Cuándo crees que se produciría el siguiente asesinato?": "When do you think the next murder would take place?",
+    "(Formato DD/MM/AAAA)": "(Format DD/MM/YYYY)",
+    "AUTORIZACIÓN FINAL": "FINAL AUTHORIZATION",
+    "✓ VERIFICACIÓN COMPLETADA": "✓ VERIFICATION COMPLETED",
+    "PERMISO DE APERTURA — SOBRE 02": "OPENING PERMIT — ENVELOPE 02",
+    "Las comprobaciones de seguridad han sido superadas.": "The security checks have been passed.",
+    "ESTADO: AUTORIZADO PARA APERTURA": "STATUS: AUTHORIZED FOR OPENING",
+    "✉ SOBRE 02 — AUTORIZADO": "✉ ENVELOPE 02 — AUTHORIZED",
+    "EXPEDIENTE CERRADO": "CASE FILE CLOSED",
+    "CASO CERRADO": "CASE CLOSED",
+    "El expediente ha sido completado y la investigación ha llegado a su fin.": "The case file has been completed and the investigation has come to an end.",
+    "CASO RESUELTO": "CASE SOLVED",
+    "Todas las pruebas disponibles han sido analizadas y la investigación ha sido completada.": "All available evidence has been analyzed and the investigation has been completed.",
+    "Gracias por vuestra colaboración.": "Thank you for your cooperation.",
+    "Antes de cerrar definitivamente el expediente, nos gustaría conocer vuestra experiencia durante la investigación.": "Before permanently closing the case file, we would like to hear about your experience during the investigation.",
+    "CONTINUAR": "CONTINUE",
+    "INFORME DE EXPERIENCIA": "EXPERIENCE REPORT",
+    "VALORACIÓN DE LA INVESTIGACIÓN": "INVESTIGATION FEEDBACK",
+    "El expediente está cerrado. Antes de abandonar el sistema, nos gustaría conocer vuestra opinión sobre la experiencia.": "The case file is closed. Before leaving the system, we would like to hear your opinion about the experience.",
+    "¿Qué valoración general le dais al juego?": "How would you rate the game overall?",
+    "¿Cómo os ha parecido la dificultad?": "How did you find the difficulty?",
+    "Seleccionar...": "Select...",
+    "Muy fácil": "Very easy", "Fácil": "Easy", "Adecuada": "Just right", "Difícil": "Difficult", "Muy difícil": "Very difficult",
+    "¿Qué parte os ha gustado más?": "Which part did you enjoy the most?",
+    "Investigación": "Investigation", "Puzles": "Puzzles", "Historia": "Story", "Documentos": "Documents", "Página web": "Website", "Ambientación": "Atmosphere",
+    "¿En qué momento sentisteis que habíais descubierto algo importante?": "At what moment did you feel you had discovered something important?",
+    "¿Hubo alguna parte que os resultara confusa o frustrante?": "Was there any part that you found confusing or frustrating?",
+    "¿Qué cambiaríais o mejoraríais?": "What would you change or improve?",
+    "¿Recomendaríais Oca de Arraya?": "Would you recommend Oca de Arraya?",
+    "Sí": "Yes", "No": "No", "No estoy seguro/a": "Not sure",
+    "Comentarios adicionales": "Additional comments",
+    "ENVIAR INFORME": "SUBMIT REPORT",
+    "UNIDAD DE DETENCIONES": "ARREST UNIT",
+    "FASE FINAL": "FINAL PHASE",
+    "INVESTIGACIÓN": "INVESTIGATION",
+    "ORDEN DE DETENCIÓN": "ARREST ORDER",
+    "Identificación del responsable de los acontecimientos investigados.": "Identification of the person responsible for the investigated events.",
+    "AUTORIZACIÓN FINAL CONCEDIDA": "FINAL AUTHORIZATION GRANTED",
+    "La investigación ha alcanzado su fase final.": "The investigation has reached its final phase.",
+    "Si han llegado hasta aquí es porque han deducido que los sospechosos tenían el edificio Fuente Carnero como punto común. Debido a esto hemos autorizado un registro exhaustivo de la propiedad.": "If you have reached this point, you have deduced that the suspects shared the Fuente Carnero building as a common link. We have therefore authorized a thorough search of the property.",
+    "Consulte los documentos recogidos durante el registro e identifique al responsable.": "Review the documents collected during the search and identify the person responsible.",
+    "IDENTIFICACIÓN DEL SOSPECHOSO": "SUSPECT IDENTIFICATION",
+    "ACCESO AUTORIZADO": "ACCESS AUTHORIZED",
+    "El registro ha causado grab revuelo. Nos preocupa que haya ALTO RIESGO DE FUGA. Introduzca el nombre y apellidos del sospechoso que considera responsable.": "The search has caused quite a stir. We are concerned about a HIGH RISK OF ESCAPE. Enter the first and last name of the suspect you believe is responsible.",
+    "SOSPECHOSO": "SUSPECT",
+    "CONFIRMAR DETENCIÓN": "CONFIRM ARREST",
+    "DOCUMENTACIÓN INTERNA · COMISARÍA DE OCA DE ARRAYA · ACCESO RESTRINGIDO": "INTERNAL DOCUMENTATION · OCA DE ARRAYA POLICE STATION · RESTRICTED ACCESS",
+    "CÓDIGO NO RECONOCIDO": "CODE NOT RECOGNIZED",
+    "No existe ningún análisis asociado al código introducido.": "No analysis is associated with the code entered.",
+    "⚠ CÓDIGO NO RECONOCIDO": "⚠ CODE NOT RECOGNIZED",
+    "✓ AUTORIZACIÓN VERIFICADA": "✓ AUTHORIZATION VERIFIED",
+    "Los archivos de comunicaciones han sido desbloqueados.": "The communications files have been unlocked.",
+    "⚠ ACCESO DENEGADO": "⚠ ACCESS DENIED",
+    "El código introducido no es válido.": "The code entered is not valid.",
+    "✓ CLAVE DE AUTORIZACIÓN VALIDADA": "✓ AUTHORIZATION KEY VALIDATED",
+    "Para completar la autorización,": "To complete the authorization,",
+    "responda a las siguientes comprobaciones.": "answer the following checks.",
+    "⚠ CLAVE NO VÁLIDA": "⚠ INVALID KEY",
+    "La clave introducida no es correcta.": "The key entered is incorrect.",
+    "✓ VERIFICACIÓN 01 SUPERADA": "✓ VERIFICATION 01 PASSED",
+    "✓ VERIFICACIÓN 02 SUPERADA": "✓ VERIFICATION 02 PASSED",
+    "✓ VERIFICACIÓN 03 SUPERADA": "✓ VERIFICATION 03 PASSED",
+    "⚠ RESPUESTA INCORRECTA": "⚠ INCORRECT ANSWER",
+    "Revise la información del expediente e inténtelo de nuevo.": "Review the case file information and try again.",
+    "Introduzca una fecha con el formato": "Enter a date in the format",
+    "DETENCIÓN AUTORIZADA": "ARREST AUTHORIZED",
+    "IDENTIFICACIÓN CONFIRMADA.": "IDENTIFICATION CONFIRMED.",
+    "El sospechoso indicado ha sido identificado como responsable de los acontecimientos investigados.": "The indicated suspect has been identified as responsible for the investigated events.",
+    "ORDEN DE DETENCIÓN EMITIDA": "ARREST ORDER ISSUED",
+    "IDENTIFICACIÓN INCORRECTA": "INCORRECT IDENTIFICATION",
+    "El sospechoso indicado no coincide con el responsable.": "The indicated suspect does not match the person responsible.",
+    "Revise las pruebas antes de realizar una nueva identificación.": "Review the evidence before making a new identification.",
+    "IDENTIFICACIÓN FALLIDA": "IDENTIFICATION FAILED",
+    "Se han agotado las oportunidades de identificación.": "All identification attempts have been exhausted.",
+    "ORDEN DE DETENCIÓN DENEGADA.": "ARREST ORDER DENIED.",
+    "Aquí escribiremos la primera pista de la investigación.": "The first investigation hint will appear here.",
+    "Aquí escribiremos la segunda pista de la investigación.": "The second investigation hint will appear here.",
+    "Aquí escribiremos la tercera pista de la investigación.": "The third investigation hint will appear here.",
+    "Aquí escribiremos la cuarta pista de la investigación.": "The fourth investigation hint will appear here.",
+    "¿Desea reiniciar la investigación?": "Do you want to reset the investigation?",
+    "Se eliminará el progreso de esta partida y será necesario volver a superar las autorizaciones.": "This game's progress will be deleted and the authorizations will have to be completed again.",
+    "Investigación reiniciada correctamente.": "Investigation reset successfully.",
+    "No se ha podido enviar la valoración.": "The feedback could not be submitted.",
+    "Compruebe la conexión a Internet.": "Please check your Internet connection.",
+    "OPORTUNIDADES DISPONIBLES": "ATTEMPTS AVAILABLE",
+    "FASE FINAL": "FINAL PHASE",
+    "INFORME DE LABORATORIO": "LABORATORY REPORT"
+};
+
+const TRADUCCIONES_EN_ES = Object.fromEntries(
+    Object.entries(TRADUCCIONES).map(([es, en]) => [en, es])
+);
+
+let idiomaActual = localStorage.getItem("idiomaOca") || "es";
+
+function reemplazarTraduccion(texto, mapa) {
+    let resultado = texto;
+    const entradas = Object.entries(mapa).sort((a,b) => b[0].length - a[0].length);
+    entradas.forEach(([origen, destino]) => {
+        if (!origen) return;
+        resultado = resultado.split(origen).join(destino);
+    });
+    resultado = resultado.replace(/OPORTUNIDADES DISPONIBLES:\s*\d+/g, m =>
+        m.replace("OPORTUNIDADES DISPONIBLES", "ATTEMPTS AVAILABLE")
+    );
+    resultado = resultado.replace(/ATTEMPTS AVAILABLE:\s*\d+/g, m =>
+        m.replace("ATTEMPTS AVAILABLE", "OPORTUNIDADES DISPONIBLES")
+    );
+    return resultado;
+}
+
+function traducirAtributos(raiz, mapa) {
+    raiz.querySelectorAll("[placeholder], [alt], [title]").forEach(el => {
+        ["placeholder", "alt", "title"].forEach(attr => {
+            if (el.hasAttribute(attr)) {
+                el.setAttribute(attr, reemplazarTraduccion(el.getAttribute(attr), mapa));
+            }
+        });
+    });
+}
+
+function traducirNodoTexto(nodo, mapa) {
+    if (nodo.nodeType !== Node.TEXT_NODE) return;
+    if (!nodo.nodeValue.trim()) return;
+    nodo.nodeValue = reemplazarTraduccion(nodo.nodeValue, mapa);
+}
+
+function traducirPagina() {
+    const mapa = idiomaActual === "en" ? TRADUCCIONES : TRADUCCIONES_EN_ES;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodos = [];
+    while (walker.nextNode()) nodos.push(walker.currentNode);
+    nodos.forEach(n => {
+        const padre = n.parentElement;
+        if (padre && !["SCRIPT", "STYLE"].includes(padre.tagName)) {
+            traducirNodoTexto(n, mapa);
+        }
+    });
+    traducirAtributos(document.body, mapa);
+    actualizarSelectorIdioma();
+    document.documentElement.lang = idiomaActual;
+}
+
+function actualizarSelectorIdioma() {
+    const es = document.getElementById("btnIdiomaES");
+    const en = document.getElementById("btnIdiomaEN");
+    if (es) es.classList.toggle("activo", idiomaActual === "es");
+    if (en) en.classList.toggle("activo", idiomaActual === "en");
+}
+
+function cambiarIdioma(nuevoIdioma) {
+    if (nuevoIdioma !== "es" && nuevoIdioma !== "en") return;
+    idiomaActual = nuevoIdioma;
+    localStorage.setItem("idiomaOca", idiomaActual);
+    traducirPagina();
+}
+
+/* Traduce también los bloques que el juego genera dinámicamente. */
+const observadorIdioma = new MutationObserver(mutations => {
+    if (idiomaActual !== "en") return;
+    const mapa = TRADUCCIONES;
+    mutations.forEach(m => {
+        m.addedNodes.forEach(n => {
+            if (n.nodeType === Node.TEXT_NODE) {
+                traducirNodoTexto(n, mapa);
+            } else if (n.nodeType === Node.ELEMENT_NODE) {
+                if (n.tagName !== "SCRIPT" && n.tagName !== "STYLE") {
+                    const walker = document.createTreeWalker(n, NodeFilter.SHOW_TEXT);
+                    const nodos = [];
+                    while (walker.nextNode()) nodos.push(walker.currentNode);
+                    nodos.forEach(t => traducirNodoTexto(t, mapa));
+                    traducirAtributos(n, mapa);
+                }
+            }
+        });
+    });
+});
+
+observadorIdioma.observe(document.body, { childList: true, subtree: true });
+
+window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => traducirPagina(), 0);
+});
+
 </script>
 
 
