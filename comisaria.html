@@ -5405,8 +5405,134 @@ const TRADUCCIONES = {
         "Opening permit — Envelope 02.",
 
     "Emblema de la Comisaría de Oca de Arraya":
-        "Oca de Arraya Police Station emblem"
+        "Oca de Arraya Police Station emblem",
 
+    /* =========================
+       AÑADIDOS DESPUES
+    ========================= */
+
+    "VOLVER A INTRANET MUNICIPAL": "BACK TO MUNICIPAL INTRANET",
+
+"SISTEMA DE INVESTIGACIÓN": "INVESTIGATION SYSTEM",
+"AYUNTAMIENTO DE OCA DE ARRAYA": "OCA DE ARRAYA MUNICIPALITY",
+"UNIDAD DE INVESTIGACIÓN": "INVESTIGATION UNIT",
+
+"ESTADO DEL EXPEDIENTE": "CASE FILE STATUS",
+"Información general de la investigación.": "General investigation information.",
+
+"Análisis de laboratorio": "Laboratory analysis",
+"Registros de audio": "Audio records",
+"Documentos de Acceso restringido": "Restricted-access documents",
+
+"Registros de llamadas e interrogatorios.": "Call and interrogation records.",
+
+"Imagen localizada pegada en la esquina de la pantalla del ordenador.":
+    "Image found attached to the corner of the computer screen.",
+
+"Imagen localizada pegada en la esquina de la pantalla del ordenador":
+    "Image found attached to the corner of the computer screen",
+
+"Tu navegador no puede reproducir este audio.":
+    "Your browser cannot play this audio.",
+
+"Declaración policial": "Police statement",
+
+"El código introducido ha sido validado.":
+    "The code entered has been validated.",
+
+"La documentación física asociada a esta autorización puede ser abierta.":
+    "The physical documentation associated with this authorization may now be opened.",
+
+"La clave de autorización para recibir la apertura del Sobre 02 se encuentra en la resolución de este documento.":
+    "The authorization key required to open Envelope 02 is contained in the resolution of this document.",
+
+"Esta autorización requiere la clave obtenida durante el desarrollo de la investigación.":
+    "This authorization requires the key obtained during the investigation.",
+
+"Las comprobaciones de seguridad han sido superadas.":
+    "The security checks have been passed.",
+
+"PERMISO DE APERTURA — SOBRE 01":
+    "OPENING PERMIT — ENVELOPE 01",
+
+"PERMISO DE APERTURA — SOBRE 02":
+    "OPENING PERMIT — ENVELOPE 02",
+
+"Introduzca su respuesta": "Enter your answer",
+
+"Contadnos ese momento...": "Tell us about that moment...",
+
+"Cualquier sugerencia nos ayuda...": "Any suggestion helps us...",
+
+"INFORME DE LABORATORIO Nº": "LABORATORY REPORT Nº",
+
+"LABORATORIO": "LABORATORY",
+"CRIMINALÍSTICO": "FORENSIC",
+
+"ESTADO:": "STATUS:",
+"ANÁLISIS COMPLETADO": "ANALYSIS COMPLETED",
+"RESULTADO DISPONIBLE": "RESULT AVAILABLE",
+
+"El análisis correspondiente a las muestras remitidas al laboratorio se encuentra disponible para consulta.":
+    "The analysis corresponding to the samples submitted to the laboratory is available for review.",
+
+"Los archivos de comunicaciones han sido desbloqueados.":
+    "The communications files have been unlocked.",
+
+"Permiso de apertura — Sobre 01.":
+    "Opening permit — Envelope 01.",
+
+"Para completar la autorización,":
+    "To complete the authorization,",
+
+"responda a las siguientes preguntas":
+    "answer the following questions",
+
+"de verificación.":
+    "for verification.",
+
+"La clave introducida no es correcta.":
+    "The key entered is incorrect.",
+
+"Revise la información del expediente":
+    "Review the information in the case file",
+
+"e inténtelo de nuevo.":
+    "and try again.",
+
+"Las comprobaciones de seguridad":
+    "The security checks",
+
+"han sido superadas.":
+    "have been passed.",
+
+"La documentación física asociada":
+    "The physical documentation associated",
+
+"a esta autorización puede ser abierta.":
+    "with this authorization may now be opened.",
+
+"Identificación del responsable":
+    "Identification of the person responsible",
+
+"de los acontecimientos investigados.":
+    "for the events under investigation.",
+
+"La investigación ha alcanzado su fase final.":
+    "The investigation has reached its final phase.",
+
+"Introduzca el nombre y apellidos":
+    "Enter the first and last name",
+
+"del sospechoso que considera responsable.":
+    "of the suspect you believe is responsible.",
+
+"Contadnos ese momento...":
+    "Tell us about that moment...",
+
+"Cualquier sugerencia nos ayuda...":
+    "Any suggestion helps us..."
+    
 };
 
 const TRADUCCIONES_EN_ES = Object.fromEntries(
@@ -5417,17 +5543,66 @@ let idiomaActual = localStorage.getItem("idiomaOca") || "es";
 
 function reemplazarTraduccion(texto, mapa) {
     let resultado = texto;
-    const entradas = Object.entries(mapa).sort((a,b) => b[0].length - a[0].length);
+
+    const entradas = Object.entries(mapa)
+        .filter(([origen, destino]) => origen && destino)
+        .sort((a, b) => b[0].length - a[0].length);
+
     entradas.forEach(([origen, destino]) => {
-        if (!origen) return;
+
+        /*
+         * Primero intentamos la sustitución normal.
+         * Esto mantiene funcionando todas las traducciones
+         * que ya tenemos.
+         */
         resultado = resultado.split(origen).join(destino);
+
+        /*
+         * Después hacemos una versión tolerante a espacios.
+         * Permite que una frase siga encontrándose aunque
+         * haya varios espacios entre sus palabras.
+         */
+        const partes = origen.trim().split(/\s+/);
+
+        if (partes.length > 1) {
+            const patron = partes
+                .map(p => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+                .join("\\s+");
+
+            try {
+                resultado = resultado.replace(
+                    new RegExp(patron, "g"),
+                    destino
+                );
+            } catch (e) {
+                // Si una entrada no puede convertirse en expresión,
+                // mantenemos la sustitución normal.
+            }
+        }
     });
-    resultado = resultado.replace(/OPORTUNIDADES DISPONIBLES:\s*\d+/g, m =>
-        m.replace("OPORTUNIDADES DISPONIBLES", "ATTEMPTS AVAILABLE")
-    );
-    resultado = resultado.replace(/ATTEMPTS AVAILABLE:\s*\d+/g, m =>
-        m.replace("ATTEMPTS AVAILABLE", "OPORTUNIDADES DISPONIBLES")
-    );
+
+    /*
+     * OPORTUNIDADES DISPONIBLES es dinámico:
+     * el número cambia según los intentos restantes.
+     */
+    if (idiomaActual === "en") {
+        resultado = resultado.replace(
+            /OPORTUNIDADES DISPONIBLES:\s*\d+/g,
+            m => m.replace(
+                "OPORTUNIDADES DISPONIBLES",
+                "ATTEMPTS AVAILABLE"
+            )
+        );
+    } else {
+        resultado = resultado.replace(
+            /ATTEMPTS AVAILABLE:\s*\d+/g,
+            m => m.replace(
+                "ATTEMPTS AVAILABLE",
+                "OPORTUNIDADES DISPONIBLES"
+            )
+        );
+    }
+
     return resultado;
 }
 
