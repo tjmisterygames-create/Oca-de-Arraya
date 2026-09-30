@@ -1936,6 +1936,29 @@ footer {
     }
 }
 
+.aviso-pistas {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #b30000;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    animation: parpadeoPistas 1.5s infinite;
+}
+
+@keyframes parpadeoPistas {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+    
 </style>
 
 </head>
@@ -2050,7 +2073,7 @@ footer {
 
     </li>
 
-    <li onclick="mostrarSeccion('pistas')">
+    <li onclick="mostrarSeccion('pistas'); marcarPistasVistas();">
 
     <span class="icono">
         <img src="pistas.png" alt="">
@@ -2058,7 +2081,11 @@ footer {
 
     <span>PISTAS</span>
 
-    </li>
+    <span id="avisoPistas" class="aviso-pistas" style="display:none;">
+        NUEVAS
+    </span>
+
+</li>
 
     <li onclick="mostrarSeccion('laboratorio')">
 
@@ -3975,6 +4002,57 @@ function desbloquearComunicaciones() {
    DESBLOQUEO DE PISTAS
 ===================================================== */
 
+/* =====================================================
+   AVISO DE NUEVAS PISTAS
+===================================================== */
+
+function mostrarAvisoPistas() {
+
+    const aviso = document.getElementById("avisoPistas");
+
+    if (aviso) {
+        aviso.textContent = "NUEVAS";
+        aviso.style.display = "inline-block";
+    }
+
+    localStorage.setItem(
+        "hayNuevasPistas",
+        "true"
+    );
+}
+
+
+function marcarPistasVistas() {
+
+    const aviso = document.getElementById("avisoPistas");
+
+    if (aviso) {
+        aviso.style.display = "none";
+    }
+
+    localStorage.removeItem(
+        "hayNuevasPistas"
+    );
+}
+
+function comprobarAvisoPistas() {
+
+    const nuevas =
+        localStorage.getItem("hayNuevasPistas");
+
+    const aviso =
+        document.getElementById("avisoPistas");
+
+    if (!aviso) return;
+
+    if (nuevas === "true") {
+        aviso.textContent = "NUEVAS";
+        aviso.style.display = "inline-block";
+    } else {
+        aviso.style.display = "none";
+    }
+}    
+    
 function desbloquearPistasSobre01() {
 
     const pista04 =
@@ -3997,6 +4075,7 @@ function desbloquearPistasSobre01() {
     );
 }
 
+mostrarAvisoPistas();
 
 function desbloquearPistaSobre02() {
 
@@ -4011,6 +4090,8 @@ function desbloquearPistaSobre02() {
         "pistaSobre02Desbloqueada",
         "true"
     );
+
+    mostrarAvisoPistas();
 }
 
 
@@ -4698,6 +4779,7 @@ document.addEventListener(
         comprobarDetencion();
         obtenerPistaSobre02();
         comprobarPistasDesbloqueadas();
+        comprobarAvisoPistas();
 
     }
 );
@@ -4750,6 +4832,10 @@ function reiniciarInvestigacion() {
     localStorage.removeItem(
     "pistaSobre02Desbloqueada"
     );
+
+    localStorage.removeItem(
+    "hayNuevasPistas"
+);
     
     /* -----------------------------------------------
        OCULTAR DETENCIÓN
