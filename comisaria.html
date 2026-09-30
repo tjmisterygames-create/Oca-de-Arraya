@@ -4229,10 +4229,6 @@ function obtenerPistaSobre02() {
     let pistaGuardada =
         localStorage.getItem("pistaSobre02");
 
-    /*
-       Si no existe una pista guardada,
-       se genera una nueva al azar.
-    */
     if (!pistaGuardada) {
 
         const indice =
@@ -4258,78 +4254,6 @@ function obtenerPistaSobre02() {
         document.getElementById(
             "pistaSobre02"
         );
-
-    if (imagen) {
-
-        imagen.src =
-            pista.imagen;
-
-    }
-
-    return pista;
-}
-    ];
-
-    let pistaGuardada =
-        localStorage.getItem("pistaSobre02");
-
-    /*
-       Si no existe una pista guardada,
-       se genera una nueva al azar.
-    */
-    if (!pistaGuardada) {
-
-        const indice =
-            Math.floor(Math.random() * pistas.length);
-
-        pistaGuardada =
-            JSON.stringify(pistas[indice]);
-
-        localStorage.setItem(
-            "pistaSobre02",
-            pistaGuardada
-        );
-    }
-
-    const pista =
-        JSON.parse(pistaGuardada);
-
-    /*
-       Mostrar la imagen correspondiente
-    */
-    const imagen =
-        document.getElementById("pistaSobre02");
-
-    if (imagen) {
-        imagen.src = pista.imagen;
-    }
-
-    return pista;
-}
-    ];
-
-    let pistaGuardada =
-        localStorage.getItem("pistaSobre02");
-
-    if (!pistaGuardada) {
-
-        const indice =
-            Math.floor(Math.random() * pistas.length);
-
-        pistaGuardada =
-            JSON.stringify(pistas[indice]);
-
-        localStorage.setItem(
-            "pistaSobre02",
-            pistaGuardada
-        );
-    }
-
-    const pista =
-        JSON.parse(pistaGuardada);
-
-    const imagen =
-        document.getElementById("pistaSobre02");
 
     if (imagen) {
         imagen.src = pista.imagen;
