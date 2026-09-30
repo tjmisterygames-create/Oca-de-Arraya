@@ -2315,76 +2315,108 @@ footer {
 
         <div class="lista-pistas">
 
+    <!-- PISTAS INICIALES -->
 
-            <button
-                class="pista-icono"
-                onclick="mostrarPista(1)"
-            >
+    <button
+        class="pista-icono"
+        onclick="mostrarPista(1)"
+    >
+        <img
+            src="pista-1.png"
+            alt="Pista 01"
+        >
 
-                <img
-                    src="pista-1.png"
-                    alt="Pista 01"
-                >
-
-                <span>
-                    PISTA 01
-                </span>
-
-            </button>
-
-
-            <button
-                class="pista-icono"
-                onclick="mostrarPista(2)"
-            >
-
-                <img
-                    src="pista-2.png"
-                    alt="Pista 02"
-                >
-
-                <span>
-                    PISTA 02
-                </span>
-
-            </button>
+        <span>
+            PISTA 01
+        </span>
+    </button>
 
 
-            <button
-                class="pista-icono"
-                onclick="mostrarPista(3)"
-            >
+    <button
+        class="pista-icono"
+        onclick="mostrarPista(2)"
+    >
+        <img
+            src="pista-2.png"
+            alt="Pista 02"
+        >
 
-                <img
-                    src="pista-3.png"
-                    alt="Pista 03"
-                >
-
-                <span>
-                    PISTA 03
-                </span>
-
-            </button>
+        <span>
+            PISTA 02
+        </span>
+    </button>
 
 
-            <button
-                class="pista-icono"
-                onclick="mostrarPista(4)"
-            >
+    <button
+        class="pista-icono"
+        onclick="mostrarPista(3)"
+    >
+        <img
+            src="pista-3.png"
+            alt="Pista 03"
+        >
 
-                <img
-                    src="pista-4.png"
-                    alt="Pista 04"
-                >
-
-                <span>
-                    PISTA 04
-                </span>
-
-            </button>
+        <span>
+            PISTA 03
+        </span>
+    </button>
 
 
-        </div>
+    <!-- PISTAS DESBLOQUEADAS AL ABRIR SOBRE 01 -->
+
+    <button
+        id="pista04"
+        class="pista-icono"
+        onclick="mostrarPista(4)"
+        style="display:none;"
+    >
+        <img
+            src="pista-4.png"
+            alt="Pista 04"
+        >
+
+        <span>
+            PISTA 04
+        </span>
+    </button>
+
+
+    <button
+        id="pista05"
+        class="pista-icono"
+        onclick="mostrarPista(5)"
+        style="display:none;"
+    >
+        <img
+            src="pista-5.png"
+            alt="Pista 05"
+        >
+
+        <span>
+            PISTA 05
+        </span>
+    </button>
+
+
+    <!-- PISTA DESBLOQUEADA AL ABRIR SOBRE 02 -->
+
+    <button
+        id="pista06"
+        class="pista-icono"
+        onclick="mostrarPista(6)"
+        style="display:none;"
+    >
+        <img
+            src="pista-6.png"
+            alt="Pista 06"
+        >
+
+        <span>
+            PISTA 06
+        </span>
+    </button>
+
+</div>
 
 
         <div
@@ -3939,6 +3971,91 @@ function desbloquearComunicaciones() {
    DOCUMENTOS RESTRINGIDOS
 ===================================================== */
 
+/* =====================================================
+   DESBLOQUEO DE PISTAS
+===================================================== */
+
+function desbloquearPistasSobre01() {
+
+    const pista04 =
+        document.getElementById("pista04");
+
+    const pista05 =
+        document.getElementById("pista05");
+
+    if (pista04) {
+        pista04.style.display = "flex";
+    }
+
+    if (pista05) {
+        pista05.style.display = "flex";
+    }
+
+    localStorage.setItem(
+        "pistasSobre01Desbloqueadas",
+        "true"
+    );
+}
+
+
+function desbloquearPistaSobre02() {
+
+    const pista06 =
+        document.getElementById("pista06");
+
+    if (pista06) {
+        pista06.style.display = "flex";
+    }
+
+    localStorage.setItem(
+        "pistaSobre02Desbloqueada",
+        "true"
+    );
+}
+
+
+function comprobarPistasDesbloqueadas() {
+
+    const sobre01 =
+        localStorage.getItem(
+            "pistasSobre01Desbloqueadas"
+        );
+
+    const sobre02 =
+        localStorage.getItem(
+            "pistaSobre02Desbloqueada"
+        );
+
+
+    if (sobre01 === "true") {
+        const pista04 =
+            document.getElementById("pista04");
+
+        const pista05 =
+            document.getElementById("pista05");
+
+        if (pista04) {
+            pista04.style.display = "flex";
+        }
+
+        if (pista05) {
+            pista05.style.display = "flex";
+        }
+    }
+
+
+    if (sobre02 === "true") {
+
+        const pista06 =
+            document.getElementById("pista06");
+
+        if (pista06) {
+            pista06.style.display = "flex";
+        }
+    }
+
+}
+    
 function desbloquearDocumentos01() {
 
     const codigo =
@@ -3976,6 +4093,7 @@ function desbloquearDocumentos01() {
 
         documentos.style.display = "block";
 
+        desbloquearPistasSobre01();
     }
 
     else {
@@ -4263,6 +4381,7 @@ function verificarPregunta02() {
         `;
 
         autorizacion.style.display = "block";
+        desbloquearPistaSobre02();
         desbloquearDetencion();
         
     }
@@ -4578,6 +4697,7 @@ document.addEventListener(
 
         comprobarDetencion();
         obtenerPistaSobre02();
+        comprobarPistasDesbloqueadas();
 
     }
 );
@@ -4623,6 +4743,14 @@ function reiniciarInvestigacion() {
     "pistaSobre02"
     );
 
+    localStorage.removeItem(
+    "pistasSobre01Desbloqueadas"
+    );
+
+    localStorage.removeItem(
+    "pistaSobre02Desbloqueada"
+    );
+    
     /* -----------------------------------------------
        OCULTAR DETENCIÓN
     ----------------------------------------------- */
@@ -4722,6 +4850,42 @@ function mostrarPista(numero) {
 
             <p>
                 Aquí escribiremos la cuarta pista
+                de la investigación.
+            </p>
+
+        `;
+
+    }
+
+
+    else if (numero === 5) {
+
+        mensaje.innerHTML = `
+
+            <strong>
+                PISTA 05
+            </strong>
+
+            <p>
+                Aquí escribiremos la quinta pista
+                de la investigación.
+            </p>
+
+        `;
+
+    }
+
+
+    else if (numero === 6) {
+
+        mensaje.innerHTML = `
+
+            <strong>
+                PISTA 06
+            </strong>
+
+            <p>
+                Aquí escribiremos la sexta pista
                 de la investigación.
             </p>
 
