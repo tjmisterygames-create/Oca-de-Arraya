@@ -4011,7 +4011,8 @@ function mostrarAvisoPistas() {
     const aviso = document.getElementById("avisoPistas");
 
     if (aviso) {
-        aviso.textContent = "NUEVAS";
+        aviso.textContent =
+            idiomaActual === "en" ? "NEW" : "NUEVAS";
         aviso.style.display = "inline-block";
     }
 
@@ -4046,7 +4047,8 @@ function comprobarAvisoPistas() {
     if (!aviso) return;
 
     if (nuevas === "true") {
-        aviso.textContent = "NUEVAS";
+        aviso.textContent =
+            idiomaActual === "en" ? "NEW" : "NUEVAS";
         aviso.style.display = "inline-block";
     } else {
         aviso.style.display = "none";
@@ -4175,6 +4177,8 @@ function desbloquearDocumentos01() {
         documentos.style.display = "block";
 
         desbloquearPistasSobre01();
+
+        obtenerPistaSobre02();
     }
 
     else {
@@ -4777,7 +4781,6 @@ document.addEventListener(
     function() {
 
         comprobarDetencion();
-        obtenerPistaSobre02();
         comprobarPistasDesbloqueadas();
         comprobarAvisoPistas();
 
