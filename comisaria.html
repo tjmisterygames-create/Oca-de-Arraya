@@ -4071,13 +4071,13 @@ function desbloquearPistasSobre01() {
         pista05.style.display = "flex";
     }
 
-    localStorage.setItem(
+        localStorage.setItem(
         "pistasSobre01Desbloqueadas",
         "true"
     );
-}
 
-mostrarAvisoPistas();
+    mostrarAvisoPistas();
+}
 
 function desbloquearPistaSobre02() {
 
@@ -5236,6 +5236,8 @@ const TRADUCCIONES = {
     "PISTA 02": "HINT 02",
     "PISTA 03": "HINT 03",
     "PISTA 04": "HINT 04",
+    "PISTA 05": "HINT 05",
+    "PISTA 06": "HINT 06",
 
     /* =========================
        LABORATORIO
@@ -5572,6 +5574,12 @@ const TRADUCCIONES = {
 
     "Aquí escribiremos la cuarta pista de la investigación.":
         "The fourth investigation hint will appear here.",
+
+    "Aquí escribiremos la quinta pista de la investigación.":
+    "The fifth investigation hint will appear here.",
+
+    "Aquí escribiremos la sexta pista de la investigación.":
+    "The sixth investigation hint will appear here.",
 
     /* =========================
        REINICIO Y MENSAJES
