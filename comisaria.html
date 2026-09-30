@@ -4229,6 +4229,118 @@ function obtenerPistaSobre02() {
     let pistaGuardada =
         localStorage.getItem("pistaSobre02");
 
+    /*
+       Si no existe una pista guardada,
+       generamos una nueva.
+    */
+    if (!pistaGuardada) {
+
+        let pistasDisponibles = [...pistas];
+
+        /*
+           Si tenemos una pista anterior,
+           evitamos repetirla inmediatamente.
+        */
+        const pistaAnterior =
+            localStorage.getItem("pistaSobre02Anterior");
+
+        if (pistaAnterior) {
+
+            try {
+
+                const anterior =
+                    JSON.parse(pistaAnterior);
+
+                pistasDisponibles =
+                    pistasDisponibles.filter(
+                        pista =>
+                            pista.imagen !== anterior.imagen
+                    );
+
+            } catch (e) {
+
+                console.warn(
+                    "No se pudo leer la pista anterior."
+                );
+
+            }
+        }
+
+        const indice =
+            Math.floor(
+                Math.random() *
+                pistasDisponibles.length
+            );
+
+        pistaGuardada =
+            JSON.stringify(
+                pistasDisponibles[indice]
+            );
+
+        localStorage.setItem(
+            "pistaSobre02",
+            pistaGuardada
+        );
+    }
+
+    const pista =
+        JSON.parse(pistaGuardada);
+
+    /*
+       Mostrar la imagen
+    */
+    const imagen =
+        document.getElementById("pistaSobre02");
+
+    if (imagen) {
+        imagen.src = pista.imagen;
+    }
+
+    return pista;
+}
+    ];
+
+    let pistaGuardada =
+        localStorage.getItem("pistaSobre02");
+
+    /*
+       Si no existe una pista guardada,
+       se genera una nueva al azar.
+    */
+    if (!pistaGuardada) {
+
+        const indice =
+            Math.floor(Math.random() * pistas.length);
+
+        pistaGuardada =
+            JSON.stringify(pistas[indice]);
+
+        localStorage.setItem(
+            "pistaSobre02",
+            pistaGuardada
+        );
+    }
+
+    const pista =
+        JSON.parse(pistaGuardada);
+
+    /*
+       Mostrar la imagen correspondiente
+    */
+    const imagen =
+        document.getElementById("pistaSobre02");
+
+    if (imagen) {
+        imagen.src = pista.imagen;
+    }
+
+    return pista;
+}
+    ];
+
+    let pistaGuardada =
+        localStorage.getItem("pistaSobre02");
+
     if (!pistaGuardada) {
 
         const indice =
@@ -4824,9 +4936,15 @@ function reiniciarInvestigacion() {
         "intentosDetencion"
     );
 
-    localStorage.removeItem(
-    "pistaSobre02"
-    );
+    const pistaAnterior =
+    localStorage.getItem("pistaSobre02");
+
+localStorage.removeItem("pistaSobre02");
+
+localStorage.setItem(
+    "pistaSobre02Anterior",
+    pistaAnterior || ""
+);
 
     localStorage.removeItem(
     "pistasSobre01Desbloqueadas"
