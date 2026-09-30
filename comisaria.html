@@ -2850,13 +2850,14 @@ footer {
         </p>
 
         <a
-            href="circulo-final.png"
-            target="_blank"
-            class="boton"
-            style="text-decoration:none; text-align:center;"
-        >
-            ABRIR DOCUMENTO
-        </a>
+    id="abrirPistaSobre02"
+    href="#"
+    target="_blank"
+    class="boton"
+    style="text-decoration:none; text-align:center;"
+>
+    ABRIR DOCUMENTO
+</a>
 
     </div>
 
@@ -4259,6 +4260,18 @@ function obtenerPistaSobre02() {
         imagen.src = pista.imagen;
     }
 
+    const enlace =
+    document.getElementById(
+        "abrirPistaSobre02"
+    );
+
+    if (enlace) {
+
+    enlace.href =
+        pista.imagen;
+
+    }
+    
     return pista;
 }
 
