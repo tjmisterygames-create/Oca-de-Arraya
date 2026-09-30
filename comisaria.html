@@ -4231,50 +4231,18 @@ function obtenerPistaSobre02() {
 
     /*
        Si no existe una pista guardada,
-       generamos una nueva.
+       se genera una nueva al azar.
     */
     if (!pistaGuardada) {
 
-        let pistasDisponibles = [...pistas];
-
-        /*
-           Si tenemos una pista anterior,
-           evitamos repetirla inmediatamente.
-        */
-        const pistaAnterior =
-            localStorage.getItem("pistaSobre02Anterior");
-
-        if (pistaAnterior) {
-
-            try {
-
-                const anterior =
-                    JSON.parse(pistaAnterior);
-
-                pistasDisponibles =
-                    pistasDisponibles.filter(
-                        pista =>
-                            pista.imagen !== anterior.imagen
-                    );
-
-            } catch (e) {
-
-                console.warn(
-                    "No se pudo leer la pista anterior."
-                );
-
-            }
-        }
-
         const indice =
             Math.floor(
-                Math.random() *
-                pistasDisponibles.length
+                Math.random() * pistas.length
             );
 
         pistaGuardada =
             JSON.stringify(
-                pistasDisponibles[indice]
+                pistas[indice]
             );
 
         localStorage.setItem(
@@ -4286,14 +4254,16 @@ function obtenerPistaSobre02() {
     const pista =
         JSON.parse(pistaGuardada);
 
-    /*
-       Mostrar la imagen
-    */
     const imagen =
-        document.getElementById("pistaSobre02");
+        document.getElementById(
+            "pistaSobre02"
+        );
 
     if (imagen) {
-        imagen.src = pista.imagen;
+
+        imagen.src =
+            pista.imagen;
+
     }
 
     return pista;
@@ -4936,14 +4906,8 @@ function reiniciarInvestigacion() {
         "intentosDetencion"
     );
 
-    const pistaAnterior =
-    localStorage.getItem("pistaSobre02");
-
-localStorage.removeItem("pistaSobre02");
-
-localStorage.setItem(
-    "pistaSobre02Anterior",
-    pistaAnterior || ""
+    localStorage.removeItem(
+    "pistaSobre02"
 );
 
     localStorage.removeItem(
