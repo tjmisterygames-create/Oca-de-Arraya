@@ -265,6 +265,37 @@ footer {
     letter-spacing: 1px;
 }
 
+.boton-idioma {
+
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    background: #f5f4ee;
+    color: #26343a;
+
+    border: 1px solid #a7a9a4;
+
+    padding: 8px 13px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.boton-idioma:hover {
+
+    background: #d9dad5;
+
+}
+    
 </style>
 
 </head>
@@ -275,11 +306,19 @@ footer {
 
 <header>
 
-    <h1>
+    <button
+        class="boton-idioma"
+        id="botonIdioma"
+        onclick="cambiarIdioma()"
+    >
+        🇬🇧 EN
+    </button>
+
+    <h1 id="tituloAyuntamiento">
         AYUNTAMIENTO DE OCA DE ARRAYA
     </h1>
 
-    <p>
+    <p id="subtituloArchivo">
         ARCHIVO MUNICIPAL · SISTEMA INTERNO
     </p>
 
@@ -288,9 +327,9 @@ footer {
 
 <div class="navegacion">
 
-    <a href="index.html">
-        ← VOLVER A INTRANET MUNICIPAL
-    </a>
+    <a href="index.html" id="volverIntranet">
+    ← VOLVER A INTRANET MUNICIPAL
+</a>
 
 </div>
 
@@ -314,15 +353,15 @@ footer {
 
         </div>
 
-        <h2>
+        <h2 id="tituloArchivo">
             ARCHIVO MUNICIPAL
         </h2>
 
     </div>
 
-    <p>
-        Acceso a documentación y registros
-        históricos del Ayuntamiento de Oca de Arraya.
+    <p id="descripcionArchivo">
+    Acceso a documentación y registros
+    históricos del Ayuntamiento de Oca de Arraya.
     </p>
 
 </div>
@@ -332,7 +371,7 @@ footer {
 
         <div class="acceso">
 
-            <label for="passwordArchivo">
+            <label for="passwordArchivo" id="labelPasswordArchivo">
 
                 ▣ - CONTRASEÑA DE ACCESO - ▣
 
@@ -346,9 +385,12 @@ footer {
             >
 
 
-            <button onclick="accederArchivo()">
+            <button
+                onclick="accederArchivo()"
+                id="botonAccederArchivo"
+            >
 
-                ACCEDER AL ARCHIVO
+            ACCEDER AL ARCHIVO
 
             </button>
 
@@ -365,23 +407,26 @@ footer {
 
             <div class="video-panel">
 
-                <h3>
+               <h3 id="tituloRegistroAudiovisual">
                     🎥 REGISTRO AUDIOVISUAL — MUSEO DE LA CIUDAD
                 </h3>
 
-                <p>
-                    Este registro se encuentra protegido
-                    mediante autorización adicional.
-                </p>
+            <p id="descripcionRegistroAudiovisual">
+                Este registro se encuentra protegido
+                mediante autorización adicional.
+            </p>
 
 
                 <!-- SEGUNDA CONTRASEÑA -->
 
-                <label for="passwordVideo">
+                <label
+    for="passwordVideo"
+    id="labelPasswordVideo"
+>
 
-                    CONTRASEÑA DEL REGISTRO AUDIOVISUAL
+    CONTRASEÑA DEL REGISTRO AUDIOVISUAL
 
-                </label>
+</label>
 
 
                 <input
@@ -391,11 +436,14 @@ footer {
                 >
 
 
-                <button onclick="accederVideo()">
+                <button
+    onclick="accederVideo()"
+    id="botonConsultarRegistro"
+>
 
-                    CONSULTAR REGISTRO
+    CONSULTAR REGISTRO
 
-                </button>
+</button>
 
 
                 <div id="resultadoVideo"></div>
@@ -406,9 +454,9 @@ footer {
                 <div id="videoResultado"
                      style="display:none;">
 
-                    <h3>
-                        REGISTRO AUDIOVISUAL AUTORIZADO
-                    </h3>
+                   <h3 id="tituloVideoAutorizado">
+    REGISTRO AUDIOVISUAL AUTORIZADO
+</h3>
 
 
                     <video controls>
@@ -419,8 +467,10 @@ footer {
                             target="_blank"
                         >
 
-                        Su navegador no permite
-                        reproducir este vídeo.
+                        <span id="mensajeVideo">
+                            Su navegador no permite
+                            reproducir este vídeo.
+                        </span>
 
                     </video>
 
@@ -439,7 +489,7 @@ footer {
 </div>
 
 
-<footer>
+<footer id="piePagina">
 
     AYUNTAMIENTO DE OCA DE ARRAYA · ARCHIVO MUNICIPAL
 
@@ -449,6 +499,243 @@ footer {
 
 <script>
 
+/* =====================================================
+   IDIOMA
+===================================================== */
+
+let idiomaActual =
+    localStorage.getItem("idiomaOca") || "es";
+
+
+function cambiarIdioma() {
+
+    if (idiomaActual === "es") {
+
+        idiomaActual = "en";
+
+    } else {
+
+        idiomaActual = "es";
+
+    }
+
+    localStorage.setItem(
+        "idiomaOca",
+        idiomaActual
+    );
+
+    traducirPagina();
+
+}
+
+
+/* =====================================================
+   TRADUCCIÓN
+===================================================== */
+
+function traducirPagina() {
+
+    const boton =
+        document.getElementById("botonIdioma");
+
+
+    if (idiomaActual === "es") {
+
+        document.documentElement.lang = "es";
+
+        document.title =
+            "Archivo Municipal - Oca de Arraya";
+
+
+        boton.innerHTML =
+            "🇬🇧 EN";
+
+
+        document.getElementById(
+            "tituloAyuntamiento"
+        ).textContent =
+            "AYUNTAMIENTO DE OCA DE ARRAYA";
+
+
+        document.getElementById(
+            "subtituloArchivo"
+        ).textContent =
+            "ARCHIVO MUNICIPAL · SISTEMA INTERNO";
+
+
+        document.getElementById(
+            "volverIntranet"
+        ).textContent =
+            "← VOLVER A INTRANET MUNICIPAL";
+
+
+        document.getElementById(
+            "tituloArchivo"
+        ).textContent =
+            "ARCHIVO MUNICIPAL";
+
+
+        document.getElementById(
+            "descripcionArchivo"
+        ).textContent =
+            "Acceso a documentación y registros históricos del Ayuntamiento de Oca de Arraya.";
+
+
+        document.getElementById(
+            "labelPasswordArchivo"
+        ).textContent =
+            "▣ - CONTRASEÑA DE ACCESO - ▣";
+
+
+        document.getElementById(
+            "botonAccederArchivo"
+        ).textContent =
+            "ACCEDER AL ARCHIVO";
+
+
+        document.getElementById(
+            "tituloRegistroAudiovisual"
+        ).textContent =
+            "🎥 REGISTRO AUDIOVISUAL — MUSEO DE LA CIUDAD";
+
+
+        document.getElementById(
+            "descripcionRegistroAudiovisual"
+        ).textContent =
+            "Este registro se encuentra protegido mediante autorización adicional.";
+
+
+        document.getElementById(
+            "labelPasswordVideo"
+        ).textContent =
+            "CONTRASEÑA DEL REGISTRO AUDIOVISUAL";
+
+
+        document.getElementById(
+            "botonConsultarRegistro"
+        ).textContent =
+            "CONSULTAR REGISTRO";
+
+
+        document.getElementById(
+            "tituloVideoAutorizado"
+        ).textContent =
+            "REGISTRO AUDIOVISUAL AUTORIZADO";
+
+
+        document.getElementById(
+            "mensajeVideo"
+        ).textContent =
+            "Su navegador no permite reproducir este vídeo.";
+
+
+        document.getElementById(
+            "piePagina"
+        ).textContent =
+            "AYUNTAMIENTO DE OCA DE ARRAYA · ARCHIVO MUNICIPAL";
+
+    }
+
+
+    else {
+
+        document.documentElement.lang = "en";
+
+        document.title =
+            "Municipal Archive - Oca de Arraya";
+
+
+        boton.innerHTML =
+            "🇪🇸 ES";
+
+
+        document.getElementById(
+            "tituloAyuntamiento"
+        ).textContent =
+            "OCA DE ARRAYA TOWN HALL";
+
+
+        document.getElementById(
+            "subtituloArchivo"
+        ).textContent =
+            "MUNICIPAL ARCHIVE · INTERNAL SYSTEM";
+
+
+        document.getElementById(
+            "volverIntranet"
+        ).textContent =
+            "← BACK TO MUNICIPAL INTRANET";
+
+
+        document.getElementById(
+            "tituloArchivo"
+        ).textContent =
+            "MUNICIPAL ARCHIVE";
+
+
+        document.getElementById(
+            "descripcionArchivo"
+        ).textContent =
+            "Access to historical documentation and records of Oca de Arraya Town Hall.";
+
+
+        document.getElementById(
+            "labelPasswordArchivo"
+        ).textContent =
+            "▣ - ACCESS PASSWORD - ▣";
+
+
+        document.getElementById(
+            "botonAccederArchivo"
+        ).textContent =
+            "ACCESS ARCHIVE";
+
+
+        document.getElementById(
+            "tituloRegistroAudiovisual"
+        ).textContent =
+            "🎥 AUDIOVISUAL RECORD — CITY MUSEUM";
+
+
+        document.getElementById(
+            "descripcionRegistroAudiovisual"
+        ).textContent =
+            "This record is protected by additional authorization.";
+
+
+        document.getElementById(
+            "labelPasswordVideo"
+        ).textContent =
+            "AUDIOVISUAL RECORD PASSWORD";
+
+
+        document.getElementById(
+            "botonConsultarRegistro"
+        ).textContent =
+            "VIEW RECORD";
+
+
+        document.getElementById(
+            "tituloVideoAutorizado"
+        ).textContent =
+            "AUDIOVISUAL RECORD AUTHORIZED";
+
+
+        document.getElementById(
+            "mensajeVideo"
+        ).textContent =
+            "Your browser does not support video playback.";
+
+
+        document.getElementById(
+            "piePagina"
+        ).textContent =
+            "OCA DE ARRAYA TOWN HALL · MUNICIPAL ARCHIVE";
+
+    }
+
+}
+    
 
 /* =====================================================
    PRIMERA CONTRASEÑA
@@ -483,43 +770,55 @@ function accederArchivo() {
 
         resultado.innerHTML = `
 
-            <div class="exito">
+    <div class="exito">
 
-                <div class="exito-titulo">
+        <div class="exito-titulo">
 
-                    ✓ ACCESO AUTORIZADO
+            ✓ ${
+                idiomaActual === "en"
+                ? "ACCESS AUTHORIZED"
+                : "ACCESO AUTORIZADO"
+            }
 
-                </div>
-
-
-                Acceso concedido al Archivo Municipal.
-
-
-                <div class="separador"></div>
+        </div>
 
 
-                <div class="recurso">
+        ${
+            idiomaActual === "en"
+            ? "Access granted to the Municipal Archive."
+            : "Acceso concedido al Archivo Municipal."
+        }
 
-                    <h3>
-                        🎥 MUSEO DE LA CIUDAD
-                    </h3>
+
+        <div class="separador"></div>
 
 
-                    <p>
+        <div class="recurso">
 
-                        Registro audiovisual
-                        disponible.
+            <h3>
+                🎥 ${
+                    idiomaActual === "en"
+                    ? "CITY MUSEUM"
+                    : "MUSEO DE LA CIUDAD"
+                }
+            </h3>
 
-                        Se requiere una autorización
-                        adicional para su consulta.
 
-                    </p>
+            <p>
 
-                </div>
+                ${
+                    idiomaActual === "en"
+                    ? "Audiovisual record available. Additional authorization is required for access."
+                    : "Registro audiovisual disponible. Se requiere una autorización adicional para su consulta."
+                }
 
-            </div>
+            </p>
 
-        `;
+        </div>
+
+    </div>
+
+`;
 
 
         document
@@ -534,21 +833,27 @@ function accederArchivo() {
 
         resultado.innerHTML = `
 
-            <div class="error">
+    <div class="error">
 
-                <strong>
-                    ACCESO DENEGADO
-                </strong>
+        <strong>
+            ${
+                idiomaActual === "en"
+                ? "ACCESS DENIED"
+                : "ACCESO DENEGADO"
+            }
+        </strong>
 
-                <br><br>
+        <br><br>
 
-                La contraseña introducida
-                no es válida.
+        ${
+            idiomaActual === "en"
+            ? "The password entered is not valid."
+            : "La contraseña introducida no es válida."
+        }
 
-            </div>
+    </div>
 
-        `;
-
+`;
 
         document
         .getElementById("videoZona")
@@ -594,13 +899,17 @@ function accederVideo() {
 
         resultado.innerHTML = `
 
-            <div class="exito">
+    <div class="exito">
 
-                ✓ AUTORIZACIÓN VERIFICADA
+        ✓ ${
+            idiomaActual === "en"
+            ? "AUTHORIZATION VERIFIED"
+            : "AUTORIZACIÓN VERIFICADA"
+        }
 
-            </div>
+    </div>
 
-        `;
+`;
 
 
         document
@@ -615,20 +924,27 @@ function accederVideo() {
 
         resultado.innerHTML = `
 
-            <div class="error">
+    <div class="error">
 
-                <strong>
-                    ACCESO DENEGADO
-                </strong>
+        <strong>
+            ${
+                idiomaActual === "en"
+                ? "ACCESS DENIED"
+                : "ACCESO DENEGADO"
+            }
+        </strong>
 
-                <br><br>
+        <br><br>
 
-                La contraseña introducida
-                no es válida.
+        ${
+            idiomaActual === "en"
+            ? "The password entered is not valid."
+            : "La contraseña introducida no es válida."
+        }
 
-            </div>
+    </div>
 
-        `;
+`;
 
 
         document
@@ -639,6 +955,15 @@ function accederVideo() {
 
 }
 
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        traducirPagina();
+
+    }
+);
+    
 </script>
 
 
