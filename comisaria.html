@@ -2601,10 +2601,11 @@ footer {
         </p>
 
         <img
-            src="nota-ordenador.png"
-            alt="Imagen localizada pegada en la esquina de la pantalla del ordenador"
-            class="imagen-pista"
-        >
+    id="notaOrdenador"
+    src="nota-ordenador.png"
+    alt="Imagen localizada pegada en la esquina de la pantalla del ordenador"
+    class="imagen-pista"
+>
 
     </div>
 
@@ -4275,6 +4276,53 @@ function obtenerPistaSobre02() {
     return pista;
 }
 
+function actualizarDocumentoSobre02() {
+
+    const enlace =
+        document.getElementById("abrirDocumentoSobre02");
+
+    if (!enlace) return;
+
+    const pista =
+        obtenerPistaSobre02();
+
+    if (!pista) return;
+
+    if (idiomaActual === "en") {
+
+        enlace.href =
+            pista.imagen.replace(
+                ".png",
+                "-en.png"
+            );
+
+    } else {
+
+        enlace.href =
+            pista.imagen;
+
+    }
+
+}
+
+function actualizarNotaOrdenador() {
+
+    const imagen =
+        document.getElementById("notaOrdenador");
+
+    if (!imagen) return;
+
+    if (idiomaActual === "en") {
+
+        imagen.src = "nota-ordenador-en.png";
+
+    } else {
+
+        imagen.src = "nota-ordenador.png";
+
+    }
+}
+    
  function desbloquearDocumentos02() {
 
     const codigo =
@@ -5927,9 +5975,19 @@ function actualizarSelectorIdioma() {
 
 function cambiarIdioma(nuevoIdioma) {
     if (nuevoIdioma !== "es" && nuevoIdioma !== "en") return;
+
     idiomaActual = nuevoIdioma;
-    localStorage.setItem("idiomaOca", idiomaActual);
+
+    localStorage.setItem(
+        "idiomaOca",
+        idiomaActual
+    );
+
     traducirPagina();
+
+    actualizarDocumentoSobre02();
+
+    actualizarNotaOrdenador();
 }
 
 /* Traduce también los bloques que el juego genera dinámicamente. */
@@ -5956,7 +6014,11 @@ const observadorIdioma = new MutationObserver(mutations => {
 observadorIdioma.observe(document.body, { childList: true, subtree: true });
 
 window.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => traducirPagina(), 0);
+    setTimeout(() => {
+        traducirPagina();
+        actualizarDocumentoSobre02();
+        actualizarNotaOrdenador();
+    }, 0);
 });
 
 </script>
