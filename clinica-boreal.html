@@ -386,6 +386,28 @@ footer {
 }
 }
 
+.boton-idioma {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: auto !important;
+    min-width: 70px;
+    padding: 8px 14px !important;
+    margin: 0 !important;
+    background: transparent !important;
+    color: #315b63 !important;
+    border: 1px solid #9eafb3 !important;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.boton-idioma:hover {
+    background: #edf1f2 !important;
+}
+    
 </style>
 
 </head>
@@ -395,7 +417,15 @@ footer {
 <body>
 
 
-<header>
+<header style="position: relative;">
+
+    <button
+    id="botonIdioma"
+    class="boton-idioma"
+    onclick="cambiarIdioma()"
+>
+    🇬🇧 EN
+</button>
 
     <div class="logo">
 
@@ -408,13 +438,13 @@ footer {
 
     <div>
 
-        <h1>
-            CLÍNICA BOREAL
+        <h1 id="tituloClinica">
+    CLÍNICA BOREAL
         </h1>
 
-        <p>
-            SISTEMA DE DOCUMENTACIÓN CLÍNICA
-        </p>
+        <p id="subtituloClinica">
+    SISTEMA DE DOCUMENTACIÓN CLÍNICA
+</p>
 
     </div>
 
@@ -422,18 +452,19 @@ footer {
 
 <div style="width:92%; max-width:850px; margin:20px auto 0;">
 
-    <a
-        href="index.html"
-        style="
-            text-decoration:none;
-            color:#47727a;
-            font-size:11px;
-            font-weight:bold;
-            letter-spacing:1px;
-        "
-    >
-        ← VOLVER A INTRANET MUNICIPAL
-    </a>
+   <a
+    id="volverIntranet"
+    href="index.html"
+    style="
+        text-decoration:none;
+        color:#47727a;
+        font-size:11px;
+        font-weight:bold;
+        letter-spacing:1px;
+    "
+>
+    ← VOLVER A INTRANET MUNICIPAL
+</a>
 
 </div>
 
@@ -445,21 +476,21 @@ footer {
 
         <div class="titulo">
 
-            <h2>
-                NUBE DE DOCUMENTACIÓN CLÍNICA
-            </h2>
+           <h2 id="tituloNube">
+    NUBE DE DOCUMENTACIÓN CLÍNICA
+</h2>
 
-            <p>
+            <p id="descripcionNube">
 
-                Acceso al sistema de almacenamiento
-                y consulta de documentación clínica.
+    Acceso al sistema de almacenamiento
+    y consulta de documentación clínica.
 
-                Introduzca sus credenciales para continuar.
+    Introduzca sus credenciales para continuar.
 
-                Vigile mayúsculas y puntuación pues el Sistema
-                las detecta como diferentes.
+    Vigile mayúsculas y puntuación pues el Sistema
+    las detecta como diferentes.
 
-            </p>
+</p>
 
         </div>
 
@@ -468,11 +499,11 @@ footer {
         <div class="acceso">
 
 
-            <label for="usuario">
+            <label for="usuario" id="labelUsuario">
 
-                USUARIO - Nombre Completo
+    USUARIO - Nombre Completo
 
-            </label>
+</label>
 
             <input
                 id="usuario"
@@ -481,11 +512,11 @@ footer {
             >
 
 
-            <label for="password">
+           <label for="password" id="labelPassword">
 
-                CONTRASEÑA
+    CONTRASEÑA
 
-            </label>
+</label>
 
             <input
                 id="password"
@@ -494,12 +525,14 @@ footer {
             >
 
 
-            <button onclick="acceder()">
+            <button
+    id="botonAcceder"
+    onclick="acceder()"
+>
 
-                ACCEDER A LA DOCUMENTACIÓN
+    ACCEDER A LA DOCUMENTACIÓN
 
-            </button>
-
+</button>
 
             <div id="resultado"></div>
 
@@ -514,16 +547,26 @@ footer {
 
 
 
-<footer>
+<footer id="piePagina">
 
     CLÍNICA BOREAL · SISTEMA PRIVADO DE DOCUMENTACIÓN
 
 </footer>
 
 
-
 <script>
 
+let idiomaActual = localStorage.getItem("idiomaOca") || "es";
+
+
+function cambiarIdioma() {
+
+    idiomaActual = idiomaActual === "es" ? "en" : "es";
+
+    localStorage.setItem("idiomaOca", idiomaActual);
+
+    traducirPagina();
+}    
 
 function acceder() {
 
@@ -555,34 +598,151 @@ function acceder() {
         password === "4784"
     ) {
 
+        resultado.dataset.autorizado = "true";
+
+    }
+
+
+    else {
+
+    resultado.dataset.autorizado = "false";
+
+}
+
+resultado.style.display = "block";
+
+actualizarResultado();
+    
+}
+
+function traducirPagina() {
+
+    const en = idiomaActual === "en";
+
+    document.documentElement.lang = en ? "en" : "es";
+
+    document.title = en
+        ? "Boreal Clinic"
+        : "Clínica Boreal";
+
+
+    document.getElementById("botonIdioma").textContent =
+        en ? "🇪🇸 ES" : "🇬🇧 EN";
+
+
+    document.getElementById("tituloClinica").textContent =
+        en
+            ? "BOREAL CLINIC"
+            : "CLÍNICA BOREAL";
+
+
+    document.getElementById("subtituloClinica").textContent =
+        en
+            ? "CLINICAL DOCUMENTATION SYSTEM"
+            : "SISTEMA DE DOCUMENTACIÓN CLÍNICA";
+
+
+    document.getElementById("volverIntranet").textContent =
+        en
+            ? "← BACK TO MUNICIPAL INTRANET"
+            : "← VOLVER A INTRANET MUNICIPAL";
+
+
+    document.getElementById("tituloNube").textContent =
+        en
+            ? "CLINICAL DOCUMENTATION CLOUD"
+            : "NUBE DE DOCUMENTACIÓN CLÍNICA";
+
+
+    document.getElementById("descripcionNube").textContent =
+        en
+            ? "Access to the clinical documentation storage and consultation system. Enter your credentials to continue. Pay attention to capitalization and punctuation, as the system detects them as different."
+            : "Acceso al sistema de almacenamiento y consulta de documentación clínica. Introduzca sus credenciales para continuar. Vigile mayúsculas y puntuación pues el Sistema las detecta como diferentes.";
+
+
+    document.getElementById("labelUsuario").textContent =
+        en
+            ? "USER - Full Name"
+            : "USUARIO - Nombre Completo";
+
+
+    document.getElementById("labelPassword").textContent =
+        en
+            ? "PASSWORD"
+            : "CONTRASEÑA";
+
+
+    document.getElementById("botonAcceder").textContent =
+        en
+            ? "ACCESS DOCUMENTATION"
+            : "ACCEDER A LA DOCUMENTACIÓN";
+
+
+    document.getElementById("piePagina").textContent =
+        en
+            ? "BOREAL CLINIC · PRIVATE DOCUMENTATION SYSTEM"
+            : "CLÍNICA BOREAL · SISTEMA PRIVADO DE DOCUMENTACIÓN";
+
+
+    actualizarResultado();
+}
+
+function actualizarResultado() {
+
+    const resultado =
+        document.getElementById("resultado");
+
+    if (
+        resultado.style.display === "none" ||
+        resultado.innerHTML.trim() === ""
+    ) {
+        return;
+    }
+
+    const en = idiomaActual === "en";
+
+    const accesoCorrecto =
+        resultado.querySelector(".exito");
+
+    if (accesoCorrecto) {
 
         resultado.innerHTML = `
 
             <div class="exito">
 
                 <strong>
-                    ✓ ACCESO AUTORIZADO - BIENVENIDO SAÍD NACIRI
+                    ${en
+                        ? "✓ ACCESS AUTHORIZED - WELCOME SAÍD NACIRI"
+                        : "✓ ACCESO AUTORIZADO - BIENVENIDO SAÍD NACIRI"}
                 </strong>
 
-                Credenciales verificadas. Están disponibles sus resultados de su última prueba realizada.
+                ${en
+                    ? "Credentials verified. Your results from your latest test are available."
+                    : "Credenciales verificadas. Están disponibles sus resultados de su última prueba realizada."}
 
                 <div class="documento">
 
                     <h3>
-                        DOCUMENTACIÓN DISPONIBLE
+                        ${en
+                            ? "AVAILABLE DOCUMENTATION"
+                            : "DOCUMENTACIÓN DISPONIBLE"}
                     </h3>
 
                     <p>
-                        Documentación clínica asociada
-                        al expediente autorizado.
+                        ${en
+                            ? "Clinical documentation associated with the authorized file."
+                            : "Documentación clínica asociada al expediente autorizado."}
                     </p>
 
                     <a
                         class="boton-documento"
-                        href="Resultado-SN.pdf"
+                        href="${en ? "Resultado-SN-en.pdf" : "Resultado-SN.pdf"}"
                         target="_blank"
                     >
-                        🫀 CONSULTAR PRUEBA DE ESFUERZO
+                        🫀
+                        ${en
+                            ? "VIEW STRESS TEST"
+                            : "CONSULTAR PRUEBA DE ESFUERZO"}
                     </a>
 
                 </div>
@@ -591,34 +751,36 @@ function acceder() {
 
         `;
 
-    }
-
-
-    else {
-
+    } else {
 
         resultado.innerHTML = `
 
             <div class="error">
 
                 <strong>
-                    ACCESO DENEGADO
+                    ${en
+                        ? "ACCESS DENIED"
+                        : "ACCESO DENEGADO"}
                 </strong>
 
                 <br><br>
 
-                Las credenciales introducidas
-                no son válidas.
+                ${en
+                    ? "The credentials entered are not valid."
+                    : "Las credenciales introducidas no son válidas."}
 
             </div>
 
         `;
-
     }
-
-
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+
+    traducirPagina();
+
+});
+    
 </script>
 
 
