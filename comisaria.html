@@ -391,7 +391,14 @@ header p {
 
 }
 
-
+.archivo-audio strong img {
+    width: 42px !important;
+    height: 42px !important;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+    
 /* =====================================================
    BARRA SUPERIOR DEL EXPEDIENTE
 ===================================================== */
@@ -5113,8 +5120,7 @@ function mostrarPista(numero) {
             </strong>
 
             <p>
-                Aquí escribiremos la primera pista
-                de la investigación.
+                Una buena recomendación es ir ordenando, por partes, todo lo que sabeís de las víctimas.
             </p>
 
         `;
@@ -5131,8 +5137,7 @@ function mostrarPista(numero) {
             </strong>
 
             <p>
-                Aquí escribiremos la segunda pista
-                de la investigación.
+                Saber los métodos de asesinato puede conducir a más conocimiento.
             </p>
 
         `;
@@ -5149,8 +5154,7 @@ function mostrarPista(numero) {
             </strong>
 
             <p>
-                Aquí escribiremos la tercera pista
-                de la investigación.
+                Si os sentís atascados, lo mejor es mirar hacia el futuro.
             </p>
 
         `;
@@ -5167,8 +5171,7 @@ function mostrarPista(numero) {
             </strong>
 
             <p>
-                Aquí escribiremos la cuarta pista
-                de la investigación.
+                Parece que las víctimas están conectadas de alguna manera, ¿teneís un mapa?
             </p>
 
         `;
@@ -5185,8 +5188,7 @@ function mostrarPista(numero) {
             </strong>
 
             <p>
-                Aquí escribiremos la quinta pista
-                de la investigación.
+                El museo Merlín tiene una exposición de lo más interesante.
             </p>
 
         `;
@@ -5203,8 +5205,7 @@ function mostrarPista(numero) {
             </strong>
 
             <p>
-                Aquí escribiremos la sexta pista
-                de la investigación.
+                Puede que la prensa tenga datos exculpatorios.
             </p>
 
         `;
@@ -5801,7 +5802,7 @@ const TRADUCCIONES = {
     "Si os sentís atascados, lo mejor es mirar hacia el futuro.":
         "If you feel stuck, the best thing to do is look towards the future.",
 
-    "Parece que las víctimas están conectadas de alguna manera, ¿teneís un mapa?.":
+    "Parece que las víctimas están conectadas de alguna manera, ¿teneís un mapa?":
         "It seems that the victims are connected in some way. Do you have a map?",
 
     "El museo Merlín tiene una exposición de lo más interesante.":
