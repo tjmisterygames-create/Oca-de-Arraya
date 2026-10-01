@@ -3647,7 +3647,124 @@ function mostrarSeccion(seccion) {
 
 }
 
-   
+function actualizarDocumentosLaboratorio() {
+
+    const resultado =
+        document.getElementById("resultado");
+
+    if (!resultado) return;
+
+    const enlaces =
+        resultado.querySelectorAll("a");
+
+    enlaces.forEach(enlace => {
+
+        const href =
+            enlace.getAttribute("href");
+
+        if (!href) return;
+
+
+        if (idiomaActual === "en") {
+
+            if (href === "Laboratorio-1323.pdf") {
+
+                enlace.href =
+                    "Laboratorio-1323-en.pdf";
+
+            }
+
+            else if (
+                href === "Laboratorio-8157.pdf"
+            ) {
+
+                enlace.href =
+                    "Laboratorio-8157-en.pdf";
+
+            }
+
+            else if (
+                href === "Laboratorio-1326.pdf"
+            ) {
+
+                enlace.href =
+                    "Laboratorio-1326-en.pdf";
+
+            }
+
+            else if (
+                href === "Laboratorio-1495.pdf"
+            ) {
+
+                enlace.href =
+                    "Laboratorio-1495-en.pdf";
+
+            }
+
+            else if (
+                href === "Analitica-1495.png"
+            ) {
+
+                enlace.href =
+                    "Analitica-1495-en.png";
+
+            }
+
+        }
+
+        else {
+
+            if (
+                href === "Laboratorio-1323-en.pdf"
+            ) {
+
+                enlace.href =
+                    "Laboratorio-1323.pdf";
+
+            }
+
+            else if (
+                href === "Laboratorio-8157-en.pdf"
+            ) {
+
+                enlace.href =
+                    "Laboratorio-8157.pdf";
+
+            }
+
+            else if (
+                href === "Laboratorio-1326-en.pdf"
+            ) {
+
+                enlace.href =
+                    "Laboratorio-1326.pdf";
+
+            }
+
+            else if (
+                href === "Laboratorio-1495-en.pdf"
+            ) {
+
+                enlace.href =
+                    "Laboratorio-1495.pdf";
+
+            }
+
+            else if (
+                href === "Analitica-1495-en.png"
+            ) {
+
+                enlace.href =
+                    "Analitica-1495.png";
+
+            }
+
+        }
+
+    });
+
+}
+    
 function consultar() {
 
 
@@ -3764,7 +3881,7 @@ else if (codigo === "8157") {
             </div>
 
             <a
-                href="Laboratorio-8157.pdf.pdf"
+                href="Laboratorio-8157.pdf"
                 target="_blank"
                 class="boton"
                 style="text-decoration:none; text-align:center;"
@@ -3818,7 +3935,7 @@ else if (codigo === "1326") {
             </div>
 
             <a
-                href="Laboratorio-1326.pdf.pdf"
+                href="Laboratorio-1326.pdf"
                 target="_blank"
                 class="boton"
                 style="text-decoration:none; text-align:center;"
@@ -3872,7 +3989,7 @@ else if (codigo === "1495") {
             </div>
 
            <a
-    href="Laboratorio-1495.pdf.pdf"
+    href="Laboratorio-1495.pdf"
     target="_blank"
     class="boton"
     style="text-decoration:none; text-align:center;"
@@ -3881,7 +3998,7 @@ else if (codigo === "1495") {
 </a>
 
 <a
-    href="Analitica-1495.png.jpg"
+    href="Analitica-1495.png"
     target="_blank"
     class="boton"
     style="text-decoration:none; text-align:center; margin-top:10px;"
@@ -6013,10 +6130,9 @@ function cambiarIdioma(nuevoIdioma) {
     );
 
     traducirPagina();
-
     actualizarDocumentoSobre02();
-
     actualizarNotaOrdenador();
+    actualizarDocumentosLaboratorio();
 }
 
 /* Traduce también los bloques que el juego genera dinámicamente. */
@@ -6047,6 +6163,7 @@ window.addEventListener("DOMContentLoaded", () => {
         traducirPagina();
         actualizarDocumentoSobre02();
         actualizarNotaOrdenador();
+        actualizarDocumentosLaboratorio();
     }, 0);
 });
 
