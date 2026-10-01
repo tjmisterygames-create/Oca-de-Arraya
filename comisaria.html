@@ -3881,13 +3881,13 @@ else if (codigo === "8157") {
             </div>
 
             <a
-                href="Laboratorio-8157.pdf"
+                href="${idiomaActual === "en" ? "Laboratorio-8157-en.pdf" : "Laboratorio-8157.pdf.pdf"}"
                 target="_blank"
                 class="boton"
                 style="text-decoration:none; text-align:center;"
-            >
-                ABRIR INFORME DE LABORATORIO
-            </a>
+                >
+                ${idiomaActual === "en" ? "OPEN LABORATORY REPORT" : "ABRIR INFORME DE LABORATORIO"}
+        </a>
 
         </div>
 
@@ -6133,6 +6133,7 @@ function cambiarIdioma(nuevoIdioma) {
     actualizarDocumentoSobre02();
     actualizarNotaOrdenador();
     actualizarDocumentosLaboratorio();
+    actualizarLaboratorio()
 }
 
 /* Traduce también los bloques que el juego genera dinámicamente. */
