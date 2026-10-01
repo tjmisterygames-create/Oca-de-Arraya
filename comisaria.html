@@ -4252,34 +4252,63 @@ function obtenerPistaSobre02() {
     const pista =
         JSON.parse(pistaGuardada);
 
+    /* =========================================
+       IMAGEN CORRESPONDIENTE AL IDIOMA
+    ========================================= */
+
+    let imagenPista = pista.imagen;
+
+    if (idiomaActual === "en") {
+
+        imagenPista =
+            pista.imagen.replace(
+                ".png",
+                "-en.png"
+            );
+
+    }
+
+    /* =========================================
+       MINIATURA DE LA PISTA
+    ========================================= */
+
     const imagen =
         document.getElementById(
             "pistaSobre02"
         );
 
     if (imagen) {
-        imagen.src = pista.imagen;
+
+        imagen.src =
+            imagenPista;
+
     }
 
+    /* =========================================
+       ENLACE "ABRIR PISTA"
+    ========================================= */
+
     const enlace =
-    document.getElementById(
-        "abrirPistaSobre02"
-    );
+        document.getElementById(
+            "abrirPistaSobre02"
+        );
 
     if (enlace) {
 
-    enlace.href =
-        pista.imagen;
+        enlace.href =
+            imagenPista;
 
     }
-    
+
     return pista;
 }
 
 function actualizarDocumentoSobre02() {
 
     const enlace =
-        document.getElementById("abrirDocumentoSobre02");
+        document.getElementById(
+            "abrirDocumentoSobre02"
+        );
 
     if (!enlace) return;
 
