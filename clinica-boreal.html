@@ -692,19 +692,16 @@ function actualizarResultado() {
     const resultado =
         document.getElementById("resultado");
 
-    if (
-        resultado.style.display === "none" ||
-        resultado.innerHTML.trim() === ""
-    ) {
-        return;
-    }
+   if (!resultado.dataset.autorizado) {
+    return;
+}
 
     const en = idiomaActual === "en";
 
     const accesoCorrecto =
-        resultado.querySelector(".exito");
+    resultado.dataset.autorizado === "true";
 
-    if (accesoCorrecto) {
+if (accesoCorrecto) {
 
         resultado.innerHTML = `
 
