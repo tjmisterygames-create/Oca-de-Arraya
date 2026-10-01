@@ -2672,14 +2672,15 @@ footer {
 
         <audio controls>
 
-            <source
-                src="Contestador.mp3"
-                type="audio/mpeg"
-            >
+    <source
+        id="audioContestador"
+        src="Contestador.mp3"
+        type="audio/mpeg"
+    >
 
-            Tu navegador no puede reproducir este audio.
+    Tu navegador no puede reproducir este audio.
 
-        </audio>
+</audio>
 
     </div>
 
@@ -2696,16 +2697,17 @@ footer {
             Declaración policial
         </span>
 
-        <audio controls>
+       <audio controls>
 
-            <source
-                src="interrogatorio-1781.mp3"
-                type="audio/mpeg"
-            >
+    <source
+        id="audioInterrogatorio"
+        src="interrogatorio-1781.mp3"
+        type="audio/mpeg"
+    >
 
-            Tu navegador no puede reproducir este audio.
+    Tu navegador no puede reproducir este audio.
 
-        </audio>
+</audio>
 
     </div>
 
@@ -4073,7 +4075,10 @@ function desbloquearComunicaciones() {
     -----------------------------------------------
     */
 
-    if (codigo === "cantar") {
+    if (
+    codigo.toLowerCase() === "cantar" ||
+    codigo.toLowerCase() === "sing"
+) {
 
         resultado.innerHTML = `
 
@@ -4339,15 +4344,15 @@ function obtenerPistaSobre02() {
     const pistas = [
         {
             imagen: "circulo-3.png",
-            clave: "PEREZA"
+            clave: idiomaActual === "en" ? "LAZINESS" : "PEREZA"
         },
         {
             imagen: "circulo-5.png",
-            clave: "GULA"
+            clave: idiomaActual === "en" ? "GLUTTONY" : "GULA"
         },
         {
             imagen: "circulo-6.png",
-            clave: "VIOLENCIA"
+            clave: idiomaActual === "en" ? "VIOLENCE" : "VIOLENCIA"
         }
     ];
 
@@ -4493,7 +4498,9 @@ function actualizarNotaOrdenador() {
         obtenerPistaSobre02();
 
 
-    if (codigo === pista.clave) {
+   if (
+    codigo.toLowerCase() === pista.clave.toLowerCase()
+) {
 
         resultado.innerHTML = `
 
@@ -6153,9 +6160,53 @@ function cambiarIdioma(nuevoIdioma) {
     actualizarDocumentoSobre02();
     actualizarNotaOrdenador();
     actualizarDocumentosLaboratorio();
-    actualizarLaboratorio()
+    actualizarLaboratorio();
+    actualizarAudios();
 }
 
+function actualizarAudios() {
+
+    const contestador =
+        document.getElementById("audioContestador");
+
+    const interrogatorio =
+        document.getElementById("audioInterrogatorio");
+
+    if (contestador) {
+
+        contestador.src =
+            idiomaActual === "en"
+                ? "Contestador-en.mp3"
+                : "Contestador.mp3";
+
+    }
+
+    if (interrogatorio) {
+
+        interrogatorio.src =
+            idiomaActual === "en"
+                ? "interrogatorio-1781-en.mp3"
+                : "interrogatorio-1781.mp3";
+
+    }
+
+    const audios =
+        document.querySelectorAll(
+            "#audioContestador, #audioInterrogatorio"
+        );
+
+    audios.forEach(function(audio) {
+
+        const reproductor = audio.parentElement;
+
+        if (reproductor) {
+            reproductor.load();
+        }
+
+    });
+
+}
+    
 /* Traduce también los bloques que el juego genera dinámicamente. */
 const observadorIdioma = new MutationObserver(mutations => {
     if (idiomaActual !== "en") return;
@@ -6185,6 +6236,7 @@ window.addEventListener("DOMContentLoaded", () => {
         actualizarDocumentoSobre02();
         actualizarNotaOrdenador();
         actualizarDocumentosLaboratorio();
+        actualizarAudios();
     }, 0);
 });
 
