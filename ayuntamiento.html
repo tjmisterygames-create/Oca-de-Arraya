@@ -462,9 +462,9 @@ footer {
                     <video controls>
 
                         <source
+                            id="videoFuente"
                             src="visita-online.mp4"
                             type="video/mp4"
-                            target="_blank"
                         >
 
                         <span id="mensajeVideo">
@@ -734,6 +734,25 @@ function traducirPagina() {
 
     }
 
+    const videoFuente =
+    document.getElementById("videoFuente");
+
+if (videoFuente) {
+
+    videoFuente.src =
+        idiomaActual === "en"
+            ? "visita-online-en.mp4"
+            : "visita-online.mp4";
+
+    const video =
+        document.querySelector("#videoResultado video");
+
+    if (video) {
+        video.load();
+    }
+
+}
+    
 }
     
 
