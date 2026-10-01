@@ -3164,7 +3164,12 @@ footer {
     <div class="final-cabecera">
 
         <div class="final-icono">
-            <img src="caso-cerrado.png" alt="Caso cerrado">
+            <img
+    src="caso-cerrado.png"
+    data-es="caso-cerrado.png"
+    data-en="caso-cerrado-en.png"
+    alt="Caso cerrado"
+>
         </div>
 
         <h3>
@@ -6114,6 +6119,17 @@ function traducirPagina() {
     traducirAtributos(document.body, mapa);
     actualizarSelectorIdioma();
     document.documentElement.lang = idiomaActual;
+
+    const casoCerrado = document.querySelector(
+    '.final-icono img'
+);
+
+if (casoCerrado) {
+    casoCerrado.src =
+        idiomaActual === "en"
+            ? "caso-cerrado-en.png"
+            : "caso-cerrado.png";
+}
 }
 
 function actualizarSelectorIdioma() {
