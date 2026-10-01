@@ -592,16 +592,21 @@ function acceder() {
     ==========================================
     */
 
-    if (
-        usuario === "Saíd Naciri"
-        &&
-        password === "4784"
-    ) {
+   const usuarioNormalizado =
+    usuario
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
 
-        resultado.dataset.autorizado = "true";
+if (
+    usuarioNormalizado === "said naciri"
+    &&
+    password === "4784"
+) {
 
-    }
+    resultado.dataset.autorizado = "true";
 
+}
 
     else {
 
