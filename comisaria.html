@@ -4831,10 +4831,10 @@ function intentarDetencion() {
 
     <div class="titulo-detencion">
 
-        <img
-            src="asesino-correcto.png"
-            alt="Detención autorizada"
-        >
+       <img
+    src="${idiomaActual === "en" ? "asesino-correcto-en.png" : "asesino-correcto.png"}"
+    alt="Detención autorizada"
+>
 
         <strong>
             DETENCIÓN AUTORIZADA
@@ -4915,9 +4915,9 @@ return;
     <div class="titulo-detencion">
 
         <img
-            src="asesino-erroneo.png"
-            alt="Identificación incorrecta"
-        >
+    src="${idiomaActual === "en" ? "asesino-erroneo-en.png" : "asesino-erroneo.png"}"
+    alt="Identificación incorrecta"
+>
 
         <strong>
             IDENTIFICACIÓN INCORRECTA
@@ -4952,7 +4952,10 @@ return;
             <div class="error">
 
                 <div class="titulo-detencion">
-                    <img src="asesino-erroneo.png" alt="">
+                   <img
+                    src="${idiomaActual === "en" ? "asesino-erroneo-en.png" : "asesino-erroneo.png"}"
+                    alt=""
+                >
                      <strong>IDENTIFICACIÓN FALLIDA</strong>
                 </div>
 
