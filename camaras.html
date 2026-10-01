@@ -509,6 +509,28 @@ footer {
     
 }
 
+.boton-idioma {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: auto !important;
+    min-width: 70px;
+    padding: 8px 14px !important;
+    margin: 0 !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255,255,255,0.5) !important;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.boton-idioma:hover {
+    background: rgba(255,255,255,0.1) !important;
+}
+    
 </style>
 
 </head>
@@ -517,7 +539,15 @@ footer {
 <body>
 
 
-<header>
+<header style="position: relative;">
+
+<button
+    id="botonIdioma"
+    class="boton-idioma"
+    onclick="cambiarIdioma()"
+>
+    🇬🇧 EN
+</button>
 
     <div class="titulo-municipal">
 
@@ -530,15 +560,15 @@ footer {
 
     </div>
 
-    <h1>
-        AYUNTAMIENTO DE OCA DE ARRAYA
-    </h1>
+   <h1 id="tituloAyuntamiento">
+    AYUNTAMIENTO DE OCA DE ARRAYA
+</h1>
 
 </div>
 
-    <p>
-        INTRANET MUNICIPAL · SISTEMA DE VIDEOVIGILANCIA
-    </p>
+    <p id="subtituloVideovigilancia">
+    INTRANET MUNICIPAL · SISTEMA DE VIDEOVIGILANCIA
+</p>
 
 </header>
 
@@ -546,12 +576,13 @@ footer {
 <div class="contenedor">
 
 
-    <a
-        href="index.html"
-        class="volver"
-    >
-        ← VOLVER A INTRANET MUNICIPAL
-    </a>
+   <a
+    href="index.html"
+    class="volver"
+    id="volverIntranet"
+>
+    ← VOLVER A INTRANET MUNICIPAL
+</a>
 
 
     <div class="panel">
@@ -575,23 +606,21 @@ footer {
 
         </div>
 
-        <h2>
-            SISTEMA MUNICIPAL DE VIDEOVIGILANCIA
-        </h2>
+        <h2 id="tituloSistema">
+    SISTEMA MUNICIPAL DE VIDEOVIGILANCIA
+</h2>
 
-    </div>
-
-    <p>
-        Acceso al sistema interno de cámaras
-        de seguridad municipal.
-    </p>
+<p id="descripcionSistema">
+    Acceso al sistema interno de cámaras
+    de seguridad municipal.
+</p>
 
 </div>
 
 
             <div class="acceso">
 
-                <h3 class="titulo-acceso">
+                <h3 class="titulo-acceso" id="tituloAcceso">
 
     <span class="icono-acceso">
 
@@ -606,18 +635,16 @@ footer {
 
 </h3>
 
-                <p>
-                    Este sistema requiere autorización
-                    para consultar los registros de
-                    videovigilancia.
-                </p>
+                <p id="descripcionAcceso">
+    Este sistema requiere autorización
+    para consultar los registros de
+    videovigilancia.
+</p>
 
 
-                <label for="codigo">
-
-                    CÓDIGO DE ACCESO
-
-                </label>
+                <label for="codigo" id="labelCodigo">
+    CÓDIGO DE ACCESO
+</label>
 
 
                 <input
@@ -628,13 +655,12 @@ footer {
 
 
                 <button
-                    class="boton"
-                    onclick="desbloquear()"
-                >
-
-                    ACCEDER AL SISTEMA
-
-                </button>
+    class="boton"
+    onclick="desbloquear()"
+    id="botonAcceder"
+>
+    ACCEDER AL SISTEMA
+</button>
 
 
                 <div
@@ -642,13 +668,15 @@ footer {
                     class="error"
                 >
 
-                    <strong>
-                        ⚠ ACCESO DENEGADO
-                    </strong>
+                   <strong id="mensajeAccesoDenegado">
+    ⚠ ACCESO DENEGADO
+</strong>
 
                     <br><br>
 
-                    El código introducido no es válido.
+                    <span id="descripcionError">
+    El código introducido no es válido.
+</span>
 
                 </div>
 
@@ -667,26 +695,26 @@ footer {
 
             <div class="titulo">
 
-                <h2>
-                    CÁMARAS DEL PARQUE DE SARA
-                </h2>
+               <h2 id="tituloCamaras">
+    CÁMARAS DEL PARQUE DE SARA
+</h2>
 
-                <p>
-                    Registros de videovigilancia
-                    asociados al sistema municipal.
-                </p>
-
+<p id="descripcionCamaras">
+    Registros de videovigilancia
+    asociados al sistema municipal.
+</p>
             </div>
 
 
             <div class="estado-autorizado">
 
-                <strong>
-                    ✓ ACCESO AUTORIZADO
-                </strong>
-
-                Sistema de videovigilancia desbloqueado.
-                Registros disponibles para consulta.
+                <strong id="accesoAutorizado">
+    ✓ ACCESO AUTORIZADO
+</strong>
+                <span id="descripcionAutorizado">
+    Sistema de videovigilancia desbloqueado.
+    Registros disponibles para consulta.
+</span>
 
             </div>
 
@@ -700,20 +728,18 @@ footer {
 
                     <div class="camara-cabecera">
 
-                        <strong>
-                            CÁMARA 001
-                        </strong>
+                        <strong id="camara001">
+    CÁMARA 001
+</strong>
 
-                        <span>
-                            REGISTRO 001
-                        </span>
+<span id="registro001">
+    REGISTRO 001
+</span>
 
-                    </div>
-
-                    <p>
-                        Registro de audio asociado
-                        a la cámara.
-                    </p>
+<p id="descripcion001">
+    Registro de audio asociado
+    a la cámara.
+</p>
 
                     <video controls>
 
@@ -736,20 +762,18 @@ footer {
 
                     <div class="camara-cabecera">
 
-                        <strong>
-                            CÁMARA 002
-                        </strong>
+                       <strong id="camara001">
+    CÁMARA 002
+</strong>
 
-                        <span>
-                            REGISTRO 002
-                        </span>
+<span id="registro001">
+    REGISTRO 002
+</span>
 
-                    </div>
-
-                    <p>
-                        Registro de audio asociado
-                        a la cámara.
-                    </p>
+<p id="descripcion001">
+    Registro de audio asociado
+    a la cámara.
+</p>
 
                     <video controls>
 
@@ -772,20 +796,18 @@ footer {
 
                     <div class="camara-cabecera">
 
-                        <strong>
-                            CÁMARA 003
-                        </strong>
+                        <strong id="camara001">
+    CÁMARA 003
+</strong>
 
-                        <span>
-                            REGISTRO 003
-                        </span>
+<span id="registro001">
+    REGISTRO 003
+</span>
 
-                    </div>
-
-                    <p>
-                        Registro de audio asociado
-                        a la cámara.
-                    </p>
+<p id="descripcion001">
+    Registro de audio asociado
+    a la cámara.
+</p>
 
                     <video controls>
 
@@ -808,20 +830,18 @@ footer {
 
                     <div class="camara-cabecera">
 
-                        <strong>
-                            CÁMARA 004
-                        </strong>
+                        <strong id="camara001">
+    CÁMARA 004
+</strong>
 
-                        <span>
-                            REGISTRO 004
-                        </span>
+<span id="registro001">
+    REGISTRO 004
+</span>
 
-                    </div>
-
-                    <p>
-                        Registro de audio asociado
-                        a la cámara.
-                    </p>
+<p id="descripcion001">
+    Registro de audio asociado
+    a la cámara.
+</p>
 
                     <video controls>
 
@@ -844,21 +864,18 @@ footer {
 
                     <div class="camara-cabecera">
 
-                        <strong>
-                            CÁMARA 005
-                        </strong>
+                        <strong id="camara001">
+    CÁMARA 005
+</strong>
 
-                        <span>
-                            REGISTRO 005
-                        </span>
+<span id="registro001">
+    REGISTRO 005
+</span>
 
-                    </div>
-
-                    <p>
-                        Registro de audio asociado
-                        a la cámara.
-                    </p>
-
+<p id="descripcion001">
+    Registro de audio asociado
+    a la cámara.
+</p>
                     <video controls>
 
                         <source
@@ -880,20 +897,18 @@ footer {
 
                     <div class="camara-cabecera">
 
-                        <strong>
-                            CÁMARA 006
-                        </strong>
+                        <strong id="camara001">
+    CÁMARA 006
+</strong>
 
-                        <span>
-                            REGISTRO 006
-                        </span>
+<span id="registro001">
+    REGISTRO 006
+</span>
 
-                    </div>
-
-                    <p>
-                        Registro de audio asociado
-                        a la cámara.
-                    </p>
+<p id="descripcion001">
+    Registro de audio asociado
+    a la cámara.
+</p>
 
                     <video controls>
 
@@ -922,7 +937,7 @@ footer {
 </div>
 
 
-<footer>
+<footer id="piePagina">
 
     AYUNTAMIENTO DE OCA DE ARRAYA · SISTEMA INTERNO
 
@@ -931,6 +946,166 @@ footer {
 
 <script>
 
+let idiomaActual = localStorage.getItem("idiomaOca") || "es";
+
+function cambiarIdioma() {
+
+    idiomaActual = idiomaActual === "es" ? "en" : "es";
+
+    localStorage.setItem("idiomaOca", idiomaActual);
+
+    traducirPagina();
+}
+
+
+function traducirPagina() {
+
+    const en = idiomaActual === "en";
+
+    document.documentElement.lang = en ? "en" : "es";
+
+    document.title = en
+        ? "Municipal Video Surveillance - Oca de Arraya"
+        : "Videovigilancia Municipal - Oca de Arraya";
+
+
+    document.getElementById("botonIdioma").textContent =
+        en ? "🇪🇸 ES" : "🇬🇧 EN";
+
+
+    document.getElementById("tituloAyuntamiento").textContent =
+        en ? "OCA DE ARRAYA TOWN HALL" : "AYUNTAMIENTO DE OCA DE ARRAYA";
+
+    document.getElementById("subtituloVideovigilancia").textContent =
+        en
+            ? "MUNICIPAL INTRANET · VIDEO SURVEILLANCE SYSTEM"
+            : "INTRANET MUNICIPAL · SISTEMA DE VIDEOVIGILANCIA";
+
+    document.getElementById("volverIntranet").textContent =
+        en
+            ? "← BACK TO MUNICIPAL INTRANET"
+            : "← VOLVER A INTRANET MUNICIPAL";
+
+    document.getElementById("tituloSistema").textContent =
+        en
+            ? "MUNICIPAL VIDEO SURVEILLANCE SYSTEM"
+            : "SISTEMA MUNICIPAL DE VIDEOVIGILANCIA";
+
+    document.getElementById("descripcionSistema").textContent =
+        en
+            ? "Access to the internal municipal security camera system."
+            : "Acceso al sistema interno de cámaras de seguridad municipal.";
+
+    document.getElementById("tituloAcceso").childNodes[
+        document.getElementById("tituloAcceso").childNodes.length - 1
+    ].textContent =
+        en
+            ? " ACCESS RESTRICTED"
+            : " ACCESO RESTRINGIDO";
+
+    document.getElementById("descripcionAcceso").textContent =
+        en
+            ? "This system requires authorization to consult video surveillance records."
+            : "Este sistema requiere autorización para consultar los registros de videovigilancia.";
+
+    document.getElementById("labelCodigo").textContent =
+        en ? "ACCESS CODE" : "CÓDIGO DE ACCESO";
+
+    document.getElementById("botonAcceder").textContent =
+        en ? "ACCESS SYSTEM" : "ACCEDER AL SISTEMA";
+
+    document.getElementById("mensajeAccesoDenegado").textContent =
+        en ? "⚠ ACCESS DENIED" : "⚠ ACCESO DENEGADO";
+
+    document.getElementById("descripcionError").textContent =
+        en
+            ? "The entered code is not valid."
+            : "El código introducido no es válido.";
+
+    document.getElementById("tituloCamaras").textContent =
+        en
+            ? "SARA PARK CAMERAS"
+            : "CÁMARAS DEL PARQUE DE SARA";
+
+    document.getElementById("descripcionCamaras").textContent =
+        en
+            ? "Video surveillance records associated with the municipal system."
+            : "Registros de videovigilancia asociados al sistema municipal.";
+
+    document.getElementById("accesoAutorizado").textContent =
+        en
+            ? "✓ ACCESS AUTHORIZED"
+            : "✓ ACCESO AUTORIZADO";
+
+    document.getElementById("descripcionAutorizado").textContent =
+        en
+            ? "Video surveillance system unlocked. Records available for consultation."
+            : "Sistema de videovigilancia desbloqueado. Registros disponibles para consulta.";
+
+
+    for (let i = 1; i <= 6; i++) {
+
+        const numero = String(i).padStart(3, "0");
+
+        document.getElementById(`camara${numero}`).textContent =
+            en
+                ? `CAMERA ${numero}`
+                : `CÁMARA ${numero}`;
+
+        document.getElementById(`registro${numero}`).textContent =
+            en
+                ? `RECORD ${numero}`
+                : `REGISTRO ${numero}`;
+
+        document.getElementById(`descripcion${numero}`).textContent =
+            en
+                ? "Audio record associated with the camera."
+                : "Registro de audio asociado a la cámara.";
+
+        document.getElementById("piePagina").textContent =
+    en
+        ? "OCA DE ARRAYA TOWN HALL · INTERNAL SYSTEM"
+        : "AYUNTAMIENTO DE OCA DE ARRAYA · SISTEMA INTERNO";
+        
+    }
+
+
+    actualizarVideos();
+}
+
+
+function actualizarVideos() {
+
+    const en = idiomaActual === "en";
+
+    for (let i = 1; i <= 6; i++) {
+
+        const numero = String(i).padStart(3, "0");
+
+        const fuente =
+            document.getElementById(`video${numero}`);
+
+        if (!fuente) continue;
+
+        fuente.src = en
+            ? `camara-${numero}-en.mp4`
+            : `camara-${numero}.mp4`;
+
+        const video = fuente.parentElement;
+
+        if (video) {
+            video.load();
+        }
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    traducirPagina();
+
+});
+    
 function desbloquear() {
 
     const codigo =
