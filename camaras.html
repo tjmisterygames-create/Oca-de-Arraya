@@ -358,65 +358,44 @@ footer {
 }
 
 .camara {
-
-    background: #e8e8e2;
-
+    background: #f5f4ee;
     border: 1px solid #b5b6b1;
-
     padding: 18px;
-
     box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-
 }
 
 .camara-cabecera {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     border-bottom: 1px solid #c1c2bd;
-
     padding-bottom: 10px;
-
-    margin-bottom: 12px;
-
+    margin-bottom: 10px;
 }
 
 .camara-cabecera strong {
-
     font-size: 11px;
-
     letter-spacing: 1.5px;
-
 }
 
 .camara-cabecera span {
-
     font-size: 8px;
-
     color: #777;
-
     letter-spacing: 1px;
-
 }
 
 .camara p {
-    margin: 0 0 15px;
+    margin: 0 0 12px;
     font-size: 10px;
     color: #666;
 }
 
 .camara video {
-
     width: 100%;
-
-    height: auto;
-
+    height: 240px;
     display: block;
-
+    object-fit: contain;
+    background: #151515;
 }
 
 
@@ -739,216 +718,152 @@ footer {
     Registros disponibles para consulta.
 </span>
 
-            </div>
+           <div class="camaras">
 
+    <!-- CÁMARA 001 -->
+    <div class="camara">
 
-            <div class="camaras">
+        <div class="camara-cabecera">
+            <strong id="camara001">CÁMARA 001</strong>
+            <span id="registro001">REGISTRO 001</span>
+        </div>
+
+        <p id="descripcion001">
+            Registro de audio asociado a la cámara.
+        </p>
+
+        <video controls>
+            <source
+                id="video001"
+                src="camara-001.mp4"
+                type="video/mp4"
+            >
+            Tu navegador no puede reproducir este archivo.
+        </video>
 
+    </div>
 
-                <!-- CÁMARA 001 -->
 
-                <div class="camara">
+    <!-- CÁMARA 002 -->
+    <div class="camara">
 
-                    <div class="camara-cabecera">
-
-                        <strong id="camara001">
-    CÁMARA 001
-</strong>
-
-<span id="registro001">
-    REGISTRO 001
-</span>
-
-<p id="descripcion001">
-    Registro de audio asociado
-    a la cámara.
-</p>
-
-                    <video controls>
-
-                        <source
-                            src="camara-001.mp4"
-                            type="video/mp4"
-                        >
-
-                        Tu navegador no puede reproducir
-                        este archivo.
-
-                    </video>
-
-                </div>
-
-
-                <!-- CÁMARA 002 -->
-
-                <div class="camara">
-
-                    <div class="camara-cabecera">
-
-                       <strong id="camara001">
-    CÁMARA 002
-</strong>
-
-<span id="registro001">
-    REGISTRO 002
-</span>
-
-<p id="descripcion001">
-    Registro de audio asociado
-    a la cámara.
-</p>
-
-                    <video controls>
-
-                        <source
-                            src="camara-002.mp4"
-                            type="video/mp4"
-                        >
-
-                        Tu navegador no puede reproducir
-                        este archivo.
-
-                    </video>
-
-                </div>
-
-
-                <!-- CÁMARA 003 -->
-
-                <div class="camara">
-
-                    <div class="camara-cabecera">
-
-                        <strong id="camara001">
-    CÁMARA 003
-</strong>
-
-<span id="registro001">
-    REGISTRO 003
-</span>
-
-<p id="descripcion001">
-    Registro de audio asociado
-    a la cámara.
-</p>
-
-                    <video controls>
-
-                        <source
-                            src="camara-003.mp4"
-                            type="video/mp4"
-                        >
-
-                        Tu navegador no puede reproducir
-                        este archivo.
-
-                    </video>
-
-                </div>
-
-
-                <!-- CÁMARA 004 -->
-
-                <div class="camara">
-
-                    <div class="camara-cabecera">
-
-                        <strong id="camara001">
-    CÁMARA 004
-</strong>
-
-<span id="registro001">
-    REGISTRO 004
-</span>
-
-<p id="descripcion001">
-    Registro de audio asociado
-    a la cámara.
-</p>
-
-                    <video controls>
-
-                        <source
-                            src="camara-004.mp4"
-                            type="video/mp4"
-                        >
-
-                        Tu navegador no puede reproducir
-                        este archivo.
-
-                    </video>
-
-                </div>
-
-
-                <!-- CÁMARA 005 -->
-
-                <div class="camara">
-
-                    <div class="camara-cabecera">
-
-                        <strong id="camara001">
-    CÁMARA 005
-</strong>
-
-<span id="registro001">
-    REGISTRO 005
-</span>
-
-<p id="descripcion001">
-    Registro de audio asociado
-    a la cámara.
-</p>
-                    <video controls>
-
-                        <source
-                            src="camara-005.mp4"
-                            type="video/mp4"
-                        >
-
-                        Tu navegador no puede reproducir
-                        este archivo.
-
-                    </video>
-
-                </div>
-
-
-                <!-- CÁMARA 006 -->
-
-                <div class="camara">
-
-                    <div class="camara-cabecera">
-
-                        <strong id="camara001">
-    CÁMARA 006
-</strong>
-
-<span id="registro001">
-    REGISTRO 006
-</span>
-
-<p id="descripcion001">
-    Registro de audio asociado
-    a la cámara.
-</p>
-
-                    <video controls>
-
-                        <source
-                            src="camara-006.mp4"
-                            type="video/mp4"
-                        >
-
-                        Tu navegador no puede reproducir
-                        este archivo.
-
-                    </video>
-
-                </div>
-
-
-            </div>
+        <div class="camara-cabecera">
+            <strong id="camara002">CÁMARA 002</strong>
+            <span id="registro002">REGISTRO 002</span>
+        </div>
+
+        <p id="descripcion002">
+            Registro de audio asociado a la cámara.
+        </p>
+
+        <video controls>
+            <source
+                id="video002"
+                src="camara-002.mp4"
+                type="video/mp4"
+            >
+            Tu navegador no puede reproducir este archivo.
+        </video>
+
+    </div>
+
+
+    <!-- CÁMARA 003 -->
+    <div class="camara">
+
+        <div class="camara-cabecera">
+            <strong id="camara003">CÁMARA 003</strong>
+            <span id="registro003">REGISTRO 003</span>
+        </div>
+
+        <p id="descripcion003">
+            Registro de audio asociado a la cámara.
+        </p>
+
+        <video controls>
+            <source
+                id="video003"
+                src="camara-003.mp4"
+                type="video/mp4"
+            >
+            Tu navegador no puede reproducir este archivo.
+        </video>
+
+    </div>
+
+
+    <!-- CÁMARA 004 -->
+    <div class="camara">
+
+        <div class="camara-cabecera">
+            <strong id="camara004">CÁMARA 004</strong>
+            <span id="registro004">REGISTRO 004</span>
+        </div>
+
+        <p id="descripcion004">
+            Registro de audio asociado a la cámara.
+        </p>
+
+        <video controls>
+            <source
+                id="video004"
+                src="camara-004.mp4"
+                type="video/mp4"
+            >
+            Tu navegador no puede reproducir este archivo.
+        </video>
+
+    </div>
+
+
+    <!-- CÁMARA 005 -->
+    <div class="camara">
+
+        <div class="camara-cabecera">
+            <strong id="camara005">CÁMARA 005</strong>
+            <span id="registro005">REGISTRO 005</span>
+        </div>
+
+        <p id="descripcion005">
+            Registro de audio asociado a la cámara.
+        </p>
+
+        <video controls>
+            <source
+                id="video005"
+                src="camara-005.mp4"
+                type="video/mp4"
+            >
+            Tu navegador no puede reproducir este archivo.
+        </video>
+
+    </div>
+
+
+    <!-- CÁMARA 006 -->
+    <div class="camara">
+
+        <div class="camara-cabecera">
+            <strong id="camara006">CÁMARA 006</strong>
+            <span id="registro006">REGISTRO 006</span>
+        </div>
+
+        <p id="descripcion006">
+            Registro de audio asociado a la cámara.
+        </p>
+
+        <video controls>
+            <source
+                id="video006"
+                src="camara-006.mp4"
+                type="video/mp4"
+            >
+            Tu navegador no puede reproducir este archivo.
+        </video>
+
+    </div>
+
+</div>
 
 
         </div>
