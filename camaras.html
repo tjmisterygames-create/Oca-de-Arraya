@@ -729,7 +729,7 @@ footer {
         </div>
 
         <p id="descripcion001">
-            Registro de audio asociado a la cámara.
+            Registro de video asociado a la cámara.
         </p>
 
         <video controls>
@@ -753,7 +753,7 @@ footer {
         </div>
 
         <p id="descripcion002">
-            Registro de audio asociado a la cámara.
+            Registro de video asociado a la cámara.
         </p>
 
         <video controls>
@@ -777,7 +777,7 @@ footer {
         </div>
 
         <p id="descripcion003">
-            Registro de audio asociado a la cámara.
+            Registro de video asociado a la cámara.
         </p>
 
         <video controls>
@@ -801,7 +801,7 @@ footer {
         </div>
 
         <p id="descripcion004">
-            Registro de audio asociado a la cámara.
+            Registro de video asociado a la cámara.
         </p>
 
         <video controls>
@@ -825,7 +825,7 @@ footer {
         </div>
 
         <p id="descripcion005">
-            Registro de audio asociado a la cámara.
+            Registro de video asociado a la cámara.
         </p>
 
         <video controls>
@@ -849,7 +849,7 @@ footer {
         </div>
 
         <p id="descripcion006">
-            Registro de audio asociado a la cámara.
+            Registro de video asociado a la cámara.
         </p>
 
         <video controls>
@@ -997,8 +997,8 @@ function traducirPagina() {
 
         document.getElementById(`descripcion${numero}`).textContent =
             en
-                ? "Audio record associated with the camera."
-                : "Registro de audio asociado a la cámara.";
+                ? "Video record associated with the camera."
+                : "Registro de video asociado a la cámara.";
 
         document.getElementById("piePagina").textContent =
     en
@@ -1007,36 +1007,7 @@ function traducirPagina() {
         
     }
 
-
-    actualizarVideos();
 }
-
-
-function actualizarVideos() {
-
-    const en = idiomaActual === "en";
-
-    for (let i = 1; i <= 6; i++) {
-
-        const numero = String(i).padStart(3, "0");
-
-        const fuente =
-            document.getElementById(`video${numero}`);
-
-        if (!fuente) continue;
-
-        fuente.src = en
-            ? `camara-${numero}-en.mp4`
-            : `camara-${numero}.mp4`;
-
-        const video = fuente.parentElement;
-
-        if (video) {
-            video.load();
-        }
-    }
-}
-
 
 document.addEventListener("DOMContentLoaded", function() {
 
