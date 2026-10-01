@@ -7,7 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Intranet Municipal - Oca de Arraya</title>
+<title id="tituloPagina">
+    Intranet Municipal - Oca de Arraya
+</title>
 
 <style>
 
@@ -27,6 +29,7 @@ header {
     color: white;
     padding: 28px;
     border-bottom: 5px solid #a4a59d;
+    position: relative;
 }
 
 header h1 {
@@ -57,7 +60,6 @@ header p {
 
 }
 
-
 .escudo-municipal img {
 
     width: 100%;
@@ -78,7 +80,48 @@ header p {
     gap: 18px;
 
 }
-    
+
+
+/* =====================================================
+   BOTÓN DE IDIOMA
+===================================================== */
+
+.boton-idioma {
+
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    background: #f5f4ee;
+    color: #26343a;
+
+    border: 1px solid #a7a9a4;
+
+    padding: 8px 13px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.boton-idioma:hover {
+
+    background: #d9dad5;
+
+}
+
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
 .contenedor {
     width: 92%;
     max-width: 1000px;
@@ -156,7 +199,7 @@ header p {
     display: block;
 
 }
-    
+
 .servicio h3 {
     margin: 0 0 7px;
     font-size: 14px;
@@ -177,6 +220,11 @@ footer {
     letter-spacing: 1px;
 }
 
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
 @media (max-width: 600px) {
 
     .servicios {
@@ -185,6 +233,7 @@ footer {
 
     header h1 {
         font-size: 19px;
+        padding-right: 70px;
     }
 
     .panel {
@@ -193,16 +242,27 @@ footer {
 
     .escudo-municipal {
 
-    width: 50px;
-    height: 50px;
+        width: 50px;
+        height: 50px;
 
-}
+    }
 
-.titulo-municipal {
+    .titulo-municipal {
 
-    gap: 12px;
+        gap: 12px;
 
-}
+    }
+
+    .boton-idioma {
+
+        top: 15px;
+        right: 15px;
+
+        padding: 7px 10px;
+
+        font-size: 10px;
+
+    }
 
 }
 
@@ -216,24 +276,37 @@ footer {
 
 <header>
 
+    <!-- BOTÓN DE IDIOMA -->
+
+    <button
+        class="boton-idioma"
+        id="botonIdioma"
+        onclick="cambiarIdioma()"
+    >
+        🇬🇧 EN
+    </button>
+
+
     <div class="titulo-municipal">
 
-    <div class="escudo-municipal">
+        <div class="escudo-municipal">
 
-        <img
-            src="emblema-ayuntamiento.png"
-            alt="Emblema del Ayuntamiento de Oca de Arraya"
-        >
+            <img
+                src="emblema-ayuntamiento.png"
+                alt="Emblema del Ayuntamiento de Oca de Arraya"
+                id="emblema"
+            >
+
+        </div>
+
+        <h1 id="tituloAyuntamiento">
+            AYUNTAMIENTO DE OCA DE ARRAYA
+        </h1>
 
     </div>
 
-    <h1>
-        AYUNTAMIENTO DE OCA DE ARRAYA
-    </h1>
 
-</div>
-
-    <p>
+    <p id="subtituloAyuntamiento">
         INTRANET MUNICIPAL · RED INTERNA DE SERVICIOS
     </p>
 
@@ -248,11 +321,11 @@ footer {
 
         <div class="titulo">
 
-            <h2>
+            <h2 id="tituloPortal">
                 PORTAL INTERNO MUNICIPAL
             </h2>
 
-            <p>
+            <p id="descripcionPortal">
                 Acceso a los sistemas y servicios
                 electrónicos del Ayuntamiento.
             </p>
@@ -262,6 +335,8 @@ footer {
 
         <div class="servicios">
 
+
+            <!-- COMISARÍA -->
 
             <a
                 class="servicio"
@@ -275,7 +350,7 @@ footer {
                         alt="Comisaría de Oca de Arraya"
                     >
 
-</div>
+                </div>
 
                 <h3>
                     COMISARÍA DE OCA DE ARRAYA
@@ -289,6 +364,8 @@ footer {
             </a>
 
 
+            <!-- CLÍNICA BOREAL -->
+
             <a
                 class="servicio"
                 href="clinica-boreal.html"
@@ -298,10 +375,10 @@ footer {
 
                     <img
                         src="boreal.png"
-                        alt="Clinica Boreal"
+                        alt="Clínica Boreal"
                     >
 
-</div>
+                </div>
 
                 <h3>
                     NUBE CLÍNICA BOREAL
@@ -315,6 +392,8 @@ footer {
             </a>
 
 
+            <!-- VIDEOVIGILANCIA -->
+
             <a
                 class="servicio"
                 href="camaras.html"
@@ -327,7 +406,7 @@ footer {
                         alt="Videovigilancia Municipal"
                     >
 
-</div>
+                </div>
 
                 <h3>
                     VIDEOVIGILANCIA MUNICIPAL
@@ -341,6 +420,8 @@ footer {
             </a>
 
 
+            <!-- ARCHIVO -->
+
             <a
                 class="servicio"
                 href="ayuntamiento.html"
@@ -353,7 +434,7 @@ footer {
                         alt="Archivo Municipal"
                     >
 
-</div>
+                </div>
 
                 <h3>
                     ARCHIVO MUNICIPAL
@@ -376,11 +457,341 @@ footer {
 </div>
 
 
-<footer>
+<footer id="piePagina">
 
     AYUNTAMIENTO DE OCA DE ARRAYA · SISTEMA INTERNO
 
 </footer>
+
+
+<script>
+
+/* =====================================================
+   IDIOMA
+===================================================== */
+
+let idiomaActual =
+    localStorage.getItem("idiomaOca") || "es";
+
+
+function cambiarIdioma() {
+
+    if (idiomaActual === "es") {
+
+        idiomaActual = "en";
+
+    } else {
+
+        idiomaActual = "es";
+
+    }
+
+
+    localStorage.setItem(
+        "idiomaOca",
+        idiomaActual
+    );
+
+
+    traducirPagina();
+
+}
+
+
+function traducirPagina() {
+
+    const boton =
+        document.getElementById("botonIdioma");
+
+
+    /* =================================================
+       ESPAÑOL
+    ================================================= */
+
+    if (idiomaActual === "es") {
+
+        document.documentElement.lang = "es";
+
+        document.title =
+            "Intranet Municipal - Oca de Arraya";
+
+
+        boton.innerHTML =
+            "🇬🇧 EN";
+
+
+        document.getElementById(
+            "tituloAyuntamiento"
+        ).textContent =
+            "AYUNTAMIENTO DE OCA DE ARRAYA";
+
+
+        document.getElementById(
+            "subtituloAyuntamiento"
+        ).textContent =
+            "INTRANET MUNICIPAL · RED INTERNA DE SERVICIOS";
+
+
+        document.getElementById(
+            "tituloPortal"
+        ).textContent =
+            "PORTAL INTERNO MUNICIPAL";
+
+
+        document.getElementById(
+            "descripcionPortal"
+        ).textContent =
+            "Acceso a los sistemas y servicios electrónicos del Ayuntamiento.";
+
+
+        /* COMISARÍA */
+
+        document.querySelectorAll(
+            ".servicio h3"
+        )[0].textContent =
+            "COMISARÍA DE OCA DE ARRAYA";
+
+
+        document.querySelectorAll(
+            ".servicio p"
+        )[0].textContent =
+            "Sistema interno de investigación y consulta de expedientes policiales.";
+
+
+        /* CLÍNICA */
+
+        document.querySelectorAll(
+            ".servicio h3"
+        )[1].textContent =
+            "NUBE CLÍNICA BOREAL";
+
+
+        document.querySelectorAll(
+            ".servicio p"
+        )[1].textContent =
+            "Acceso a los servicios y registros sanitarios municipales.";
+
+
+        /* CÁMARAS */
+
+        document.querySelectorAll(
+            ".servicio h3"
+        )[2].textContent =
+            "VIDEOVIGILANCIA MUNICIPAL";
+
+
+        document.querySelectorAll(
+            ".servicio p"
+        )[2].textContent =
+            "Sistema de cámaras de seguridad municipal.";
+
+
+        /* ARCHIVO */
+
+        document.querySelectorAll(
+            ".servicio h3"
+        )[3].textContent =
+            "ARCHIVO MUNICIPAL";
+
+
+        document.querySelectorAll(
+            ".servicio p"
+        )[3].textContent =
+            "Documentación y registros administrativos.";
+
+
+        /* ALT DE IMÁGENES */
+
+        document.querySelectorAll(
+            ".servicio img"
+        )[0].alt =
+            "Comisaría de Oca de Arraya";
+
+
+        document.querySelectorAll(
+            ".servicio img"
+        )[1].alt =
+            "Clínica Boreal";
+
+
+        document.querySelectorAll(
+            ".servicio img"
+        )[2].alt =
+            "Videovigilancia Municipal";
+
+
+        document.querySelectorAll(
+            ".servicio img"
+        )[3].alt =
+            "Archivo Municipal";
+
+
+        document.getElementById(
+            "emblema"
+        ).alt =
+            "Emblema del Ayuntamiento de Oca de Arraya";
+
+
+        document.getElementById(
+            "piePagina"
+        ).textContent =
+            "AYUNTAMIENTO DE OCA DE ARRAYA · SISTEMA INTERNO";
+
+    }
+
+
+    /* =================================================
+       INGLÉS
+    ================================================= */
+
+    else {
+
+        document.documentElement.lang = "en";
+
+        document.title =
+            "Municipal Intranet - Oca de Arraya";
+
+
+        boton.innerHTML =
+            "🇪🇸 ES";
+
+
+        document.getElementById(
+            "tituloAyuntamiento"
+        ).textContent =
+            "OCA DE ARRAYA TOWN HALL";
+
+
+        document.getElementById(
+            "subtituloAyuntamiento"
+        ).textContent =
+            "MUNICIPAL INTRANET · INTERNAL SERVICES NETWORK";
+
+
+        document.getElementById(
+            "tituloPortal"
+        ).textContent =
+            "MUNICIPAL INTERNAL PORTAL";
+
+
+        document.getElementById(
+            "descripcionPortal"
+        ).textContent =
+            "Access to the Town Hall's electronic systems and services.";
+
+
+        /* POLICE STATION */
+
+        document.querySelectorAll(
+            ".servicio h3"
+        )[0].textContent =
+            "OCA DE ARRAYA POLICE STATION";
+
+
+        document.querySelectorAll(
+            ".servicio p"
+        )[0].textContent =
+            "Internal system for police investigations and case file enquiries.";
+
+
+        /* CLINIC */
+
+        document.querySelectorAll(
+            ".servicio h3"
+        )[1].textContent =
+            "BOREAL CLINIC CLOUD";
+
+
+        document.querySelectorAll(
+            ".servicio p"
+        )[1].textContent =
+            "Access to municipal healthcare services and medical records.";
+
+
+        /* CCTV */
+
+        document.querySelectorAll(
+            ".servicio h3"
+        )[2].textContent =
+            "MUNICIPAL VIDEO SURVEILLANCE";
+
+
+        document.querySelectorAll(
+            ".servicio p"
+        )[2].textContent =
+            "Municipal security camera system.";
+
+
+        /* ARCHIVE */
+
+        document.querySelectorAll(
+            ".servicio h3"
+        )[3].textContent =
+            "MUNICIPAL ARCHIVE";
+
+
+        document.querySelectorAll(
+            ".servicio p"
+        )[3].textContent =
+            "Administrative documentation and records.";
+
+
+        /* ALT DE IMÁGENES */
+
+        document.querySelectorAll(
+            ".servicio img"
+        )[0].alt =
+            "Oca de Arraya Police Station";
+
+
+        document.querySelectorAll(
+            ".servicio img"
+        )[1].alt =
+            "Boreal Clinic";
+
+
+        document.querySelectorAll(
+            ".servicio img"
+        )[2].alt =
+            "Municipal Video Surveillance";
+
+
+        document.querySelectorAll(
+            ".servicio img"
+        )[3].alt =
+            "Municipal Archive";
+
+
+        document.getElementById(
+            "emblema"
+        ).alt =
+            "Oca de Arraya Town Hall emblem";
+
+
+        document.getElementById(
+            "piePagina"
+        ).textContent =
+            "OCA DE ARRAYA TOWN HALL · INTERNAL SYSTEM";
+
+    }
+
+}
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        traducirPagina();
+
+    }
+);
+
+</script>
 
 
 </body>
