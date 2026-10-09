@@ -3638,12 +3638,15 @@ async function llamarFuncionOca(datos) {
         body: JSON.stringify(datos)
     });
 
-    const resultado = await respuesta.json();
+    let resultado;
+    try {
+        resultado = await respuesta.json();
+    } catch (_) {
+        throw new Error("El servidor ha devuelto una respuesta no válida.");
+    }
 
-    if (!respuesta.ok) {
-        throw new Error(
-            resultado.message || "Error al conectar con la investigación"
-        );
+    if (!respuesta.ok || resultado.ok === false || resultado.success === false) {
+        throw new Error(resultado.message || resultado.error || "Error al conectar con la investigación");
     }
 
     return resultado;
@@ -4826,186 +4829,77 @@ let intentosDetencion = Infinity;
    IDENTIFICACIÓN DEL SOSPECHOSO
 ===================================================== */
 
-function intentarDetencion() {
+async function intentarDetencion() {
 
-    const campo =
-        document.getElementById(
-            "sospechosoDetencion"
-        );
+    const campo = document.getElementById("sospechosoDetencion");
+    const resultado = document.getElementById("resultadoDetencion");
+    const contador = document.getElementById("intentosDetencion");
+    const boton = document.querySelector('#detencion button[onclick="intentarDetencion()"]');
 
-    const resultado =
-        document.getElementById(
-            "resultadoDetencion"
-        );
+    if (!campo || !resultado || !contador || !boton || boton.disabled) return;
 
-    const contador =
-        document.getElementById(
-            "intentosDetencion"
-        );
+    const sospechoso = campo.value.trim().toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, " ");
+    const culpable = "jose maria tejero hermosilla";
 
-
-    const sospechoso =
-        campo.value
-        .trim()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
-
-    /*
-    -----------------------------------------------
-    NOMBRE DEL CULPABLE
-    CAMBIA ESTE NOMBRE POR EL DEFINITIVO
-    -----------------------------------------------
-    */
-
-    const culpable =
-        "jose maria tejero hermosilla";
-
-
-    if (sospechoso === culpable) {
-
+    // Los intentos incorrectos siguen siendo ilimitados.
+    if (sospechoso !== culpable) {
         resultado.innerHTML = `
-
-            <div class="comunicacion-desbloqueada">
-
-    <div class="titulo-detencion">
-
-       <img
-    src="${idiomaActual === "en" ? "asesino-correcto-en.png" : "asesino-correcto.png"}"
-    alt="Detención autorizada"
->
-
-        <strong>
-            DETENCIÓN AUTORIZADA
-        </strong>
-
-    </div>
-
-    <p>
-        IDENTIFICACIÓN CONFIRMADA.
-    </p>
-
-    <p>
-        El sospechoso indicado ha sido
-        identificado como responsable
-        de los acontecimientos investigados.
-    </p>
-
-    <p>
-        <strong>
-            ORDEN DE DETENCIÓN EMITIDA
-        </strong>
-    </p>
-
-    <p>
-        EXPEDIENTE OCA-2026-001
-    </p>
-
-</div>
-
-        `;
-
-
-        campo.disabled = true;
-
-
-        document.querySelector(
-    '#detencion button[onclick="intentarDetencion()"]'
-    ).disabled = true;
-
-
-        contador.innerHTML =
-    "INVESTIGACIÓN FINALIZADA";
-
-mostrarFinal();
-
-setTimeout(function() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}, 700);
-
-return;
-
-    }
-
-
-    /*
-    -----------------------------------------------
-    RESPUESTA INCORRECTA
-    -----------------------------------------------
-    */
-
-    resultado.innerHTML = `
-    <div class="error">
-        <div class="titulo-detencion">
-            <img
-                src="${idiomaActual === "en"
-                    ? "asesino-erroneo-en.png"
-                    : "asesino-erroneo.png"}"
-                alt="Identificación incorrecta"
-            >
-            <strong>IDENTIFICACIÓN INCORRECTA</strong>
-        </div>
-
-        <p>
-            El sospechoso indicado no coincide
-            con el responsable.
-        </p>
-
-        <p>
-            Revisa las pruebas y vuelve a intentarlo.
-        </p>
-    </div>
-`;
-
-contador.innerHTML = "IDENTIFICACIONES DISPONIBLES: ILIMITADAS";
-
-    }
-
-    else {
-
-        resultado.innerHTML = `
-
             <div class="error">
-
                 <div class="titulo-detencion">
-                   <img
-                    src="${idiomaActual === "en" ? "asesino-erroneo-en.png" : "asesino-erroneo.png"}"
-                    alt=""
-                >
-                     <strong>IDENTIFICACIÓN FALLIDA</strong>
+                    <img src="${idiomaActual === "en" ? "asesino-erroneo-en.png" : "asesino-erroneo.png"}" alt="Identificación incorrecta">
+                    <strong>IDENTIFICACIÓN INCORRECTA</strong>
                 </div>
-
-                <br><br>
-
-                Se han agotado las oportunidades
-                de identificación.
-
-                <br><br>
-
-                ORDEN DE DETENCIÓN DENEGADA.
-
-            </div>
-
-        `;
-
-
-        campo.disabled = true;
-
-
-        document.querySelector(
-            "#detencion button"
-        ).disabled = true;
-
-
-        contador.innerHTML =
-            "OPORTUNIDADES DISPONIBLES: 0";
-
+                <p>El sospechoso indicado no coincide con el responsable.</p>
+                <p>Revisa las pruebas y vuelve a intentarlo.</p>
+            </div>`;
+        contador.innerHTML = "IDENTIFICACIONES DISPONIBLES: ILIMITADAS";
+        return;
     }
 
+    const codeId = localStorage.getItem("oca_code_id");
+    const deviceId = localStorage.getItem("oca_device_id");
+    const sessionToken = localStorage.getItem("oca_session_token");
+
+    if (!codeId || !deviceId || !sessionToken) {
+        resultado.innerHTML = '<div class="error"><strong>SESIÓN NO VÁLIDA</strong><p>Vuelve al portal e introduce tu código de acceso para continuar.</p></div>';
+        return;
+    }
+
+    boton.disabled = true;
+    campo.disabled = true;
+    resultado.textContent = "Verificando la resolución de la investigación…";
+
+    try {
+        await llamarFuncionOca({
+            action: "complete",
+            code_id: codeId,
+            device_id: deviceId,
+            session_token: sessionToken,
+            answer: campo.value.trim()
+        });
+
+        resultado.innerHTML = `
+            <div class="comunicacion-desbloqueada">
+                <div class="titulo-detencion">
+                    <img src="${idiomaActual === "en" ? "asesino-correcto-en.png" : "asesino-correcto.png"}" alt="Detención autorizada">
+                    <strong>DETENCIÓN AUTORIZADA</strong>
+                </div>
+                <p>IDENTIFICACIÓN CONFIRMADA.</p>
+                <p>El sospechoso indicado ha sido identificado como responsable de los acontecimientos investigados.</p>
+                <p><strong>ORDEN DE DETENCIÓN EMITIDA</strong></p>
+                <p>EXPEDIENTE OCA-2026-001</p>
+            </div>`;
+        contador.innerHTML = "INVESTIGACIÓN FINALIZADA";
+        mostrarFinal();
+        setTimeout(() => window.scrollTo({top: 0, behavior: "smooth"}), 700);
+    } catch (error) {
+        console.error("No se pudo completar la investigación:", error);
+        campo.disabled = false;
+        boton.disabled = false;
+        resultado.innerHTML = `<div class="error"><strong>NO SE HA PODIDO VALIDAR LA DETENCIÓN</strong><p>${String(error.message || "Comprueba la conexión e inténtalo de nuevo.").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}</p></div>`;
+    }
 }
 
 
@@ -5242,141 +5136,58 @@ function mostrarEncuesta() {
 
 }
 
-function enviarEncuesta() {
+async function enviarEncuesta() {
 
-    const valoracion =
-        document.querySelector(
-            'input[name="valoracion"]:checked'
-        )?.value || "";
+    const encuesta = document.getElementById("encuestaJuego");
+    const botonEnviar = encuesta ? encuesta.querySelector('button[onclick="enviarEncuesta()"]') : null;
+    const codeId = localStorage.getItem("oca_code_id");
+    const deviceId = localStorage.getItem("oca_device_id");
+    const sessionToken = localStorage.getItem("oca_session_token");
 
-    const dificultad =
-        document.getElementById(
-            "dificultadJuego"
-        ).value;
-
-    const partes =
-        [...document.querySelectorAll(
-            '.opciones-encuesta input[type="checkbox"]:checked'
-        )]
-        .map(input => input.value)
-        .join(", ");
-
-    const momentoClave =
-        document.getElementById(
-            "momentoClave"
-        ).value.trim();
-
-    const problemas =
-        document.getElementById(
-            "problemasJuego"
-        ).value.trim();
-
-    const mejoras =
-        document.getElementById(
-            "mejorasJuego"
-        ).value.trim();
-
-    const recomendaria =
-        document.querySelector(
-            'input[name="recomendaria"]:checked'
-        )?.value || "";
-
-    const comentarios =
-        document.getElementById(
-            "comentariosJuego"
-        ).value.trim();
-
+    if (!codeId || !deviceId || !sessionToken) {
+        alert("La sesión no es válida. Vuelve al portal e introduce tu código de acceso.");
+        return;
+    }
 
     const datos = {
-
-        valoracion: valoracion,
-
-        dificultad: dificultad,
-
-        parteFavorita: partes,
-
-        momentoClave: momentoClave,
-
-        problemas: problemas,
-
-        mejoras: mejoras,
-
-        recomendaria: recomendaria,
-
-        comentarios: comentarios
-
+        valoracion: document.querySelector('input[name="valoracion"]:checked')?.value || "",
+        dificultad: document.getElementById("dificultadJuego")?.value || "",
+        parteFavorita: [...document.querySelectorAll('.opciones-encuesta input[type="checkbox"]:checked')].map(input => input.value).join(", "),
+        momentoClave: document.getElementById("momentoClave")?.value.trim() || "",
+        problemas: document.getElementById("problemasJuego")?.value.trim() || "",
+        mejoras: document.getElementById("mejorasJuego")?.value.trim() || "",
+        recomendaria: document.querySelector('input[name="recomendaria"]:checked')?.value || "",
+        comentarios: document.getElementById("comentariosJuego")?.value.trim() || ""
     };
 
+    if (botonEnviar) botonEnviar.disabled = true;
 
-    fetch("https://script.google.com/macros/s/AKfycbwAnmC0-iLqWOijahuZV5ZflhhQ0GVjnlxjl_BMaOlqKSL9mPDzLl4MbWQtOJgg83ZD/exec", {
+    try {
+        await llamarFuncionOca({
+            action: "save_survey",
+            code_id: codeId,
+            device_id: deviceId,
+            session_token: sessionToken,
+            survey_response: datos
+        });
 
-        method: "POST",
-
-        body: JSON.stringify(datos)
-
-    })
-    .then(() => {
-
-        document.getElementById(
-            "encuestaJuego"
-        ).innerHTML = `
-
-            <div class="barra-expediente">
-
-                <h2>
-                    EXPEDIENTE CERRADO
-                </h2>
-
-            </div>
-
-            <section class="panel final-panel">
-
-                <div class="final-icono">
-                    ✓
-                </div>
-
-                <h3>
-                    INFORME RECIBIDO
-                </h3>
-
-                <p>
-                    Gracias por vuestra colaboración.
-                </p>
-
-                <p>
-                    Vuestra valoración ha sido registrada
-                    correctamente.
-                </p>
-
-                <p>
-                    <strong>
-                        OCA DE ARRAYA · EXPEDIENTE 1-2025
-                    </strong>
-                </p>
-
-            </section>
-
-        `;
-
-       setTimeout(function() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}, 500);
-
-    })
-    .catch(error => {
-
-        console.error(error);
-
-        alert(
-            "No se ha podido enviar la valoración. " +
-            "Compruebe la conexión a Internet."
-        );
-
-    });
-
+        if (encuesta) {
+            encuesta.innerHTML = `
+                <div class="barra-expediente"><h2>EXPEDIENTE CERRADO</h2></div>
+                <section class="panel final-panel">
+                    <div class="final-icono">✓</div>
+                    <h3>INFORME RECIBIDO</h3>
+                    <p>Gracias por vuestra colaboración.</p>
+                    <p>Vuestra valoración ha sido registrada correctamente.</p>
+                    <p><strong>OCA DE ARRAYA · EXPEDIENTE 1-2025</strong></p>
+                </section>`;
+        }
+        setTimeout(() => window.scrollTo({top: 0, behavior: "smooth"}), 500);
+    } catch (error) {
+        console.error("No se pudo guardar la encuesta:", error);
+        alert("No se ha podido guardar la valoración. " + (error.message || "Comprueba la conexión e inténtalo de nuevo."));
+        if (botonEnviar) botonEnviar.disabled = false;
+    }
 }
 
 function mostrarEncuesta() {
