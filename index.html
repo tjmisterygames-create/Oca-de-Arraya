@@ -995,7 +995,32 @@ if (!codigoLimpio) {
     } catch (error) {
         mostrarAccesoOca();
         mensaje.style.color = "#8a2929";
-        mensaje.textContent = error.message || (idiomaActual === "en" ? "Could not validate the access code." : "No se ha podido validar el código.");
+        const mensajeError = error.message ||
+    (idiomaActual === "en"
+        ? "Could not validate the access code."
+        : "No se ha podido validar el código.");
+
+if (idiomaActual === "en") {
+    const errorNormalizado = mensajeError
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+
+    if (
+        errorNormalizado.includes("codigo") &&
+        (
+            errorNormalizado.includes("no valido") ||
+            errorNormalizado.includes("inactivo") ||
+            errorNormalizado.includes("invalido")
+        )
+    ) {
+        mensaje.textContent = "This access code is invalid or inactive.";
+    } else {
+        mensaje.textContent = mensajeError;
+    }
+} else {
+    mensaje.textContent = mensajeError;
+}
         if (automatico) {
             // El jugador podrá volver a introducir el código manualmente.
             document.getElementById("codigoAcceso").value = "";
