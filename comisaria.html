@@ -3615,6 +3615,41 @@ footer {
 
 <script>
 
+```javascript
+/* =========================================
+   CONEXIÓN CON SUPABASE
+========================================= */
+
+const OCA_SUPABASE_URL =
+    "https://vnaoprnuxnlmrrozlfys.supabase.co";
+
+const OCA_SUPABASE_KEY =
+    "sb_publishable_QQDVNzxl44khQtEBO2tm5g_jMjRcEc4";
+
+const OCA_FUNCTION_URL =
+    OCA_SUPABASE_URL + "/functions/v1/oca-investigation";
+
+async function llamarFuncionOca(datos) {
+    const respuesta = await fetch(OCA_FUNCTION_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "apikey": OCA_SUPABASE_KEY
+        },
+        body: JSON.stringify(datos)
+    });
+
+    const resultado = await respuesta.json();
+
+    if (!respuesta.ok) {
+        throw new Error(
+            resultado.message || "Error al conectar con la investigación"
+        );
+    }
+
+    return resultado;
+}
+```
 
 /* =====================================================
    SISTEMA DE CONSULTA
@@ -4782,23 +4817,11 @@ function comprobarDetencion() {
    INTENTOS DE DETENCIÓN
 ===================================================== */
 
-let intentosDetencion =
-    Number(
-        localStorage.getItem(
-            "intentosDetencion"
-        )
-    );
+/* =====================================================
+   INTENTOS DE DETENCIÓN ILIMITADOS
+===================================================== */
 
-
-if (
-    !intentosDetencion ||
-    intentosDetencion < 1 ||
-    intentosDetencion > 2
-) {
-
-    intentosDetencion = 2;
-
-}
+let intentosDetencion = Infinity;
 
 
 /* =====================================================
@@ -4917,50 +4940,30 @@ return;
     -----------------------------------------------
     */
 
-    intentosDetencion--;
+    resultado.innerHTML = `
+    <div class="error">
+        <div class="titulo-detencion">
+            <img
+                src="${idiomaActual === "en"
+                    ? "asesino-erroneo-en.png"
+                    : "asesino-erroneo.png"}"
+                alt="Identificación incorrecta"
+            >
+            <strong>IDENTIFICACIÓN INCORRECTA</strong>
+        </div>
 
-    localStorage.setItem(
-        "intentosDetencion",
-        intentosDetencion
-    );
+        <p>
+            El sospechoso indicado no coincide
+            con el responsable.
+        </p>
 
-
-    if (intentosDetencion > 0) {
-
-        resultado.innerHTML = `
-
-            <div class="error">
-
-    <div class="titulo-detencion">
-
-        <img
-    src="${idiomaActual === "en" ? "asesino-erroneo-en.png" : "asesino-erroneo.png"}"
-    alt="Identificación incorrecta"
->
-
-        <strong>
-            IDENTIFICACIÓN INCORRECTA
-        </strong>
-
+        <p>
+            Revisa las pruebas y vuelve a intentarlo.
+        </p>
     </div>
+`;
 
-    <p>
-        El sospechoso indicado
-        no coincide con el responsable.
-    </p>
-
-    <p>
-        Revise las pruebas antes
-        de realizar una nueva identificación.
-    </p>
-
-</div>
-
-        `;
-
-        contador.innerHTML =
-            "OPORTUNIDADES DISPONIBLES: " +
-            intentosDetencion;
+contador.innerHTML = "IDENTIFICACIONES DISPONIBLES: ILIMITADAS";
 
     }
 
