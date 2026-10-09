@@ -601,6 +601,20 @@ function traducirPagina() {
         document.title =
             "Intranet Municipal - Oca de Arraya";
 
+        document.getElementById("tituloAcceso").textContent =
+            "ACCESO A LA INVESTIGACIÓN";
+
+        document.getElementById("textoAcceso").textContent =
+             "Introduce el código de acceso que has recibido para comenzar o continuar la investigación.";
+
+        document.getElementById("etiquetaCodigo").textContent =
+                "CÓDIGO DE ACCESO";
+
+        document.getElementById("codigoAcceso").placeholder =
+                "INTRODUCE TU CÓDIGO";
+
+        document.getElementById("botonAcceso").textContent =
+                "ENTRAR EN LA INVESTIGACIÓN";
 
         boton.innerHTML =
             "🇬🇧 EN";
@@ -733,7 +747,23 @@ function traducirPagina() {
     else {
 
         document.documentElement.lang = "en";
+        
 
+        document.getElementById("tituloAcceso").textContent =
+            "INVESTIGATION ACCESS";
+
+        document.getElementById("textoAcceso").textContent =
+            "Enter the access code you received to start or continue the investigation.";
+
+            document.getElementById("etiquetaCodigo").textContent =
+                "ACCESS CODE";
+
+        document.getElementById("codigoAcceso").placeholder =
+    "ENTER YOUR CODE";
+
+        document.getElementById("botonAcceso").textContent =
+            "ENTER THE INVESTIGATION";
+        
         document.title =
             "Municipal Intranet - Oca de Arraya";
 
@@ -886,7 +916,11 @@ async function llamarFuncionOca(datos) {
     try {
         resultado = await respuesta.json();
     } catch (_) {
-        throw new Error("El servidor ha devuelto una respuesta no válida.");
+        throw new Error(
+    idiomaActual === "en"
+        ? "The server returned an invalid response."
+        : "El servidor ha devuelto una respuesta no válida."
+);
     }
 
     if (!respuesta.ok || resultado.ok === false || resultado.success === false) {
@@ -921,10 +955,14 @@ async function activarAccesoOca(codigo, automatico = false) {
     const mensaje = document.getElementById("mensajeAcceso");
     const codigoLimpio = String(codigo || "").trim();
 
-    if (!codigoLimpio) {
-        mensaje.textContent = "Introduce tu código de acceso.";
-        return;
-    }
+    
+if (!codigoLimpio) {
+    mensaje.textContent = idiomaActual === "en"
+        ? "Enter your access code."
+        : "Introduce tu código de acceso.";
+    return;
+}
+
 
     boton.disabled = true;
     mensaje.style.color = "#555";
@@ -942,7 +980,11 @@ async function activarAccesoOca(codigo, automatico = false) {
         const sessionToken = datos.session_token || datos.sessionToken;
 
         if (!codeId || !sessionToken) {
-            throw new Error("La función de acceso no ha devuelto los datos de sesión esperados. Comprueba que oca-investigation esté desplegada y actualizada.");
+            throw new Error(
+    idiomaActual === "en"
+        ? "The access function did not return the expected session data. Check that oca-investigation is deployed and up to date."
+        : "La función de acceso no ha devuelto los datos de sesión esperados. Comprueba que oca-investigation esté desplegada y actualizada."
+        );        
         }
 
         localStorage.setItem("oca_access_code", codigoLimpio);
