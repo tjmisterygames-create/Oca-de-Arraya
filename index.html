@@ -395,7 +395,7 @@ footer {
         <p id="textoAcceso">Introduce el código de acceso que has recibido para comenzar o continuar la investigación.</p>
         <form id="formularioAcceso">
             <label for="codigoAcceso" id="etiquetaCodigo">CÓDIGO DE ACCESO</label>
-            <input id="codigoAcceso" name="codigoAcceso" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required maxlength="80" placeholder="INTRODUCE TU CÓDIGO">
+            <input id="codigoAcceso" name="codigoAcceso" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false"  maxlength="80" placeholder="INTRODUCE TU CÓDIGO">
             <button type="submit" id="botonAcceso">ENTRAR EN LA INVESTIGACIÓN</button>
             <div id="mensajeAcceso" role="status" aria-live="polite"></div>
         </form>
@@ -1016,9 +1016,22 @@ document.addEventListener(
         traducirPagina();
 
         document.getElementById("formularioAcceso").addEventListener("submit", function(evento) {
-            evento.preventDefault();
-            activarAccesoOca(document.getElementById("codigoAcceso").value);
-        });
+    evento.preventDefault();
+
+    const campoCodigo = document.getElementById("codigoAcceso");
+    const mensaje = document.getElementById("mensajeAcceso");
+
+    if (!campoCodigo.value.trim()) {
+        mensaje.style.color = "#8a2929";
+        mensaje.textContent = idiomaActual === "en"
+            ? "Please enter your access code."
+            : "Introduce tu código de acceso.";
+        campoCodigo.focus();
+        return;
+    }
+
+    activarAccesoOca(campoCodigo.value);
+});
 
         const codigoGuardado = localStorage.getItem("oca_access_code");
         if (codigoGuardado) {
