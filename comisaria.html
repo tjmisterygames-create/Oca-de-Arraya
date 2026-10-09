@@ -3640,6 +3640,105 @@ async function llamarFuncionOca(datos) {
 }
 
 /* =====================================================
+   SINCRONIZACIÓN DEL PROGRESO CON SUPABASE
+   Se conserva localStorage como respaldo local.
+===================================================== */
+
+let ocaCargandoProgresoRemoto = false;
+let ocaGuardadoPendiente = Promise.resolve();
+
+function obtenerProgresoLocalOca() {
+    const claves = [
+        "sobre01Autorizado",
+        "pistasSobre01Desbloqueadas",
+        "pistaSobre02Desbloqueada",
+        "pistaSobre02",
+        "detencionDesbloqueada",
+        "hayNuevasPistas"
+    ];
+    const progreso = {};
+    claves.forEach(clave => {
+        const valor = localStorage.getItem(clave);
+        if (valor !== null) progreso[clave] = valor;
+    });
+    return progreso;
+}
+
+function aplicarProgresoOca(progreso) {
+    if (!progreso || typeof progreso !== "object" || Array.isArray(progreso)) return;
+    const clavesPermitidas = [
+        "sobre01Autorizado",
+        "pistasSobre01Desbloqueadas",
+        "pistaSobre02Desbloqueada",
+        "pistaSobre02",
+        "detencionDesbloqueada",
+        "hayNuevasPistas"
+    ];
+    clavesPermitidas.forEach(clave => {
+        if (typeof progreso[clave] === "string") {
+            localStorage.setItem(clave, progreso[clave]);
+        }
+    });
+    comprobarSobre01Autorizado();
+    comprobarPistasDesbloqueadas();
+    comprobarDetencion();
+    comprobarAvisoPistas();
+}
+
+async function guardarProgresoOca() {
+    if (ocaCargandoProgresoRemoto) return;
+    const codeId = localStorage.getItem("oca_code_id");
+    const deviceId = localStorage.getItem("oca_device_id");
+    const sessionToken = localStorage.getItem("oca_session_token");
+    if (!codeId || !deviceId || !sessionToken) return;
+
+    const progress = obtenerProgresoLocalOca();
+    ocaGuardadoPendiente = ocaGuardadoPendiente
+        .catch(() => {})
+        .then(() => llamarFuncionOca({
+            action: "save_progress",
+            code_id: codeId,
+            device_id: deviceId,
+            session_token: sessionToken,
+            progress
+        }))
+        .catch(error => {
+            console.warn("No se pudo sincronizar el progreso; se conserva el respaldo local.", error);
+        });
+    return ocaGuardadoPendiente;
+}
+
+async function cargarProgresoOca() {
+    const codeId = localStorage.getItem("oca_code_id");
+    const deviceId = localStorage.getItem("oca_device_id");
+    const sessionToken = localStorage.getItem("oca_session_token");
+    if (!codeId || !deviceId || !sessionToken) return;
+
+    ocaCargandoProgresoRemoto = true;
+    try {
+        const resultado = await llamarFuncionOca({
+            action: "load_progress",
+            code_id: codeId,
+            device_id: deviceId,
+            session_token: sessionToken
+        });
+        const remoto = resultado.progress;
+        if (remoto && Object.keys(remoto).length > 0) {
+            aplicarProgresoOca(remoto);
+        } else {
+            // Si el servidor aún no tiene progreso, conservar y subir el estado local existente.
+            ocaCargandoProgresoRemoto = false;
+            await guardarProgresoOca();
+            ocaCargandoProgresoRemoto = true;
+        }
+    } catch (error) {
+        console.warn("No se pudo recuperar el progreso remoto; se mantiene el estado local.", error);
+    } finally {
+        ocaCargandoProgresoRemoto = false;
+    }
+}
+
+/* =====================================================
    SISTEMA DE CONSULTA
 ===================================================== */
 
@@ -4180,6 +4279,7 @@ function mostrarAvisoPistas() {
         "hayNuevasPistas",
         "true"
     );
+    guardarProgresoOca();
 }
 
 
@@ -4194,6 +4294,7 @@ function marcarPistasVistas() {
     localStorage.removeItem(
         "hayNuevasPistas"
     );
+    guardarProgresoOca();
 }
 
 function comprobarAvisoPistas() {
@@ -4315,6 +4416,7 @@ function desbloquearDocumentos01() {
 
         // Guardar la autorización del Sobre 01 para recuperarla al recargar.
         localStorage.setItem("sobre01Autorizado", "true");
+        guardarProgresoOca();
 
         resultado.innerHTML = `
 
@@ -4435,6 +4537,7 @@ function obtenerPistaSobre02() {
             "pistaSobre02",
             pistaGuardada
         );
+        guardarProgresoOca();
     }
 
     const pista =
@@ -4800,6 +4903,7 @@ function desbloquearDetencion() {
         "detencionDesbloqueada",
         "true"
     );
+    guardarProgresoOca();
 
 }
 
@@ -4926,13 +5030,12 @@ async function intentarDetencion() {
 
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
-
+    async function() {
         comprobarDetencion();
         comprobarSobre01Autorizado();
         comprobarPistasDesbloqueadas();
         comprobarAvisoPistas();
-
+        await cargarProgresoOca();
     }
 );
 
@@ -4992,6 +5095,7 @@ function reiniciarInvestigacion() {
     localStorage.removeItem(
     "hayNuevasPistas"
 );
+    guardarProgresoOca();
     
     /* -----------------------------------------------
        OCULTAR DETENCIÓN
