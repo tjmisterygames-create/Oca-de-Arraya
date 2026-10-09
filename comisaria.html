@@ -4388,6 +4388,11 @@ function comprobarSobre01Autorizado() {
     }
 
     if (documentos) documentos.style.display = "block";
+
+    // Restaurar también la miniatura y el enlace del documento restringido.
+    // Si no se hace, la imagen queda sin src y el botón conserva href="#",
+    // por lo que al pulsarlo se vuelve a cargar esta misma página.
+    obtenerPistaSobre02();
 }
 
 /* =====================================================
