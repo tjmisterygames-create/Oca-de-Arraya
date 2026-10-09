@@ -4326,6 +4326,9 @@ function desbloquearDocumentos01() {
 
     if (codigo === "436") {
 
+        // Guardar la autorización del Sobre 01 para recuperarla al recargar.
+        localStorage.setItem("sobre01Autorizado", "true");
+
         resultado.innerHTML = `
 
             <div class="comunicacion-desbloqueada">
@@ -4372,10 +4375,32 @@ function desbloquearDocumentos01() {
 
         `;
 
-        documentos.style.display = "none";
+        // No volver a bloquear el Sobre 01 si ya se había autorizado.
+        if (localStorage.getItem("sobre01Autorizado") !== "true") {
+            documentos.style.display = "none";
+        }
 
     }
 
+}
+
+function comprobarSobre01Autorizado() {
+    if (localStorage.getItem("sobre01Autorizado") !== "true") return;
+
+    const resultado = document.getElementById("resultadoDocumentos01");
+    const documentos = document.getElementById("documentosNivel01");
+
+    if (resultado) {
+        resultado.innerHTML = `
+            <div class="comunicacion-desbloqueada">
+                <strong>✓ AUTORIZACIÓN VERIFICADA</strong>
+                <p>Permiso de apertura — Sobre 01.</p>
+                <p>La documentación física asociada a esta autorización puede ser abierta.</p>
+            </div>
+        `;
+    }
+
+    if (documentos) documentos.style.display = "block";
 }
 
 /* =====================================================
@@ -4912,6 +4937,7 @@ document.addEventListener(
     function() {
 
         comprobarDetencion();
+        comprobarSobre01Autorizado();
         comprobarPistasDesbloqueadas();
         comprobarAvisoPistas();
 
@@ -4949,6 +4975,10 @@ function reiniciarInvestigacion() {
 
     localStorage.removeItem(
         "detencionDesbloqueada"
+    );
+
+    localStorage.removeItem(
+        "sobre01Autorizado"
     );
 
     localStorage.removeItem(
