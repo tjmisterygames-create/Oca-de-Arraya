@@ -895,14 +895,26 @@ function accederArchivo() {
 }
 
 
+
 function mostrarPistaCesar() {
-    const imagen = document.getElementById("imagenPistaCesar");
+    const contenedor = document.getElementById("imagenPistaCesar");
 
-    if (!imagen) return;
+    if (!contenedor) return;
 
-    const visible = imagen.style.display === "block";
-    imagen.style.display = visible ? "none" : "block";
+    const imagen = document.getElementById("imagenPistaCesarArchivo");
+    const enlace = document.getElementById("enlacePistaCesar");
+
+    const archivo = idiomaActual === "en"
+        ? "pista-cesar-en.png"
+        : "pista-cesar.png";
+
+    imagen.src = archivo;
+    enlace.href = archivo;
+
+    contenedor.style.display =
+        contenedor.style.display === "block" ? "none" : "block";
 }
+
 
 
 function actualizarPistaCesar() {
