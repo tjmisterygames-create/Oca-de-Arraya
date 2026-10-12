@@ -880,7 +880,7 @@ function accederArchivo() {
                 }
             </button>
 
-            <div id="imagenPistaCesar" style="display:none; margin-top:15px;">
+            <div id="imagenPistaCesar" style="display:none; margin-top:15px;"></div>
 
                 <a href="pista-cesar.png" target="_blank" rel="noopener">
                     <img
@@ -975,7 +975,7 @@ function accederArchivo() {
                 }
             </button>
 
-            <div id="imagenPistaCesar">
+            <div id="imagenPistaCesar" style="display:none; margin-top:15px;"></div>
                 <p>
                     ${
                         idiomaActual === "en"
@@ -1134,15 +1134,6 @@ document.addEventListener(
 
     }
 );
-
-function mostrarPistaCesar() {
-    const imagen = document.getElementById("imagenPistaCesar");
-
-    if (!imagen) return;
-
-    imagen.style.display =
-        imagen.style.display === "none" ? "block" : "none";
-}
     
 </script>
 
