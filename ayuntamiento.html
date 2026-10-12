@@ -1006,39 +1006,34 @@ function accederArchivo() {
 }
 
 
+
 function mostrarPistaCesar() {
     const imagen = document.getElementById("imagenPistaCesar");
-
     if (!imagen) return;
 
-    const visible = imagen.style.display === "block";
+    const idioma = localStorage.getItem("idiomaOca") || "es";
+    const esIngles = idioma.toLowerCase().startsWith("en");
+    const archivo = esIngles ? "pista-cesar-en.png" : "pista-cesar.png";
 
-    if (visible) {
+    if (imagen.style.display === "block") {
         imagen.style.display = "none";
         return;
     }
 
-    const esIngles = idiomaActual === "en";
-    const archivo = esIngles ? "pista-cesar-en.png" : "pista-cesar.png";
-
     imagen.innerHTML = `
-        <p>
-            ${esIngles
-                ? "MUNICIPAL ARCHIVE — SCANNED DOCUMENT"
-                : "ARCHIVO MUNICIPAL — DOCUMENTO ESCANEADO"}
-        </p>
-
+        <p>${esIngles
+            ? "MUNICIPAL ARCHIVE — SCANNED DOCUMENT"
+            : "ARCHIVO MUNICIPAL — DOCUMENTO ESCANEADO"}</p>
         <a href="${archivo}" target="_blank" rel="noopener">
-            <img
-                src="${archivo}"
-                alt="${esIngles ? "Encrypted document" : "Documento cifrado"}"
-                style="width:100%;height:auto;display:block;cursor:zoom-in;"
-            >
+            <img src="${archivo}"
+                 alt="${esIngles ? "Encrypted document" : "Documento cifrado"}"
+                 style="width:100%;height:auto;display:block;cursor:zoom-in;">
         </a>
     `;
 
     imagen.style.display = "block";
 }
+
 
 
 /* =====================================================
