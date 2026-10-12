@@ -851,6 +851,49 @@ function accederArchivo() {
 
         </div>
 
+        <div class="recurso" style="margin-top:15px;">
+
+            <h3>
+                📄 ${
+                    idiomaActual === "en"
+                    ? "ENCRYPTED DOCUMENT RECORDS"
+                    : "REGISTRO DE DOCUMENTOS CIFRADOS"
+                }
+            </h3>
+
+            <p>
+                ${
+                    idiomaActual === "en"
+                    ? "Digitised document available for consultation."
+                    : "Documento digitalizado disponible para su consulta."
+                }
+            </p>
+
+            <button
+                type="button"
+                onclick="mostrarPistaCesar()"
+            >
+                ${
+                    idiomaActual === "en"
+                    ? "OPEN DOCUMENT"
+                    : "ABRIR DOCUMENTO"
+                }
+            </button>
+
+            <div id="imagenPistaCesar" style="display:none; margin-top:15px;">
+
+                <a href="pista-cesar.png" target="_blank" rel="noopener">
+                    <img
+                        src="pista-cesar.png"
+                        alt="Documento cifrado"
+                        style="width:100%; height:auto; display:block; cursor:zoom-in;"
+                    >
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
 `;
@@ -1069,6 +1112,15 @@ document.addEventListener(
 
     }
 );
+
+function mostrarPistaCesar() {
+    const imagen = document.getElementById("imagenPistaCesar");
+
+    if (!imagen) return;
+
+    imagen.style.display =
+        imagen.style.display === "none" ? "block" : "none";
+}
     
 </script>
 
