@@ -286,6 +286,31 @@ footer {
 .boton-idioma:hover {
     background: rgba(255,255,255,0.1) !important;
 }
+
+.documento-cifrado {
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid #aaa;
+    padding: 20px;
+}
+
+.documento-cifrado img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    cursor: zoom-in;
+}
+
+.documento-cifrado .boton-recurso {
+    cursor: pointer;
+}
+
+#imagenPistaCesar {
+    display: none;
+    margin-top: 20px;
+}
     
 </style>
 
@@ -842,38 +867,109 @@ function accederArchivo() {
 
 
         resultado.innerHTML = `
+    <div class="exito">
 
-    <div class="error">
-
-        <strong>
-            ${
+        <div class="exito-titulo">
+            ✓ ${
                 idiomaActual === "en"
-                ? "ACCESS DENIED"
-                : "ACCESO DENEGADO"
+                ? "ACCESS AUTHORIZED"
+                : "ACCESO AUTORIZADO"
             }
-        </strong>
-
-        <br><br>
+        </div>
 
         ${
             idiomaActual === "en"
-            ? "The password entered is not valid."
-            : "La contraseña introducida no es válida."
+            ? "Access granted to the Municipal Archive."
+            : "Acceso concedido al Archivo Municipal."
         }
 
+        <div class="separador"></div>
+
+        <div class="recurso">
+            <h3>
+                🎥 ${
+                    idiomaActual === "en"
+                    ? "CITY MUSEUM"
+                    : "MUSEO DE LA CIUDAD"
+                }
+            </h3>
+
+            <p>
+                ${
+                    idiomaActual === "en"
+                    ? "Audiovisual record available. Additional authorization is required for access."
+                    : "Registro audiovisual disponible. Se requiere una autorización adicional para su consulta."
+                }
+            </p>
+        </div>
+
+        <div class="recurso" style="margin-top:15px;">
+            <h3>
+                📄 ${
+                    idiomaActual === "en"
+                    ? "ENCRYPTED DOCUMENT RECORDS"
+                    : "REGISTRO DE DOCUMENTOS CIFRADOS"
+                }
+            </h3>
+
+            <p>
+                ${
+                    idiomaActual === "en"
+                    ? "Digitised document available for consultation."
+                    : "Documento digitalizado disponible para su consulta."
+                }
+            </p>
+
+            <button
+                type="button"
+                class="boton-recurso"
+                onclick="mostrarPistaCesar()"
+            >
+                ${
+                    idiomaActual === "en"
+                    ? "OPEN DOCUMENT"
+                    : "ABRIR DOCUMENTO"
+                }
+            </button>
+
+            <div id="imagenPistaCesar">
+                <p>
+                    ${
+                        idiomaActual === "en"
+                        ? "MUNICIPAL ARCHIVE — DOCUMENT SCAN"
+                        : "ARCHIVO MUNICIPAL — DOCUMENTO ESCANEADO"
+                    }
+                </p>
+
+                <a href="pista-cesar.png" target="_blank"
+                   rel="noopener">
+                    <img
+                        src="pista-cesar.png"
+                        alt="${
+                            idiomaActual === "en"
+                            ? "Encrypted document"
+                            : "Documento cifrado"
+                        }"
+                    >
+                </a>
+            </div>
+        </div>
+
     </div>
-
 `;
-
-        document
-        .getElementById("videoZona")
-        .style.display = "none";
 
     }
 
 }
 
+function mostrarPistaCesar() {
+    const imagen = document.getElementById("imagenPistaCesar");
 
+    if (!imagen) return;
+
+    const visible = imagen.style.display === "block";
+    imagen.style.display = visible ? "none" : "block";
+}
 
 /* =====================================================
    SEGUNDA CONTRASEÑA
