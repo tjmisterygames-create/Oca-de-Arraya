@@ -880,7 +880,7 @@ function accederArchivo() {
                 }
             </button>
 
-            <div id="imagenPistaCesar" style="display:none; margin-top:15px;"></div>
+            <div id="imagenPistaCesar" style="display:none; margin-top:15px;">
 
                 <a href="pista-cesar.png" target="_blank" rel="noopener">
                     <img
@@ -975,7 +975,7 @@ function accederArchivo() {
                 }
             </button>
 
-            <div id="imagenPistaCesar" style="display:none; margin-top:15px;"></div>
+            <div id="imagenPistaCesar">
                 <p>
                     ${
                         idiomaActual === "en"
@@ -1006,27 +1006,28 @@ function accederArchivo() {
 }
 
 
-
-
 function mostrarPistaCesar() {
     const imagen = document.getElementById("imagenPistaCesar");
+
     if (!imagen) return;
 
-    // Si ya está visible, ocultarla.
-    if (imagen.style.display === "block") {
+    const visible = imagen.style.display === "block";
+
+    if (visible) {
         imagen.style.display = "none";
-        imagen.innerHTML = "";
         return;
     }
 
-    const idioma = localStorage.getItem("idiomaOca") || "es";
-    const esIngles = idioma.toLowerCase().startsWith("en");
+    const esIngles = idiomaActual === "en";
     const archivo = esIngles ? "pista-cesar-en.png" : "pista-cesar.png";
 
     imagen.innerHTML = `
-        <p>${esIngles
-            ? "MUNICIPAL ARCHIVE — SCANNED DOCUMENT"
-            : "ARCHIVO MUNICIPAL — DOCUMENTO ESCANEADO"}</p>
+        <p>
+            ${esIngles
+                ? "MUNICIPAL ARCHIVE — SCANNED DOCUMENT"
+                : "ARCHIVO MUNICIPAL — DOCUMENTO ESCANEADO"}
+        </p>
+
         <a href="${archivo}" target="_blank" rel="noopener">
             <img
                 src="${archivo}"
@@ -1038,8 +1039,6 @@ function mostrarPistaCesar() {
 
     imagen.style.display = "block";
 }
-
-
 
 
 /* =====================================================
@@ -1140,6 +1139,15 @@ document.addEventListener(
 
     }
 );
+
+function mostrarPistaCesar() {
+    const imagen = document.getElementById("imagenPistaCesar");
+
+    if (!imagen) return;
+
+    imagen.style.display =
+        imagen.style.display === "none" ? "block" : "none";
+}
     
 </script>
 
